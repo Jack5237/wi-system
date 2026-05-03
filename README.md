@@ -16,46 +16,35 @@
 - **Link maintenance**: Automatic contradiction detection and link cleanup
 - **Agent-ready**: Easy CLI interface for agentic workflows
 
-## Quick Start
+## Quick Start (3 steps, 10 minutes)
 
-### Installation
-
+### 1. Install
 ```bash
-# Clone the repo
-git clone https://github.com/Jack5237/wi-system.git
-cd wi-system
-
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install
-pip install -e .
+pip install git+https://github.com/Jack5237/wi-system.git
+wi --help
 ```
 
-### Initialize a workspace
-
+### 2. Create your wiki
 ```bash
-mkdir my-project-wiki
-cd my-project-wiki
+mkdir my-wiki && cd my-wiki
 wi init --root .
 ```
 
-### Basic workflow
-
+### 3. Ingest and explore
 ```bash
-# Ingest a source document
-wi ingest --root . sources/architecture.md
+# Add a document
+echo "# My Project" > sources/doc.md
 
-# Query the wiki
-wi query --root . "What's our current architecture?"
+# Ingest
+wi ingest --root . sources/doc.md
 
-# Store the answer back as a page
-wi query --root . "What's our current architecture?" --store
-
-# Maintain the wiki
-wi lint --root . --fix
+# Open in Obsidian and view the graph!
+# (File → Open as vault → select my-wiki)
 ```
+
+**→ [GETTING_STARTED.md](GETTING_STARTED.md) — 10-minute guide**
+
+**→ [docs/TUTORIAL.md](docs/TUTORIAL.md) — Complete walkthrough**
 
 ## Architecture
 
@@ -136,14 +125,40 @@ export WI_LLM_API_KEY=sk-...
 4. Store answers back as synthesis pages
 5. Weekly lint: `wi lint --root . --fix` to catch stale info
 
+## How It Works (Visual Flow)
+
+```
+Raw Documents → Ingest → Wiki Pages → Query → Synthesis
+      ↓                      ↓
+   sources/              wiki/
+                          ↓
+                    View in Obsidian
+                    (graph + backlinks)
+```
+
+1. **Ingest** raw docs from `sources/` 
+2. **Generate** wiki pages, index, and links
+3. **Explore** the graph in Obsidian (or browse HTML)
+4. **Query** the wiki for insights
+5. **Synthesize** answers and store as new pages
+6. **Lint** weekly to maintain quality
+
 ## Documentation
 
-- **[START_HERE.md](START_HERE.md)** — Minimal setup guide
-- **[ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)** — Integration patterns
-- **[USE_CASES.md](docs/USE_CASES.md)** — Real examples and workflows
-- **[AGENTS.md](AGENTS.md)** — Contracts for agent integration
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute
-- **[SECURITY.md](SECURITY.md)** — Security considerations
+**Getting Started**
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** — 10-minute quick start
+- **[START_HERE.md](START_HERE.md)** — Minimal reference
+- **[docs/TUTORIAL.md](docs/TUTORIAL.md)** — Complete walkthrough with examples
+
+**Usage Guides**
+- **[docs/OBSIDIAN_GUIDE.md](docs/OBSIDIAN_GUIDE.md)** — Visualization in Obsidian
+- **[docs/ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)** — Team rollout and workflows
+- **[docs/USE_CASES.md](docs/USE_CASES.md)** — Real-world examples
+
+**Reference**
+- **[AGENTS.md](AGENTS.md)** — Agent integration contracts
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Contributing guidelines
+- **[SECURITY.md](SECURITY.md)** — Security policy
 
 ## License
 
