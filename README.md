@@ -1,122 +1,158 @@
 # WI-system
 
-WI-system is a drop-in knowledge memory engine for agentic projects.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status: Beta](https://img.shields.io/badge/status-beta-orange.svg)]()
 
-It converts raw sources into a maintained markdown wiki that improves over time.
- 
-## Architecture (most important)
+**WI-system** is a local, LLM-maintained living wiki engine. It transforms raw sources into an evolving knowledge base that improves over time, perfect for agentic projects and teams that need durable project memory.
 
-There are two different things:
+## Features
 
-1. `wi_system/` (underscore) is the Python engine package.
-2. `wi-system/` (hyphen, in your product repo) is the runtime workspace folder.
+- **Local-first**: Run entirely on your machine or local LLM
+- **LLM-powered**: Uses OpenAI-compatible APIs (local models supported)
+- **Git-friendly**: Wiki integrates with your project repo
+- **Schema-less**: Markdown-based with YAML frontmatter for queries
+- **Append-only logs**: Full audit trail of all operations
+- **Link maintenance**: Automatic contradiction detection and link cleanup
+- **Agent-ready**: Easy CLI interface for agentic workflows
 
-Direct answer to your question:
+## Quick Start
 
-- `sources/` and `wiki/` should NOT live inside the Python package folder `wi_system/`.
-- `sources/` and `wiki/` are runtime project data and should live inside each project's `wi-system/` workspace.
-
-## What you were seeing
-
-- index.md: the wiki table of contents and navigation map.
-- log.md: append-only operation history (ingest, query, lint).
-
-Those files are runtime artifacts for a WI-system workspace, not the core engine code.
-
-## What this repo contains
-
-- engine code: [wi_system](wi_system)
-- CLI entrypoint: [wi_system/cli.py](wi_system/cli.py)
-- maintainer contract: [AGENTS.md](AGENTS.md)
-- example workspace template: [examples/wi-workspace](examples/wi-workspace)
-
-## Repo map (why these folders exist)
-
-- `wi_system/`: core engine package
-- `examples/`: copyable starter workspace for real projects
-- `tests/`: smoke tests so changes do not break user workflows
-- `.github/`: CI and contribution templates
-- `docs/`: adoption/use-case references
-
-`tests/` and `examples/` are intentionally included to make the project reliable and easy to adopt.
-
-## What goes in each target repo
-
-Inside any product repo, add a wi-system folder (or similar name) and run WI-system there.
-
-Recommended shape:
-
-```text
-my-product-repo/
-  src/
-  docs/
-  wi-system/
-    sources/
-    wiki/
-    index.md
-    log.md
-```
-
-This keeps project memory with project code.
-
-Why teams need this:
-
-- knowledge stops getting lost in chats/docs
-- agent outputs become durable project memory
-- onboarding and handoffs become faster
-- decisions stay tied to code history in git
-
-## 5-minute usage
+### Installation
 
 ```bash
+# Clone the repo
+git clone https://github.com/Jack5237/wi-system.git
+cd wi-system
+
+# Create virtual environment
 python -m venv .venv
-.venv\\Scripts\\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install
 pip install -e .
+```
+
+### Initialize a workspace
+
+```bash
+mkdir my-project-wiki
+cd my-project-wiki
 wi init --root .
 ```
 
-Then:
+### Basic workflow
 
 ```bash
-wi ingest --root . sources/your-file.md
-wi query --root . "What changed in our architecture?" --store
+# Ingest a source document
+wi ingest --root . sources/architecture.md
+
+# Query the wiki
+wi query --root . "What's our current architecture?"
+
+# Store the answer back as a page
+wi query --root . "What's our current architecture?" --store
+
+# Maintain the wiki
 wi lint --root . --fix
 ```
 
-## Real-world flow
+## Architecture
 
-1. Capture web content with Obsidian Web Clipper into sources.
-2. Ask agent to ingest and merge into wiki pages.
-3. Browse the graph/pages in Obsidian.
-4. Store high-value query outputs back into wiki.
-5. Run lint weekly to keep the wiki healthy.
+### Key Concept
 
-## Local model support
+Two distinct things:
 
-WI-system uses OpenAI-compatible APIs, so local servers are supported.
+1. **`wi_system/`** (underscore) — Python engine package (this repo)
+2. **`wi-system/`** (hyphen) — Runtime workspace folder in your project
 
-```bash
-set WI_LLM_MODE=openai
-set WI_LLM_API_KEY=your_token_or_local_value
-set WI_LLM_MODEL=gemma3:4b
-set WI_LLM_BASE_URL=http://localhost:11434/v1
+The engine is installed once; the workspace is created once per project.
+
+### What lives where
+
+```
+your-project/
+├── src/
+├── docs/
+└── wi-system/           ← Workspace folder
+    ├── sources/         ← Raw inputs (immutable)
+    ├── wiki/            ← Maintained pages
+    ├── index.md         ← Navigation/TOC
+    └── log.md           ← Operation history (append-only)
 ```
 
-## Why Python
+This keeps project memory with project code, tracked in git.
 
-Python keeps this portable, easy to edit, and simple to automate from agents.
+## Configuration
+
+### Environment Variables
+
+```bash
+# Use local LLM (OpenAI-compatible API)
+export WI_LLM_MODE=openai
+export WI_LLM_BASE_URL=http://localhost:11434/v1
+export WI_LLM_MODEL=mistral:latest
+export WI_LLM_API_KEY=your-api-key
+
+# Or use OpenAI
+export WI_LLM_MODE=openai
+export WI_LLM_BASE_URL=https://api.openai.com/v1
+export WI_LLM_MODEL=gpt-4
+export WI_LLM_API_KEY=sk-...
+```
+
+## Project Structure
+
+- **`wi_system/`** — Core engine modules
+  - `cli.py` — Command-line interface
+  - `engine.py` — Main orchestration
+  - `llm.py` — LLM integration
+  - `markdown.py` — Markdown parsing and writing
+- **`examples/`** — Starter workspace template (copy to use)
+- **`tests/`** — Smoke tests for reliability
+- **`.github/`** — CI workflows and templates
+- **`docs/`** — Guides and use cases
+
+## How it works
+
+1. **Ingest**: Read raw source documents into the wiki
+2. **Index**: Build searchable index of pages and links
+3. **Query**: Find relevant pages, synthesize answers with LLM
+4. **Lint**: Detect contradictions, orphan pages, outdated claims
+5. **Fix**: Clean up links and flag inconsistencies
 
 ## Conventions
 
-- sources are immutable after ingest
-- log is append-only
-- wiki pages are interlinked
-- wiki pages include YAML frontmatter for filtering/querying
+- **Sources are immutable** after ingest (audit trail)
+- **Log is append-only** (complete operation history)
+- **Pages are interlinked** (knowledge graph structure)
+- **Frontmatter drives queries** (YAML metadata for filtering)
 
-## Additional docs
+## Real-world workflow
 
-- [START_HERE.md](START_HERE.md)
-- [docs/ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)
-- [docs/USE_CASES.md](docs/USE_CASES.md)
-- [CONTRIBUTING.md](CONTRIBUTING.md)
-- [SECURITY.md](SECURITY.md)
+1. Capture web content with Obsidian Web Clipper → `sources/`
+2. Ingest: `wi ingest --root . sources/captured.md`
+3. Query: `wi query --root . "What did we learn?"`
+4. Store answers back as synthesis pages
+5. Weekly lint: `wi lint --root . --fix` to catch stale info
+
+## Documentation
+
+- **[START_HERE.md](START_HERE.md)** — Minimal setup guide
+- **[ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)** — Integration patterns
+- **[USE_CASES.md](docs/USE_CASES.md)** — Real examples and workflows
+- **[AGENTS.md](AGENTS.md)** — Contracts for agent integration
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute
+- **[SECURITY.md](SECURITY.md)** — Security considerations
+
+## License
+
+MIT — See [LICENSE](LICENSE) for details.
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+---
+
+Built for teams that need durable, versioned, searchable project memory.

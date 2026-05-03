@@ -4,30 +4,50 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wi-system"
-version = "0.1.0"
-description = "Woven Intelligence System: local, LLM-maintained living wiki"
+version = "0.2.0"
+description = "Woven Intelligence System: local, LLM-maintained living wiki engine for agentic projects"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "WI-system" }]
+authors = [{ name = "Jack5237" }]
 license = { text = "MIT" }
-keywords = ["llm", "knowledge-base", "wiki", "obsidian", "research", "rag"]
+keywords = ["llm", "knowledge-base", "wiki", "obsidian", "research", "rag", "agent", "memory"]
 classifiers = [
 	"Development Status :: 4 - Beta",
 	"Intended Audience :: Developers",
 	"Intended Audience :: Science/Research",
 	"License :: OSI Approved :: MIT License",
 	"Operating System :: OS Independent",
+	"Natural Language :: English",
+	"Programming Language :: Python",
 	"Programming Language :: Python :: 3",
 	"Programming Language :: Python :: 3.10",
 	"Programming Language :: Python :: 3.11",
 	"Programming Language :: Python :: 3.12",
 	"Topic :: Scientific/Engineering :: Information Analysis",
 	"Topic :: Text Processing :: Markup",
+	"Topic :: Office/Business :: News/Diary",
 ]
 dependencies = []
+
+[project.optional-dependencies]
+dev = [
+	"pytest>=7.0",
+	"pytest-cov>=4.0",
+	"ruff>=0.1.0",
+	"mypy>=1.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Jack5237/wi-system"
+"Bug Tracker" = "https://github.com/Jack5237/wi-system/issues"
+"Documentation" = "https://github.com/Jack5237/wi-system/blob/main/START_HERE.md"
+"Repository" = "https://github.com/Jack5237/wi-system.git"
 
 [project.scripts]
 wi = "wi_system.cli:main"
 
 [tool.setuptools]
 packages = ["wi_system"]
+
+[tool.setuptools.package-data]
+wi_system = ["py.typed"]
