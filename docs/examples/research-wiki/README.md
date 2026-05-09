@@ -20,4 +20,4 @@ Instead of 20 disconnected papers, the AI builds:
 
 Over weeks of reading, contradictions get flagged, concepts get refined, and patterns emerge.
 
-See [../../docs/ADVANCED.md](../../docs/ADVANCED.md) for linting and quality checks.
+See [../../docs/ADVANCED.md](../../../docs/ADVANCED.md) for linting and quality checks.

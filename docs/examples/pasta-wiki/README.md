@@ -14,4 +14,4 @@ This is a sample wiki showing how sources become interconnected knowledge.
 2. Second source: Svelte tutorial → created Svelte, Reactivity, Components pages
 3. Query: "How do I sell pasta online?" → AI synthesized a new page combining knowledge
 
-See [../../docs/TUTORIAL.md](../../docs/TUTORIAL.md) for the full walkthrough.
+See [../../docs/TUTORIAL.md](../../../docs/TUTORIAL.md) for the full walkthrough.
