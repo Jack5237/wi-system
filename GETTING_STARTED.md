@@ -1,229 +1,120 @@
-# Getting Started with WI-system
+# Getting Started
 
-The fastest way to go from zero to a working wiki with Obsidian visualization.
+Get your LLM Wiki up and running in 5 minutes.
 
-## 3-Step Quick Start (10 minutes)
+## What You Need
 
-### 1️⃣ Install
+1. **Obsidian** (free) — [Download](https://obsidian.md)
+2. **An AI agent** — Claude Code, Cursor, VS Code + extension, or similar
+3. **A web clipper** (optional but recommended) — [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper)
+
+## Setup (3 steps)
+
+### Step 1: Copy the template
+
 ```bash
-pip install git+https://github.com/Jack5237/wi-system.git
-wi --help
-```
-
-### 2️⃣ Create your wiki
-```bash
-mkdir my-wiki && cd my-wiki
-wi init --root .
-```
-
-### 3️⃣ Add documents and ingest
-```bash
-# Save a document to sources/
-echo "# My Knowledge" > sources/doc.md
-
-# Ingest it
-wi ingest --root . sources/doc.md
-
-# Explore in Obsidian
-# (Open this folder in Obsidian → Graph View)
-```
-
-**Done!** Your wiki is live.
-
----
-
-## Next: Visualize in Obsidian
-
-### Install Obsidian
-1. Download from [obsidian.md](https://obsidian.md)
-2. Open the app
-3. Click "Open folder as vault"
-4. Select your `my-wiki` folder
-
-### Explore Your Wiki
-
-1. **Graph View** (left sidebar icon) — See nodes and connections
-2. **Backlinks** (right sidebar) — Find related pages
-3. **Search** (Ctrl/Cmd+P) — Jump to pages
-4. **Click nodes** — Read content
-
----
-
-## Full Guides
-
-- **[TUTORIAL.md](docs/TUTORIAL.md)** ← Complete walkthrough with examples (READ THIS FIRST!)
-- [ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md) — How to roll out in a team
-- [OBSIDIAN_GUIDE.md](docs/OBSIDIAN_GUIDE.md) — Advanced visualization tips
-- [START_HERE.md](START_HERE.md) — Minimal reference
-- [README.md](README.md) — Full feature reference
-
----
-
-## Common Workflows
-
-### Ingest a document
-```bash
-wi ingest --root . sources/new-doc.md
-```
-
-### Ask the wiki a question
-```bash
-wi query --root . "What's the architecture?"
-```
-
-### Store an answer as a new page
-```bash
-wi query --root . "What's the architecture?" --store
-```
-
-### Maintain the wiki
-```bash
-wi lint --root . --fix
-```
-
-### See operation history
-```bash
-cat log.md
-```
-
----
-
-## Your First Wiki (5 minutes)
-
-### 1. Create source documents
-```bash
-mkdir -p my-wiki/sources
+cp -r template my-wiki
 cd my-wiki
-
-cat > sources/hello.md << 'EOF'
-# Project Overview
-
-This is our main project. It has:
-- A backend API
-- A web frontend
-- Mobile apps
-
-## Key Technologies
-- Python for backend
-- React for frontend
-- TypeScript everywhere
-EOF
-
-cat > sources/architecture.md << 'EOF'
-# System Architecture
-
-## Backend
-- REST API in Python/FastAPI
-- PostgreSQL for data
-- Redis for caching
-
-## Frontend
-- React web app
-- React Native mobile
-- Shared TypeScript types
-
-## Deployment
-- Docker containers
-- Kubernetes orchestration
-- GitHub Actions CI/CD
-EOF
+ls -la
 ```
 
-### 2. Initialize and ingest
+You should see:
+- `.schema.md` — Rules for the AI
+- `index.md` — Navigation
+- `log.md` — Operation log
+- `sources/` — Where clipped articles go
+- `wiki/` — Where AI creates pages
+
+### Step 2: Open in Claude Code (or your AI agent)
+
 ```bash
-wi init --root .
-wi ingest --root . sources/hello.md
-wi ingest --root . sources/architecture.md
+claude code .
 ```
 
-### 3. Open in Obsidian
-1. Open Obsidian → "Open folder as vault"
-2. Select the `my-wiki` folder
-3. Click Graph View (left sidebar)
-4. Explore the connections!
+The AI reads `.schema.md` and understands how to operate.
 
-### 4. Query
-```bash
-wi query --root . "What technologies do we use?"
-wi query --root . "How is the system deployed?" --store
+### Step 3: Open in Obsidian
+
+1. Launch Obsidian
+2. Click "Open folder as vault"
+3. Select `my-wiki/`
+4. You're done!
+
+## First Ingestion
+
+### Clip an article
+
+Use the Obsidian Web Clipper browser extension to save an article. It will be saved as markdown.
+
+### Save it to sources/
+
+Either:
+- Drag the file directly into Obsidian → `sources/` folder
+- Or manually copy it: `cp ~/Downloads/article.md my-wiki/sources/`
+
+### Tell the AI to ingest it
+
+In Claude Code, ask:
+
+```
+I just clipped an article about [topic].
+The file is in sources/article.md.
+Please read it and update the wiki.
 ```
 
-### 5. Explore the results
-In Obsidian, you'll see new pages with:
-- Auto-generated connections
-- Backlinks showing relationships
-- Synthesized answers
+The AI will:
+1. Read the article
+2. Extract key concepts
+3. Create wiki pages
+4. Link related ideas
+5. Update index.md
+6. Log the changes
 
-**Your wiki is live!** 🎉
+### See the results
 
----
+In Obsidian:
+1. Open `wiki/` to see new pages
+2. Click on one → see the backlinks
+3. View → Graph View to see connections forming
 
-## Obsidian Tips
+## Querying Your Wiki
 
-**Graph View**
-- Zoom: Scroll wheel
-- Pan: Drag background
-- Click nodes: Read page
-- Filter by tag: Use tag search
+Once you have a few sources, ask questions:
 
-**Backlinks Panel** (right sidebar)
-- See what links to this page
-- Jump to references
-- Understand relationships
+```
+What are the main topics in my wiki?
+```
 
-**Search** (Cmd/Ctrl + P)
-- Find pages by name
-- Jump instantly
-- Filter by tag
+```
+How would I combine topic A with topic B?
+```
 
-**Tags**
-- Add to frontmatter: `tags: [topic, design]`
-- Use to organize pages
-- Filter graph by tag
+```
+Are there any contradictions in my wiki?
+```
 
----
+The AI searches your wiki (not raw sources), synthesizes an answer, and can create a new page with the result.
 
-## What's Next?
+## Linting
 
-### Read the Tutorial
-Work through [docs/TUTORIAL.md](docs/TUTORIAL.md) for a complete example with real documents.
+Periodically ask:
 
-### Explore the Guides
-- **Team rollout?** → [ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)
-- **Obsidian deep dive?** → [OBSIDIAN_GUIDE.md](docs/OBSIDIAN_GUIDE.md)
-- **All features?** → [README.md](README.md)
+```
+Please lint the wiki. Check for:
+- Contradictions
+- Orphan pages
+- Unlinked concepts
+- Missing cross-references
+```
 
-### Get Productive
-1. Add your real documents to `sources/`
-2. Ingest them
-3. Ask questions
-4. Share the graph with your team
+The AI will review everything and suggest fixes.
 
----
+## Next Steps
 
-## Troubleshooting
-
-### Graph is empty
-- Check `wi init --root .` was run
-- Run `wi ingest --root . sources/doc.md`
-- Reload Obsidian (Cmd/Ctrl + R)
-
-### Broken links in Obsidian
-- Run `wi lint --root . --fix`
-- Check page names match exactly
-
-### LLM not responding
-- Check `WI_LLM_API_KEY` is set
-- Check `WI_LLM_BASE_URL` is correct
-- Run `wi query` with short, simple question first
-
-### Need help?
-- Check [README.md](README.md)
-- See [TUTORIAL.md](docs/TUTORIAL.md) examples
-- Open an issue on GitHub
+- Read [docs/TUTORIAL.md](docs/TUTORIAL.md) for a full walkthrough
+- See [docs/ADVANCED.md](docs/ADVANCED.md) to customize your schema
+- Check the examples in `docs/examples/`
 
 ---
 
-**You now have everything to build a living knowledge base!** 🚀
-
-Next: [docs/TUTORIAL.md](docs/TUTORIAL.md) for a complete walkthrough.
+**Questions?** See [SCHEMA.md](SCHEMA.md) or open an issue.
