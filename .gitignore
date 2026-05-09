@@ -1,8 +1,30 @@
+# Python
 __pycache__/
-*.pyc
-.venv/
-.env
-.pytest_cache/
+*.py[cod]
 *.egg-info/
 dist/
 build/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wiki runtime
+template/wiki/*.md
+!template/wiki/.gitkeep
+template/index.md
+template/log.md
+
+# Local development
+.env
+.env.local
+
+# Archive
+_archive/
