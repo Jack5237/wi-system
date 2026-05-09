@@ -13,7 +13,8 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\docs\\\\examples\" -Recurse -Directory -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
       "PowerShell(Get-Item -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\SCHEMA.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\.schema.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\index.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\log.md\" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
       "Bash(Get-ChildItem -Path C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems -Force)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(git checkout *)"
     ]
   }
 }
