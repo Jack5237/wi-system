@@ -1,173 +1,114 @@
-# WI-system
+# LLM Wiki
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Status: Beta](https://img.shields.io/badge/status-beta-orange.svg)]()
+A local-first knowledge base that grows smarter every time you add sources.
 
-**WI-system** is a local, LLM-maintained living wiki engine. It transforms raw sources into an evolving knowledge base that improves over time, perfect for agentic projects and teams that need durable project memory.
+Imagine you clip web articles about pasta cooking, Svelte web development, and pasta restaurant businesses. Instead of a pile of PDFs, an AI agent reads each one and builds a structured wiki where ideas are linked together. When you ask "How do I build a pasta restaurant website in Svelte?", the AI synthesizes knowledge from all three sources into a new page.
+
+**That's the LLM Wiki pattern.** The wiki is persistent, compounding knowledge — not one-time RAG retrieval.
 
 ## Features
 
-- **Local-first**: Run entirely on your machine or local LLM
-- **LLM-powered**: Uses OpenAI-compatible APIs (local models supported)
-- **Git-friendly**: Wiki integrates with your project repo
-- **Schema-less**: Markdown-based with YAML frontmatter for queries
-- **Append-only logs**: Full audit trail of all operations
-- **Link maintenance**: Automatic contradiction detection and link cleanup
-- **Agent-ready**: Easy CLI interface for agentic workflows
+✅ **Clip anything** — Use any web clipper to save articles as markdown  
+✅ **AI maintains your wiki** — Claude Code, Cursor, OpenAI Code, or any agent updates pages  
+✅ **Structured knowledge** — Interlinked concepts, entity pages, synthesis  
+✅ **Visual exploration** — Open in Obsidian to see the graph and connections  
+✅ **Local-first** — Plain markdown files, version controlled with git  
+✅ **Works with any LLM** — Claude, GPT-4, Ollama, etc.
 
-## Quick Start (3 steps, 10 minutes)
+## Quick Start (5 minutes)
 
-### 1. Install
-```bash
-pip install git+https://github.com/Jack5237/wi-system.git
-wi --help
-```
-
-### 2. Create your wiki
-```bash
-mkdir my-wiki && cd my-wiki
-wi init --root .
-```
-
-### 3. Ingest and explore
-```bash
-# Add a document
-echo "# My Project" > sources/doc.md
-
-# Ingest
-wi ingest --root . sources/doc.md
-
-# Open in Obsidian and view the graph!
-# (File → Open as vault → select my-wiki)
-```
-
-**→ [GETTING_STARTED.md](GETTING_STARTED.md) — 10-minute guide**
-
-**→ [docs/TUTORIAL.md](docs/TUTORIAL.md) — Complete walkthrough**
-
-## Architecture
-
-### Key Concept
-
-Two distinct things:
-
-1. **`wi_system/`** (underscore) — Python engine package (this repo)
-2. **`wi-system/`** (hyphen) — Runtime workspace folder in your project
-
-The engine is installed once; the workspace is created once per project.
-
-### What lives where
-
-```
-your-project/
-├── src/
-├── docs/
-└── wi-system/           ← Workspace folder
-    ├── sources/         ← Raw inputs (immutable)
-    ├── wiki/            ← Maintained pages
-    ├── index.md         ← Navigation/TOC
-    └── log.md           ← Operation history (append-only)
-```
-
-This keeps project memory with project code, tracked in git.
-
-## Configuration
-
-### Environment Variables
+### 1. Copy the template
 
 ```bash
-# Use local LLM (OpenAI-compatible API)
-export WI_LLM_MODE=openai
-export WI_LLM_BASE_URL=http://localhost:11434/v1
-export WI_LLM_MODEL=mistral:latest
-export WI_LLM_API_KEY=your-api-key
-
-# Or use OpenAI
-export WI_LLM_MODE=openai
-export WI_LLM_BASE_URL=https://api.openai.com/v1
-export WI_LLM_MODEL=gpt-4
-export WI_LLM_API_KEY=sk-...
+cp -r template my-wiki
+cd my-wiki
 ```
 
-## Project Structure
+### 2. Open in an AI agent
 
-- **`wi_system/`** — Core engine modules
-  - `cli.py` — Command-line interface
-  - `engine.py` — Main orchestration
-  - `llm.py` — LLM integration
-  - `markdown.py` — Markdown parsing and writing
-- **`examples/`** — Starter workspace template (copy to use)
-- **`tests/`** — Smoke tests for reliability
-- **`.github/`** — CI workflows and templates
-- **`docs/`** — Guides and use cases
+```bash
+# Using Claude Code
+claude code .
 
-## How it works
-
-1. **Ingest**: Read raw source documents into the wiki
-2. **Index**: Build searchable index of pages and links
-3. **Query**: Find relevant pages, synthesize answers with LLM
-4. **Lint**: Detect contradictions, orphan pages, outdated claims
-5. **Fix**: Clean up links and flag inconsistencies
-
-## Conventions
-
-- **Sources are immutable** after ingest (audit trail)
-- **Log is append-only** (complete operation history)
-- **Pages are interlinked** (knowledge graph structure)
-- **Frontmatter drives queries** (YAML metadata for filtering)
-
-## Real-world workflow
-
-1. Capture web content with Obsidian Web Clipper → `sources/`
-2. Ingest: `wi ingest --root . sources/captured.md`
-3. Query: `wi query --root . "What did we learn?"`
-4. Store answers back as synthesis pages
-5. Weekly lint: `wi lint --root . --fix` to catch stale info
-
-## How It Works (Visual Flow)
-
-```
-Raw Documents → Ingest → Wiki Pages → Query → Synthesis
-      ↓                      ↓
-   sources/              wiki/
-                          ↓
-                    View in Obsidian
-                    (graph + backlinks)
+# Or open in your editor + AI agent of choice
+# The .schema.md file tells the AI how to operate
 ```
 
-1. **Ingest** raw docs from `sources/` 
-2. **Generate** wiki pages, index, and links
-3. **Explore** the graph in Obsidian (or browse HTML)
-4. **Query** the wiki for insights
-5. **Synthesize** answers and store as new pages
-6. **Lint** weekly to maintain quality
+### 3. Clip your first article
+
+Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or any tool to save a markdown article to `sources/`.
+
+### 4. Ask the AI to ingest it
+
+In Claude Code, ask:
+> "I clipped an article about pasta cooking. Please read `sources/article.md` and update the wiki."
+
+### 5. Explore in Obsidian
+
+```bash
+# Install Obsidian from obsidian.md
+# Open my-wiki/ as a vault
+# Click Graph View to see connections form
+```
+
+Done. Your wiki is now growing.
+
+## How It Works
+
+```
+Web Clipper → sources/ (raw) → AI reads .schema.md → wiki/ (structured) → Obsidian (visual)
+                                    ↓
+                              Ask questions
+                                    ↓
+                          Synthesize new pages
+```
+
+**Three layers:**
+
+1. **Sources** — Web clipped articles (immutable, your source of truth)
+2. **Wiki** — AI-generated pages (interlinked, organized, maintained)
+3. **Schema** — `.schema.md` tells the AI how to operate
+
+## Real-World Uses
+
+- **Personal learning** — Build a wiki as you read papers on a topic
+- **Trip planning** — Clip travel articles, ask "Where should I stay?" — AI synthesizes recommendations
+- **Business** — Feed in meeting notes, market research, customer feedback; build shared team knowledge
+- **Research** — Track findings, flag contradictions, see emerging patterns
+- **Book notes** — Clip summaries and reviews; build a structured reading journal
 
 ## Documentation
 
-**Getting Started**
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** — 10-minute quick start
-- **[START_HERE.md](START_HERE.md)** — Minimal reference
-- **[docs/TUTORIAL.md](docs/TUTORIAL.md)** — Complete walkthrough with examples
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** — Setup and first steps (5 min)
+- **[docs/TUTORIAL.md](docs/TUTORIAL.md)** — Full walkthrough with examples
+- **[docs/ADVANCED.md](docs/ADVANCED.md)** — Schema customization, linting, extensions
+- **[SCHEMA.md](SCHEMA.md)** — The rules document (copy to your vault)
 
-**Usage Guides**
-- **[docs/OBSIDIAN_GUIDE.md](docs/OBSIDIAN_GUIDE.md)** — Visualization in Obsidian
-- **[docs/ADOPTION_GUIDE.md](docs/ADOPTION_GUIDE.md)** — Team rollout and workflows
-- **[docs/USE_CASES.md](docs/USE_CASES.md)** — Real-world examples
+## Tips
 
-**Reference**
-- **[AGENTS.md](AGENTS.md)** — Agent integration contracts
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Contributing guidelines
-- **[SECURITY.md](SECURITY.md)** — Security policy
+- Open the folder in **Claude Code**, **Cursor**, **VS Code + CodeCompanion**, or any AI agent
+- The agent reads `.schema.md` to understand how to operate
+- Use **Obsidian Web Clipper** to quickly save articles
+- **Lint regularly** — ask the AI to check for contradictions and orphan pages
+- **Commit after each ingest** — your wiki is version controlled
+
+## Limitations
+
+- Works best at personal scale (~100 sources, ~hundreds of pages)
+- The AI is the engine — you need access to Claude, GPT-4, Ollama, or similar
+- Quality depends on what you feed in (garbage in, garbage out)
+- The AI can make mistakes (lint catches most of them)
 
 ## License
 
-MIT — See [LICENSE](LICENSE) for details.
+MIT — See [LICENSE](LICENSE)
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-Built for teams that need durable, versioned, searchable project memory.
+**Ready to start?** Copy the `template/` folder and open it in Claude Code. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup.
+
+Built on the [LLM Wiki pattern](https://github.com/karpathy/LLM-wiki) by Andrej Karpathy.
