@@ -1,465 +1,250 @@
-# Complete Tutorial: From Zero to Living Wiki
+# Full Tutorial: Building Your First Wiki
 
-This tutorial walks through a complete example: building a team wiki from scratch in 30 minutes.
+This guide walks you through a complete example: building a wiki about pasta cooking + web development.
 
 ## Scenario
 
-You're starting a new project team. You have:
-- Existing design documents
-- API specifications  
-- Deployment runbooks
-- Incident reports
+You want to track what you learn about:
+1. Italian pasta cooking
+2. Building web apps with Svelte
+3. How to combine them: selling pasta products online
 
-You want a searchable, interconnected wiki that your team can explore.
+You'll clip 3 articles and watch the AI build connections.
 
-## Step 0: Prerequisites (5 minutes)
+## Part 1: Setup
 
-### Install Python and create project
-
-```bash
-# Verify Python 3.10+
-python --version
-
-# Create a project folder
-mkdir my-team-project
-cd my-team-project
-
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-```
-
-### Install WI-system
+### Copy the template
 
 ```bash
-# From GitHub (latest)
-pip install git+https://github.com/Jack5237/wi-system.git
-
-# Or from local repo
-pip install -e /path/to/wi-system
-
-# Verify
-wi --help
+cp -r template pasta-wiki
+cd pasta-wiki
 ```
 
-## Step 1: Initialize Wiki (2 minutes)
-
-Create the workspace folder:
+### Open in Claude Code
 
 ```bash
-mkdir wi-system
-cd wi-system
-wi init --root .
+claude code .
 ```
 
-Check what was created:
-
-```bash
-ls -la
-# Output:
-# sources/     ← You'll add documents here
-# wiki/        ← Auto-generated pages (empty now)
-# index.md     ← Navigation (empty now)
-# log.md       ← Operation log (empty now)
-```
-
-## Step 2: Gather Documents (5 minutes)
-
-Create sample source documents in `sources/`:
-
-### sources/architecture.md
-```markdown
-# Architecture Overview
-
-We run a microservices platform with these core services:
-
-1. **Auth Service** — Handles user authentication and tokens
-2. **API Gateway** — Routes requests to services
-3. **Data Service** — Manages persistent data
-4. **Cache Service** — Caches hot data for performance
-
-## Key Design Decisions
-
-- Services communicate via gRPC
-- All data is eventually consistent
-- Authentication is stateless (JWT-based)
-- Each service manages its own database
-
-## Deployment
-
-All services run in Kubernetes on AWS. See deployment runbook for details.
-```
-
-### sources/api-spec.md
-```markdown
-# API Specification v2
-
-## Authentication Endpoint
-
-```
-POST /auth/token
-Request: {username, password}
-Response: {token, expires_in}
-```
-
-## Data Endpoints
-
-```
-GET /data/{id}        — Fetch a record
-POST /data            — Create a record
-PUT /data/{id}        — Update a record
-DELETE /data/{id}     — Delete a record
-```
-
-## Rate Limits
-
-- 1000 requests/minute per token
-- Cache responses when possible
-```
-
-### sources/deployment-runbook.md
-```markdown
-# Deployment Runbook
-
-## Prerequisites
-
-- kubectl configured
-- AWS credentials set
-- Docker images built
-
-## Deployment Process
-
-1. **Build** — Build Docker images for all services
-2. **Test** — Run integration tests
-3. **Tag** — Tag images with version
-4. **Push** — Push to registry
-5. **Deploy** — Update Kubernetes manifests
-6. **Verify** — Check service health
-
-## Rollback Procedure
-
-If deployment fails:
-1. Get previous revision: `kubectl rollout history deployment/auth-service`
-2. Rollback: `kubectl rollout undo deployment/auth-service`
-3. Verify: `kubectl get pods`
-
-See incident reports for past issues.
-```
-
-### sources/incident-2026-04.md
-```markdown
-# Incident Report: Data Service Outage 2026-04-15
-
-## Timeline
-
-- 14:32 UTC — Data Service returns 500 errors
-- 14:45 UTC — Team alerted, investigation begins
-- 15:10 UTC — Root cause identified: database connection pool exhausted
-- 15:30 UTC — Deployed fix
-- 15:45 UTC — All services recovered
-
-## Root Cause
-
-A bug in Auth Service caused connection pool leaks. Each failed authentication consumed a connection.
-
-## Fix
-
-Updated connection pool cleanup in Auth Service. See commit abc123.
-
-## Lessons
-
-- Monitor connection pool usage
-- Add circuit breaker to Auth Service
-- Improve alerting for connection exhaustion
-
-## Follow-up
-
-- [ ] Add connection pool monitoring
-- [ ] Implement circuit breaker
-- [ ] Update runbook with warning signs
-```
-
-Verify the files are there:
-
-```bash
-ls -la sources/
-# Should see: architecture.md, api-spec.md, deployment-runbook.md, incident-2026-04.md
-```
-
-## Step 3: Ingest Documents (5 minutes)
-
-Now ingest the documents into the wiki:
-
-```bash
-# Ingest one at a time and watch the magic happen
-wi ingest --root . sources/architecture.md
-
-# Check the result
-cat wiki/index.md       # See generated pages
-cat log.md              # See operation history
-
-# Ingest the rest
-wi ingest --root . sources/api-spec.md
-wi ingest --root . sources/deployment-runbook.md
-wi ingest --root . sources/incident-2026-04.md
-```
-
-Watch `index.md` and `wiki/` folder fill with auto-generated content:
-
-```bash
-# See all generated pages
-ls -la wiki/
-
-# Peek at generated content
-head -20 wiki/index.md
-```
-
-Check the log:
-
-```bash
-tail -30 log.md
-# Shows: pages ingested, links created, contradictions (if any)
-```
-
-## Step 4: Query the Wiki (5 minutes)
-
-Now ask questions about what you just ingested:
-
-```bash
-# Question 1: Architecture understanding
-wi query --root . "What are the main services and how do they communicate?"
-
-# Output should mention:
-# - Auth Service, API Gateway, Data Service, Cache Service
-# - gRPC communication
-# - Eventually consistent architecture
-```
-
-```bash
-# Question 2: Operational knowledge
-wi query --root . "How do we deploy and what should we watch for?"
-
-# Output should mention:
-# - Kubernetes deployment process
-# - Connection pool exhaustion issue (from incident)
-# - Monitoring recommendations
-```
-
-```bash
-# Question 3: Store an answer
-wi query --root . "What happened on April 15?" --store
-
-# This creates a new synthesis page in wiki/
-# that you can commit and share with the team
-```
-
-Check the new synthesis page:
-
-```bash
-ls -la wiki/
-# Should see a new synthesis-*.md page
-
-cat wiki/synthesis-*.md
-```
-
-## Step 5: Explore in Obsidian (5 minutes)
+Read the `.schema.md` file — this is your contract with the AI.
 
 ### Open in Obsidian
 
-1. Open Obsidian desktop app
-2. Click "Open folder as vault"
-3. Select your `wi-system` folder
-4. Wait for Obsidian to index (a few seconds)
+Drag `pasta-wiki/` into Obsidian or use "Open folder as vault".
 
-### Explore the Graph
+You should see three empty folders: `wiki/`, `sources/`, and an `index.md` file.
 
-1. Click the **Graph View** icon (top-right sidebar)
-2. You see nodes connected by lines:
-   - `index.md` in the center
-   - Your generated pages branching out
-   - Lines showing cross-references
+## Part 2: Your First Source
 
-3. **Click on any node**:
-   - See the page content
-   - View backlinks (what links to this page)
-   - Click to navigate
+### Find an article
 
-### Navigate with Backlinks
+Go to a blog or website about pasta. For this example, let's say:
+- https://example.com/italian-pasta-types (fictional)
 
-1. Click on a page (e.g., "Architecture")
-2. In the right sidebar, see "Backlinks" section
-3. Shows all pages that mention this page
-4. Click to jump between related topics
+### Clip it
 
-### Organize with Tags
+Click the Obsidian Web Clipper extension → save as markdown.
 
-Add tags to pages in Obsidian for better filtering. In the page frontmatter:
+Or manually create a file: `sources/pasta-types.md`
 
 ```markdown
+# Italian Pasta Types
+
+From https://example.com/italian-pasta-types
+
+Pasta comes in many shapes. Spaghetti is thin and long. Penne is tube-shaped.
+Ravioli are pockets filled with cheese. Each has a traditional pairing with sauces.
+
+## Popular Types
+
+### Spaghetti
+- Long, thin noodles
+- Pairs with light sauces like aglio e olio
+
+### Penne
+- Short tubes with angled ends
+- Great for chunky, meat-based sauces
+
+### Ravioli
+- Sealed pockets
+- Traditionally filled with ricotta and spinach
+```
+
+### Ask the AI to ingest it
+
+In Claude Code, copy this into the prompt:
+
+```
+I clipped a new article about Italian pasta types.
+It's in sources/pasta-types.md.
+
+Please read it and update the wiki. Follow the rules in .schema.md:
+- Extract key concepts (Spaghetti, Penne, Ravioli, etc.)
+- Create pages for each
+- Link them together
+- Update index.md
+- Log the ingestion
+```
+
+### Watch the AI work
+
+The AI will:
+1. Read the article
+2. Create pages:
+   - `wiki/Spaghetti.md` — long noodles, light sauces
+   - `wiki/Penne.md` — tubes, chunky sauces
+   - `wiki/Ravioli.md` — pockets, fillings
+   - `wiki/Pasta.md` — overview
+3. Add links between them
+4. Update `wiki/index.md`
+5. Append to `wiki/log.md`
+
+### Check in Obsidian
+
+Refresh Obsidian. You should see new files in `wiki/`.
+
+Click on `Pasta.md` → see backlinks to Spaghetti, Penne, Ravioli.
+
+View → Graph View — you should see a small network forming.
+
+## Part 3: Your Second Source
+
+### Clip an article about Svelte
+
+Create `sources/svelte-basics.md`:
+
+```markdown
+# Svelte Basics
+
+From https://example.com/svelte-tutorial
+
+Svelte is a JavaScript framework for building web interfaces.
+Unlike React, Svelte compiles components to vanilla JavaScript.
+This makes apps smaller and faster.
+
+## Key Concepts
+
+### Reactivity
+- Use the `$:` label to create reactive variables
+- `$: doubled = count * 2;` automatically updates when count changes
+
+### Components
+- Svelte files are components
+- Each .svelte file is one component
+- Import and use them in other components
+```
+
+### Ingest it
+
+In Claude Code:
+
+```
+I clipped an article about Svelte.
+It's in sources/svelte-basics.md.
+
+Please ingest it and update the wiki.
+```
+
+The AI will create:
+- `wiki/Svelte.md`
+- `wiki/Reactivity.md`
+- `wiki/Components.md`
+- `wiki/JavaScript.md`
+
+And update the index again.
+
+### Graph View is getting interesting
+
+You now have two islands: Pasta pages and Web Development pages.
+
+## Part 4: Synthesis
+
+### Ask a synthesizing question
+
+Now the interesting part. In Claude Code, ask:
+
+```
+I want to start an online pasta shop using Svelte.
+What should I know?
+
+Please:
+1. Search the wiki for relevant pages
+2. Create a new page that combines the insights
+3. Update index.md to link to this new page
+```
+
+The AI will:
+1. Read Pasta pages, Svelte pages, and concepts like "Components" and "Reactivity"
+2. Create `wiki/Building a Pasta E-Commerce Site with Svelte.md`
+3. Synthesize advice like:
+   - "Show pasta types (link to Pasta.md)"
+   - "Use Svelte components for product listings"
+   - "Reactive pricing based on selected items"
+
+### Check the graph
+
+Your graph now has a new hub connecting Pasta and Web Development. This is the real power: synthesis that required reading and understanding multiple sources.
+
+## Part 5: Linting
+
+Over time, you add more sources. Ask the AI:
+
+```
+Please lint the wiki.
+
+Check for:
+- Contradictions (does any page contradict another?)
+- Orphan pages (pages with no backlinks)
+- Unlinked concepts (mentioned but no own page)
+- Missing citations (claims without a source)
+
+Report what you find.
+```
+
+The AI will scan everything and suggest fixes.
+
+## Part 6: Queries
+
+Once your wiki has some depth, you can ask sophisticated questions:
+
+```
+What are the top 3 pasta types for beginners, and how would I build a Svelte component to showcase them?
+```
+
+The AI searches the wiki (not the raw articles), synthesizes an answer, and optionally creates a new page.
+
+## Key Takeaways
+
+1. **Clipping is easy** — Any web clipper works
+2. **Ingestion is guided** — The `.schema.md` tells the AI how to build pages
+3. **Connections form automatically** — The AI links related concepts
+4. **Synthesis compounds** — Each new source makes the wiki smarter
+5. **The graph is visual** — Obsidian shows you what's connected
+
+## Common Workflows
+
+### "I want to keep learning on a topic"
+
+1. Clip articles over weeks/months
+2. Ask the AI to ingest each one
+3. Periodically lint
+4. Ask questions to synthesize
+5. By the end: a rich, structured knowledge base
+
+### "I'm planning a trip"
+
+1. Clip travel blogs, restaurant reviews, hotel pages
+2. Ask "Where should I stay?" — AI synthesizes from your clipped sources
+3. Ask "Best restaurants near my hotel?" — AI connects ideas
+4. Create a synthesis page: "My Ideal Trip Itinerary"
+
+### "I'm doing research"
+
+1. Clip papers, articles, reports
+2. Ask "What are the open questions?" — AI finds gaps
+3. Ask "Where do sources disagree?" — AI flags contradictions
+4. Create a synthesis page: "State of the Field" or "What We Know and Don't Know"
+
 ---
-tags:
-  - architecture
-  - design
-  - core-service
----
-```
 
-Then in Graph View, filter by tag to see only architecture pages.
-
-## Step 6: Maintain Weekly (2 minutes)
-
-Run weekly maintenance:
-
-```bash
-# Check for issues
-wi lint --root .
-
-# Output shows:
-# - Broken links (if any)
-# - Orphan pages (unlinked pages)
-# - Contradictions (conflicting info)
-
-# Fix automatically where possible
-wi lint --root . --fix
-
-# View changes
-git diff wiki/
-```
-
-## Step 7: Commit to Git (2 minutes)
-
-Save your wiki to git:
-
-```bash
-# Go back to project root
-cd ..
-
-# Stage the wiki
-git add wi-system/
-
-# Commit
-git commit -m "Initial wiki: architecture, API, operations, incidents
-
-- Ingested 4 source documents
-- Generated 8 wiki pages
-- Established cross-references
-- Ready for team exploration
-"
-
-# View the log
-git log --oneline wi-system/
-```
-
-## What You've Built
-
-```
-wi-system/
-├── sources/              ← Your raw documents (4 files)
-│   ├── architecture.md
-│   ├── api-spec.md
-│   ├── deployment-runbook.md
-│   └── incident-2026-04.md
-├── wiki/                 ← Auto-generated pages (8 files)
-│   ├── index.md          ← Navigation
-│   ├── architecture-overview.md
-│   ├── auth-service.md
-│   ├── api-specification.md
-│   ├── deployment-process.md
-│   ├── incident-postmortem.md
-│   ├── synthesis-*.md    ← Your stored query
-│   └── ...
-├── index.md              ← Table of contents
-├── log.md                ← Full operation history
-└── .git/                 ← Version controlled
-```
-
-## Next Steps
-
-### Share with Team
-
-```bash
-# Team members can explore:
-1. Clone the repo
-2. Open wi-system/ in Obsidian
-3. Click nodes in the graph
-4. Ask questions about the wiki
-
-# Command line for any team member:
-cd wi-system
-wi query --root . "How do we handle authentication?"
-```
-
-### Grow the Wiki
-
-Each week:
-
-```bash
-# Add new documents
-cp ../docs/new-design.md sources/
-
-# Ingest
-wi ingest --root . sources/new-design.md
-
-# Query for new insights
-wi query --root . "How does this fit with our architecture?" --store
-
-# Maintain
-wi lint --root . --fix
-
-# Commit
-git add wiki/ log.md
-git commit -m "Ingest: new design document + synthesis"
-```
-
-### Scheduled Operations
-
-```bash
-# Weekly sync: Tuesday at 10am
-# wi ingest --root . sources/weekly-update.md
-
-# Monthly analysis: First Friday
-# wi query --root . "What changed this month?" --store
-# wi lint --root . --fix
-
-# Quarterly summary: First day of quarter
-# wi query --root . "Achievements and decisions this quarter?" --store
-```
-
-## Common Questions
-
-**Q: Can I edit pages in Obsidian?**
-A: Yes! Edit, add links, create tags. Commit changes to git. Keep `sources/` immutable.
-
-**Q: What if documents contradict each other?**
-A: WI-system flags contradictions. Review and edit pages to align. Document the resolution.
-
-**Q: How many documents can I ingest?**
-A: 100+ is fine. Break very large documents into chapters for better organization.
-
-**Q: Can multiple people ingest at once?**
-A: Yes, but coordinate via git. Merge conflicts in wiki/ are rare (mostly non-overlapping pages).
-
-**Q: How do I back up the wiki?**
-A: Git handles it! Push to GitHub/GitLab/etc. The wiki is just markdown—easy to migrate.
-
-## Success Criteria
-
-Your wiki is working well when:
-
-- ✅ Team members explore the graph regularly
-- ✅ New documents are ingested weekly
-- ✅ Synthesis queries reveal unexpected insights
-- ✅ Lint finds and fixes issues proactively
-- ✅ Pages stay current with few contradictions
-- ✅ Onboarding happens via the wiki
-
-## See Also
-
-- [OBSIDIAN_GUIDE.md](OBSIDIAN_GUIDE.md) — Advanced Obsidian usage
-- [ADOPTION_GUIDE.md](ADOPTION_GUIDE.md) — Team rollout playbook
-- [README.md](../README.md) — Full reference
-- [AGENTS.md](../AGENTS.md) — Customize for your domain
-
----
-
-**Congratulations! You've built a living knowledge base.** 🎉
+Next: [docs/ADVANCED.md](ADVANCED.md) for schema customization and power features.
