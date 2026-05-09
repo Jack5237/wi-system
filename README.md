@@ -31,7 +31,7 @@ cd my-wiki
 claude code .
 
 # Or open in your editor + AI agent of choice
-# The .schema.md file tells the AI how to operate
+# The AGENTS.md file tells the AI how to operate
 ```
 
 ### 3. Clip your first article
@@ -56,7 +56,7 @@ Done. Your wiki is now growing.
 ## How It Works
 
 ```
-Web Clipper → sources/ (raw) → AI reads .schema.md → wiki/ (structured) → Obsidian (visual)
+Web Clipper → sources/ (raw) → AI reads AGENTS.md → wiki/ (structured) → Obsidian (visual)
                                     ↓
                               Ask questions
                                     ↓
@@ -67,7 +67,7 @@ Web Clipper → sources/ (raw) → AI reads .schema.md → wiki/ (structured) �
 
 1. **Sources** — Web clipped articles (immutable, your source of truth)
 2. **Wiki** — AI-generated pages (interlinked, organized, maintained)
-3. **Schema** — `.schema.md` tells the AI how to operate
+3. **AGENTS.md** — The rules file (in `template/`) that tells the AI how to operate
 
 ## Real-World Uses
 
@@ -80,14 +80,13 @@ Web Clipper → sources/ (raw) → AI reads .schema.md → wiki/ (structured) �
 ## Documentation
 
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** — Setup and first steps (5 min)
-- **[docs/TUTORIAL.md](docs/TUTORIAL.md)** — Full walkthrough with examples
-- **[docs/ADVANCED.md](docs/ADVANCED.md)** — Schema customization, linting, extensions
-- **[SCHEMA.md](SCHEMA.md)** — The rules document (copy to your vault)
+- **[TUTORIAL.md](TUTORIAL.md)** — Full walkthrough with complete example
+- **[CLAUDE.md](CLAUDE.md)** — For developers and contributors
 
 ## Tips
 
 - Open the folder in **Claude Code**, **Cursor**, **VS Code + CodeCompanion**, or any AI agent
-- The agent reads `.schema.md` to understand how to operate
+- The agent reads `template/AGENTS.md` to understand how to operate
 - Use **Obsidian Web Clipper** to quickly save articles
 - **Lint regularly** — ask the AI to check for contradictions and orphan pages
 - **Commit after each ingest** — your wiki is version controlled
@@ -105,7 +104,7 @@ MIT — See [LICENSE](LICENSE)
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+We welcome contributions! Check [CLAUDE.md](CLAUDE.md) for development info.
 
 ---
 

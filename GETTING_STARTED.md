@@ -19,7 +19,7 @@ ls -la
 ```
 
 You should see:
-- `.schema.md` — Rules for the AI
+- `AGENTS.md` — Rules for the AI
 - `index.md` — Navigation
 - `log.md` — Operation log
 - `sources/` — Where clipped articles go
@@ -31,7 +31,7 @@ You should see:
 claude code .
 ```
 
-The AI reads `.schema.md` and understands how to operate.
+The AI reads `AGENTS.md` and understands how to operate.
 
 ### Step 3: Open in Obsidian
 
@@ -111,10 +111,9 @@ The AI will review everything and suggest fixes.
 
 ## Next Steps
 
-- Read [docs/TUTORIAL.md](docs/TUTORIAL.md) for a full walkthrough
-- See [docs/ADVANCED.md](docs/ADVANCED.md) to customize your schema
-- Check the examples in `docs/examples/`
+- Read [TUTORIAL.md](TUTORIAL.md) for a complete example walkthrough
+- Check [CLAUDE.md](CLAUDE.md) for developer information
 
 ---
 
-**Questions?** See [SCHEMA.md](SCHEMA.md) or open an issue.
+**Questions?** Check the README or TUTORIAL, or open an issue.

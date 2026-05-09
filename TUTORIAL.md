@@ -26,7 +26,7 @@ cd pasta-wiki
 claude code .
 ```
 
-Read the `.schema.md` file — this is your contract with the AI.
+Read the `AGENTS.md` file — this is your contract with the AI.
 
 ### Open in Obsidian
 
@@ -78,7 +78,7 @@ In Claude Code, copy this into the prompt:
 I clipped a new article about Italian pasta types.
 It's in sources/pasta-types.md.
 
-Please read it and update the wiki. Follow the rules in .schema.md:
+Please read it and update the wiki. Follow the rules in AGENTS.md:
 - Extract key concepts (Spaghetti, Penne, Ravioli, etc.)
 - Create pages for each
 - Link them together
@@ -216,7 +216,7 @@ The AI searches the wiki (not the raw articles), synthesizes an answer, and opti
 ## Key Takeaways
 
 1. **Clipping is easy** — Any web clipper works
-2. **Ingestion is guided** — The `.schema.md` tells the AI how to build pages
+2. **Ingestion is guided** — The `AGENTS.md` tells the AI how to build pages
 3. **Connections form automatically** — The AI links related concepts
 4. **Synthesis compounds** — Each new source makes the wiki smarter
 5. **The graph is visual** — Obsidian shows you what's connected

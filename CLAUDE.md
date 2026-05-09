@@ -4,70 +4,53 @@
 
 A schema-driven **LLM Wiki template** — a local-first knowledge base system that works with any AI agent (Claude Code, Cursor, etc.).
 
-Users copy the `template/` folder, open in Claude Code, clip web content to `sources/`, and the AI reads `.schema.md` to understand how to build and maintain a structured, interlinked wiki in `wiki/`.
+Users copy the `template/` folder, open in Claude Code, clip web content to `sources/`, and the AI reads `AGENTS.md` to understand how to build and maintain a structured, interlinked wiki in `wiki/`.
 
 ## Architecture Overview
 
 **Three layers:**
 1. **Sources** — Immutable clipped web content (markdown files)
 2. **Wiki** — AI-maintained structured markdown pages (created/updated by AI)
-3. **Schema** — `.schema.md` rules telling the AI how to operate
+3. **AGENTS.md** — Rules telling the AI how to operate
 
 **Key insight:** The wiki is persistent and compounding (not one-time RAG). Each new source makes it smarter.
 
 ## For Contributors
 
-This is **primarily a template and documentation project**, not a CLI tool.
+This is **a minimal template and documentation project**.
 
 ### Main Files
 
 - `README.md` — What this is, features, quick start (end-user focused)
 - `GETTING_STARTED.md` — 5-minute setup guide
-- `SCHEMA.md` — Core rules document (users copy this to their vaults)
-- `docs/TUTORIAL.md` — Full walkthrough with pasta + Svelte example
-- `docs/ADVANCED.md` — Schema customization, power features, troubleshooting
+- `TUTORIAL.md` — Full walkthrough with pasta + Svelte example
+- `CLAUDE.md` — This file, for developers
 - `template/` — Starter vault (users copy this)
-- `tools/` — Optional Python utilities (search, etc.)
-- `_archive/` — Original Python package (for reference only)
+  - `template/AGENTS.md` — Rules for how the AI operates
+  - `template/index.md` — Wiki navigation
+  - `template/log.md` — Operation log
+  - `template/sources/` — Where users clip content
+  - `template/wiki/` — Where AI maintains pages
 
 ### Key Points
 
-1. **Documentation is first** — Most changes should update docs, not code
-2. **End-user focused** — Write for people copying the template, not developers
-3. **Test with real wikis** — When you change something, copy `template/`, make changes, verify in Claude Code + Obsidian
-4. **Keep it simple** — This works best when it's lightweight and understandable
-5. **Schema is the contract** — If you change how the AI should operate, update `SCHEMA.md`
+1. **Minimal and focused** — Only essential files, no bloat
+2. **End-user first** — Everything designed for users copying the template
+3. **AI reads AGENTS.md** — That's the contract between the system and AI
+4. **Test with real wikis** — Copy `template/`, verify in Claude Code + Obsidian
+5. **Keep it simple** — Lightweight, understandable, maintainable
 
 ### Workflow for Changes
 
-1. Update `SCHEMA.md` if you're changing how the AI should operate
+1. Edit `template/AGENTS.md` if you're changing how the AI operates
 2. Update docs if you're explaining something better
-3. Update `template/` if you're changing the starter vault structure
-4. Test by copying `template/` and actually using it
-5. Commit with clear messages explaining what changed and why
-
-### Making a Change (Example)
-
-**Adding a new page template type:**
-
-1. Edit `SCHEMA.md` to define the new template
-2. Update `docs/ADVANCED.md` to explain it
-3. Add an example in `docs/examples/`
-4. Test by asking the AI (in Claude Code) to create a page using the new template
-5. Commit with message: `docs: add [feature]`
-
-### Running Tests (Optional)
-
-```bash
-python -m pytest tests/ 2>/dev/null || echo "Tests in archive"
-```
-
-(Tests are in `_archive/` since we moved away from the Python CLI)
+3. Update `template/` structure if needed
+4. Test by copying `template/` and using it end-to-end
+5. Commit with clear messages
 
 ### Git Conventions
 
-- `refactor:` — Major structural changes (like Sections 1-4 of the overhaul)
+- `refactor:` — Major structural changes
 - `docs:` — Documentation updates
-- `feat:` — New features or templates
 - `fix:` — Bug fixes
 - Keep messages clear and focused
