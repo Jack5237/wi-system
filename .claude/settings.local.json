@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push *)",
+      "Bash(New-Item -ItemType File -Path template/sources/.gitkeep -Force)",
+      "Bash(Out-Null)",
+      "Bash(New-Item -ItemType File -Path template/wiki/.gitkeep -Force)",
+      "Bash(Write-Host \"Folder structure created\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\" -Recurse -Directory | Sort-Object FullName | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\tools\" -File -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\docs\\\\examples\" -Recurse -Directory -ErrorAction SilentlyContinue | Sort-Object FullName | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
+      "PowerShell(Get-Item -Path \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\SCHEMA.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\.schema.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\index.md\", \"C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\template\\\\log.md\" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems\\\\', ''\\) })",
+      "Bash(Get-ChildItem -Path C:\\\\Users\\\\jackm\\\\Desktop\\\\Code\\\\tools\\\\WI-systems -Force)",
+      "Bash(Select-Object Name)"
+    ]
+  }
+}

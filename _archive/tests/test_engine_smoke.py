@@ -25,7 +25,9 @@ Persistent synthesis accumulates over time.
             ingest_result = ingest_source(root, source_file)
             self.assertGreaterEqual(ingest_result["pages_touched"], 1)
 
-            query_result = query_wiki(root, "How is WI-system different from RAG?", store_page=True)
+            query_result = query_wiki(
+                root, "How is WI-system different from RAG?", store_page=True
+            )
             self.assertIn("answer", query_result)
             self.assertTrue(query_result["answer"].strip())
 
