@@ -16,11 +16,11 @@ The AI maintains this wiki; you curate sources and ask questions.
 
 Every workflow follows this cycle:
 
-1. **Ingest** — Clip sources, extract concepts, synthesize into wiki pages
-2. **Interact** — Query the wiki, get synthesized answers with citations
-3. **Inspect** — Lint for contradictions, orphans, missing sources
+1. **Ingest** — You clip web content into `sources/`. Manual, user-driven.
+2. **Interact** — AI reads sources and synthesizes into structured wiki pages. Agentic processing layer.
+3. **Inspect** — You view, query, and use the wiki in Obsidian. Manual discovery and exploration.
 
-Repeat as needed. Your wiki grows and improves with each cycle.
+This is a **manual personal RAG** — sources as context, AI as synthesizer, Obsidian as interface.
 
 ## Folder Structure
 
