@@ -4,7 +4,23 @@ This document tells AI agents how to operate this wiki. Follow these rules stric
 
 ## Purpose
 
-Build a structured, interlinked knowledge base from clipped web content. The AI maintains this wiki; you curate sources and ask questions.
+Build a structured, interlinked knowledge base from clipped web content. Works for **any workflow**:
+- **Broad wikis:** General knowledge bases (e.g., "Jack's Brain" with diverse topics)
+- **Narrow wikis:** Project-specific docs (e.g., "Gambling Site" focused on one project)
+
+The system is domain-agnostic. Your clips define the scope.
+
+The AI maintains this wiki; you curate sources and ask questions.
+
+## Three Core Stages
+
+Every workflow follows this cycle:
+
+1. **Ingest** — Clip sources, extract concepts, synthesize into wiki pages
+2. **Interact** — Query the wiki, get synthesized answers with citations
+3. **Inspect** — Lint for contradictions, orphans, missing sources
+
+Repeat as needed. Your wiki grows and improves with each cycle.
 
 ## Folder Structure
 
