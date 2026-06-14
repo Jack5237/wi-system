@@ -1,10 +1,10 @@
-# LLM Wiki
+# WI System
 
 A local-first knowledge base that grows smarter every time you add sources.
 
 Imagine you clip web articles about pasta cooking, Svelte web development, and pasta restaurant businesses. Instead of a pile of PDFs, an AI agent reads each one and builds a structured wiki where ideas are linked together. When you ask "How do I build a pasta restaurant website in Svelte?", the AI synthesizes knowledge from all three sources into a new page.
 
-**That's the LLM Wiki pattern.** The wiki is persistent, compounding knowledge — not one-time RAG retrieval.
+**That's the WI System.** The wiki is persistent, compounding knowledge — not one-time RAG retrieval.
 
 ## Features
 
@@ -13,7 +13,7 @@ Imagine you clip web articles about pasta cooking, Svelte web development, and p
 ✅ **Structured knowledge** — Interlinked concepts, entity pages, synthesis  
 ✅ **Visual exploration** — Open in Obsidian to see the graph and connections  
 ✅ **Local-first** — Plain markdown files, version controlled with git  
-✅ **Works with any LLM** — Claude, GPT-4, Ollama, etc.
+✅ **Works with any AI agent** — Claude Code, Cursor, GPT-4, Ollama, etc.
 
 ## Quick Start (5 minutes)
 
