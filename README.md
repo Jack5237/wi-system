@@ -109,5 +109,3 @@ We welcome contributions! Check [CLAUDE.md](CLAUDE.md) for development info.
 ---
 
 **Ready to start?** Copy the `template/` folder and open it in Claude Code. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup.
-
-Built on the [LLM Wiki pattern](https://github.com/karpathy/LLM-wiki) by Andrej Karpathy.
