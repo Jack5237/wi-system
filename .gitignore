@@ -11,3 +11,6 @@ template/.obsidian/appearance.json
 template/.obsidian/core-plugins.json
 template/.obsidian/workspace.json
 template/.obsidian/workspace-mobile.json
+
+# Obsidian Web Clipper's default save folder (before a template path is set)
+template/Clippings/
