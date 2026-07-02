@@ -1,10 +1,32 @@
-# WI System
+# WI System — A Woven Intelligence Template
 
-A local-first knowledge base that grows smarter every time you add sources.
+The WI System is a **template** for building a local-first knowledge base that grows smarter every time you add sources.
 
 Imagine you clip web articles about pasta cooking, Svelte web development, and pasta restaurant businesses. Instead of a pile of PDFs, an AI agent reads each one and builds a structured wiki where ideas are linked together. When you ask "How do I build a pasta restaurant website in Svelte?", the AI synthesizes knowledge from all three sources into a new page.
 
 **That's the WI System.** The wiki is persistent, compounding knowledge — not one-time RAG retrieval.
+
+---
+
+## For Users: Get Started Now
+
+**Copy the `template/` folder** — that's your vault:
+
+```bash
+cp -r template my-wiki
+cd my-wiki
+```
+
+Then open it in Claude Code, Cursor, or any AI agent. See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
+
+---
+
+## For Contributors: Develop the Template
+
+This repository (`wi-system/`) contains the template project. Everything here is for developing and improving the WI System template.
+
+- **`template/`** — The actual product (what users copy)
+- **Everything else** — Project docs, setup guides, contributor info
 
 ## Features
 
@@ -75,7 +97,7 @@ Every wiki page has a `## Sources` section pointing at the exact raw files (of a
 
 ### Working with the wiki
 
-Use `/ingest`, `/synthesize`, and `/lint` (shipped in `template/.claude/commands/`) — the AI runs the workflows in `AGENTS.md` without you having to re-explain them each time. A `SessionStart` hook nudges you when there are unprocessed sources waiting.
+Simply ask your AI agent to ingest, synthesize, or lint — the rules are in `template/AGENTS.md`. Any AI agent that reads AGENTS.md will understand the workflows without you having to re-explain them each time.
 
 ## Real-World Uses
 
