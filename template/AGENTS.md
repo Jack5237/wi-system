@@ -35,23 +35,44 @@ This is a **manual personal RAG** — sources as context, AI as synthesizer, Obs
 ```txt
 vault/
 ├── sources/                 ← Raw Data Layer (immutable), organized by TYPE only
+│   ├── index.md             ← hub — links down to each type folder's hub
 │   ├── 01-articles/         ← web clips, blog posts, docs
+│   │   └── index.md         ← hub — every article in this folder links up here
 │   ├── 02-videos/           ← transcripts, talk notes
+│   │   └── index.md
 │   ├── 03-conversations/    ← Claude/GPT/Gemini exports, meeting notes — any brain's transcript
+│   │   └── index.md
 │   ├── 04-documents/        ← PDFs, specs, papers, books
+│   │   └── index.md
 │   ├── 05-images/           ← screenshots, diagrams
+│   │   └── index.md
 │   └── 06-audio/            ← podcast notes, voice memos
+│       └── index.md
 ├── wiki/                    ← Structured Data Layer (AI-maintained), organized by SUBJECT only
+│   ├── index.md             ← curated top-level navigation hub
 │   ├── topics/              ← concepts, ideas, workflows
+│   │   └── index.md         ← hub — every topic page links up here
 │   ├── entities/            ← people, tools, companies, products
+│   │   └── index.md
 │   ├── projects/            ← things you're building
-│   ├── syntheses/           ← saved answers to your questions
-│   └── index.md             ← curated navigation hub
+│   │   └── index.md
+│   └── syntheses/           ← saved answers to your questions
+│       └── index.md
 ├── AGENTS.md                ← this file
 └── log.md                   ← append-only operation history
 ```
 
 **Never mix the two organizing principles.** `sources/` sorts by *what kind of raw file this is*. `wiki/` sorts by *what the page is about*. Don't create `wiki/conversations/` or `wiki/videos/` — that's a source-type concern, not a subject concern. The two layers connect through the `## Sources` section on each wiki page, not through mirrored folders.
+
+## Hub Pages and the Graph Hierarchy
+
+Every subfolder — every `sources/` type and every `wiki/` subject — has an `index.md` hub. This is what makes the Obsidian graph show real structure instead of a flat pile of dots: an article links up to its folder hub, that hub links up to the root `sources/index.md`, and the same pattern runs on the wiki side up to `wiki/index.md`. The result is a visible hierarchy: individual source → type hub → sources root, and individual wiki page → subject hub → wiki root, with the actual weave (`## Sources` citations) cutting laterally across the two trees.
+
+**Two different link styles, used for two different reasons:**
+- **Per-source citations in `## Sources`** use a bare `[[filename]]` wikilink (no path). These filenames are date-slugged and guaranteed unique, so Obsidian resolves them without ambiguity.
+- **Hub links** (a file linking up to its folder's `index.md`, or a folder hub linking up to the root) use a **full vault-relative path**, e.g. `[[sources/01-articles/index|Articles]]`. Every hub file is named `index.md`, so a bare `[[index]]` link would be ambiguous — the full path is required here specifically because the filename isn't unique.
+
+When ingesting a new source, link it up to its folder's hub. When creating a new wiki page, link it up to its subject hub. Neither hub file itself needs editing when a child links up to it — Obsidian's backlinks make the connection visible from both directions automatically.
 
 Six source folders max. Anything that doesn't fit goes in `04-documents/`. Don't invent new type folders per edge case. Wiki subject folders (`topics/`, `entities/`, `projects/`, `syntheses/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
 
@@ -71,7 +92,11 @@ resource: https://example.com/react-flow-review
 captured: 2026-06-28
 ingested: true
 ---
+
+Part of [[sources/01-articles/index|Articles]].
 ```
+
+The `Part of [[...]]` line goes right after the frontmatter, before the original article content — that's the hub link that puts this source in the graph hierarchy.
 
 For files in `03-conversations/`, add which brain produced it:
 ```yaml
@@ -94,18 +119,20 @@ When told to ingest (or when you find unprocessed sources), for each unprocessed
 
 1. **Read** the file.
 2. **Classify** — determine type, rename to convention, move to the correct `sources/` subfolder, add frontmatter (including `brain:` if it's a conversation).
-3. **Extract** — main topics, entities, projects, ideas.
-4. **Search the wiki first.** Never assume a page doesn't exist — check `wiki/topics/`, `wiki/entities/`, `wiki/projects/` before creating anything.
-5. **Update existing pages before creating new ones.** Creating a new page is the fallback, not the default.
-6. **Quality Gate: No Stubs** — Only create a new page if it has ≥3 substantive key points OR a meaningful relationship to existing pages.
-7. **Quality Gate: No Slop** — Extract *insights*, don't transcribe. Max 150 words per summary section. Every claim traces to a source.
-8. **Weave** — add the source as a `[[wikilink]]` (filename, no extension) to every touched page's `## Sources` section — not a backtick-quoted path, which renders as inert code and creates no graph edge. This is the mapping mechanism between raw data and structured knowledge, and it's what makes the Obsidian graph actually show sources connected to the wiki pages they fed — a topic page can be fed by an article, a Claude conversation, and a video at once, and each is an explicit `[[link]]` in `## Sources`.
-9. **Flag contradictions** in the page's `## Open Questions` section instead of silently overwriting a claim.
-10. **Add cross-references** — link only when conceptually relevant (`[[Other Page]]`). Not every mention needs a link.
-11. **Update `wiki/index.md`** — curated, not auto-appended. Add genuinely new topic/entity/project pages.
-12. **Mark** the source `ingested: true`.
-13. **Append to `log.md`** — record what was ingested and what changed.
-14. **Commit.**
+3. **Link the source to its folder hub** — add `Part of [[sources/01-articles/index|Articles]]` (or whichever subfolder it landed in) right after the frontmatter. This is what puts the source into the graph hierarchy under its type.
+4. **Extract** — main topics, entities, projects, ideas.
+5. **Search the wiki first.** Never assume a page doesn't exist — check `wiki/topics/`, `wiki/entities/`, `wiki/projects/` before creating anything.
+6. **Update existing pages before creating new ones.** Creating a new page is the fallback, not the default.
+7. **Quality Gate: No Stubs** — Only create a new page if it has ≥3 substantive key points OR a meaningful relationship to existing pages.
+8. **Quality Gate: No Slop** — Extract *insights*, don't transcribe. Max 150 words per summary section. Every claim traces to a source.
+9. **Weave** — add the source as a `[[wikilink]]` (filename, no extension) to every touched page's `## Sources` section — not a backtick-quoted path, which renders as inert code and creates no graph edge. This is the mapping mechanism between raw data and structured knowledge, and it's what makes the Obsidian graph actually show sources connected to the wiki pages they fed — a topic page can be fed by an article, a Claude conversation, and a video at once, and each is an explicit `[[link]]` in `## Sources`.
+10. **Link every new wiki page to its subject hub** — a new `wiki/topics/react-flow.md` page gets `Part of [[wiki/topics/index|Topics]]` under its frontmatter, same pattern as sources. Pages that already exist and are just being updated don't need this re-added.
+11. **Flag contradictions** in the page's `## Open Questions` section instead of silently overwriting a claim.
+12. **Add cross-references** — link only when conceptually relevant (`[[Other Page]]`). Not every mention needs a link.
+13. **Update `wiki/index.md`** — curated, not auto-appended. Add genuinely new topic/entity/project pages.
+14. **Mark** the source `ingested: true`.
+15. **Append to `log.md`** — record what was ingested and what changed.
+16. **Commit.**
 
 Per-source summary pages are **not created by default** — only for long, dense, or heavily-referenced sources where a standalone summary adds value beyond what the topic pages already capture.
 
@@ -127,12 +154,13 @@ When you say "please lint the wiki":
 
 1. **Un-ingested files** — anything in `sources/` with `ingested: false` or missing frontmatter → ingest it.
 2. **Contradictions** — do any pages claim conflicting facts? (Check `## Open Questions` first.)
-3. **Orphans** — pages with no inbound links → link or merge.
+3. **Orphans** — pages with no inbound links → link or merge. A page linked only to its folder hub and nothing else still counts as an orphan in spirit — it's in the hierarchy but disconnected from the actual weave.
 4. **Duplicates** — two pages about the same thing → merge.
-5. **Dead source links** — `## Sources` entries pointing at renamed/moved files → fix.
+5. **Dead source links** — `## Sources` entries pointing at renamed/moved files, or `Part of [[...]]` hub links pointing at the wrong folder → fix.
 6. **Unlinked concepts** — mentioned but lacking their own page.
-7. **`wiki/index.md` out of date** → refresh (curated, never auto-append everything).
-8. **Report findings** and offer fixes.
+7. **Missing hub links** — any source or wiki page missing its `Part of [[...]]` line → add it.
+8. **`wiki/index.md` out of date** → refresh (curated, never auto-append everything).
+9. **Report findings** and offer fixes.
 
 Commit after every ingest and lint pass. Git history is the wiki's memory.
 
@@ -143,6 +171,8 @@ Commit after every ingest and lint pass. Git history is the wiki's memory.
 type: topic           # topic | entity | project | synthesis
 updated: 2026-07-02
 ---
+
+Part of [[wiki/topics/index|Topics]].
 
 # Page Title
 
@@ -170,12 +200,13 @@ Refined synthesis and context beyond the bullet points.
 
 **Sources entries must be `[[wikilinks]]` to the filename (no extension, no path), not backtick-quoted plain text.** Obsidian only draws a graph edge for an actual link — a backtick-quoted path renders as inline code and creates no connection. This is the difference between the graph showing the weave and the graph showing two piles of unconnected dots. Filenames are unique (`YYYY-MM-DD-slug.md`), so a bare `[[filename]]` wikilink resolves correctly regardless of which `sources/` subfolder it's actually in — no relative path math required.
 
-Manual pages (pure thinking, no ingest event) are allowed — they just skip `## Sources`.
+Manual pages (pure thinking, no ingest event) are allowed — they just skip `## Sources`. Still add the `Part of [[...]]` hub link so the page shows up in the graph hierarchy like everything else.
 
 ## Linking Rules
 
 - Link to related concepts: `[[Concept Name]]`
-- Link to sources by file path, not by name
+- Link to sources by `[[filename]]` wikilink, never a backtick-quoted path — backticks render as inert code and create no graph edge
+- Link to folder hubs by full vault path: `[[sources/01-articles/index|Articles]]`, `[[wiki/topics/index|Topics]]`, etc. — every hub is named `index.md`, so a bare `[[index]]` link would be ambiguous
 - Create a page for any concept you mention more than once
 - Update backlinks when creating new pages
 

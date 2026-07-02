@@ -4,25 +4,25 @@ This is your navigation hub — a curated entry point into `wiki/`. The AI keeps
 
 ## Topics
 
-Concepts, ideas, and workflows. See `wiki/topics/`.
+Concepts, ideas, and workflows. See [[wiki/topics/index|topics/]].
 
 - _(no topics yet — ingest a source to get started)_
 
 ## Entities
 
-People, tools, companies, products. See `wiki/entities/`.
+People, tools, companies, products. See [[wiki/entities/index|entities/]].
 
 - _(no entities yet)_
 
 ## Projects
 
-Things you're building. See `wiki/projects/`.
+Things you're building. See [[wiki/projects/index|projects/]].
 
 - _(no projects yet)_
 
 ## Syntheses
 
-Saved answers to questions you've asked — these are where cross-topic insight lives. See `wiki/syntheses/`.
+Saved answers to questions you've asked — these are where cross-topic insight lives. See [[wiki/syntheses/index|syntheses/]].
 
 - _(no syntheses yet)_
 

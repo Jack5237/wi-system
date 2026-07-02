@@ -30,7 +30,7 @@ claude code .
 
 **Open Obsidian:** launch it, "Open folder as vault," select `my-wiki/`.
 
-Graph View will look empty — that's correct. The only real notes in a fresh template are `AGENTS.md`, `log.md`, and `wiki/index.md`; everything else is a placeholder folder waiting for content. It fills in once you ingest something.
+Graph View will show a small, mostly-empty structure — two little trees, one for `sources/` (6 type hubs) and one for `wiki/` (4 subject hubs), each hanging off its root index page, colored per folder. No content nodes yet, just the skeleton. That's correct — it fills in and starts connecting laterally (sources to the wiki pages they fed) once you ingest something.
 
 ## Optional: set up the web clipper
 

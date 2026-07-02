@@ -36,8 +36,8 @@ Setup done? See [GETTING_STARTED.md](GETTING_STARTED.md) if not. This is what yo
 
 1. Drop any file into `sources/` — a pasted paragraph, an article, a chat export. For a Claude or GPT conversation: copy the conversation text and paste it into a new `.md` file (e.g. `sources/03-conversations/claude-session.md`) — you don't need a formal data export, just the text.
 2. Say **"Ingest new sources"**
-3. Your agent reads it, files it under the right `sources/` subfolder with frontmatter, creates or updates pages in `wiki/`, and adds a `## Sources` link back to your file
-4. Check Obsidian — a new node appears in Graph View, colored by folder
+3. Your agent reads it, files it under the right `sources/` subfolder with frontmatter, links it up to that folder's hub, creates or updates pages in `wiki/`, and adds a `## Sources` link back to your file
+4. Check Obsidian — a new node appears in Graph View, colored by folder, connected up to its type hub and across to the wiki page it fed
 
 Repeat that loop every time you have something new. Once you've ingested a few sources, ask a real question — the agent answers from the wiki first, and can save the answer as a new page in `wiki/syntheses/`.
 
