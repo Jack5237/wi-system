@@ -6,4 +6,4 @@ type: hub
 
 Things you're building. Every project page links up here.
 
-Part of [[wiki/index|Wiki]].
+Part of [[wiki|Wiki]].

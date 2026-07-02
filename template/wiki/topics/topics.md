@@ -6,4 +6,4 @@ type: hub
 
 Concepts, ideas, workflows. Every topic page links up here.
 
-Part of [[wiki/index|Wiki]].
+Part of [[wiki|Wiki]].

@@ -31,8 +31,8 @@ This is **a minimal template and documentation project**.
 - `template/` — Starter vault (users copy this, and only this)
   - `template/AGENTS.md` — Rules for how the AI operates (the entire contract — no tool-specific config needed)
   - `template/log.md` — Operation log
-  - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
-  - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `wiki/index.md` as the navigation hub
+  - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`), each subfolder with a hub note named after itself (`01-articles/01-articles.md`, etc.) plus a root `sources/sources.md`
+  - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), each with a hub note named after itself, plus `wiki/wiki.md` as the curated navigation hub
   - `template/.obsidian/graph.json` — pre-configured graph view, every `sources/` and `wiki/` subfolder color-grouped out of the box (10 color groups, no user setup required)
 
 ### Key Points

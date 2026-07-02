@@ -6,4 +6,4 @@ type: hub
 
 Screenshots, diagrams. Every ingested image source in this folder links up here.
 
-Part of [[sources/index|Sources]].
+Part of [[sources|Sources]].

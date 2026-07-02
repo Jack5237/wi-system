@@ -6,4 +6,4 @@ type: hub
 
 Saved answers to questions you've asked — these are where cross-topic insight lives. Every synthesis page links up here.
 
-Part of [[wiki/index|Wiki]].
+Part of [[wiki|Wiki]].

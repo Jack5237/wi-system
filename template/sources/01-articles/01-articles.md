@@ -6,4 +6,4 @@ type: hub
 
 Web clips, blog posts, docs. Every ingested article in this folder links up here.
 
-Part of [[sources/index|Sources]].
+Part of [[sources|Sources]].
