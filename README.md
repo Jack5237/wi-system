@@ -1,5 +1,12 @@
 # WI System
 
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/stars/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=dark"><img alt="GitHub Stars" src="https://www.shieldcn.dev/github/stars/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/forks/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=dark"><img alt="GitHub Forks" src="https://www.shieldcn.dev/github/forks/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/watchers/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=dark"><img alt="Watchers" src="https://www.shieldcn.dev/github/watchers/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/last-commit/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=dark"><img alt="Last commit" src="https://www.shieldcn.dev/github/last-commit/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/open-issues/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=dark"><img alt="Open issues" src="https://www.shieldcn.dev/github/open-issues/Jack5237/wi-system.svg?variant=secondary&size=sm&mode=light"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/Jack5237/wi-system.svg?variant=ghost&size=sm&mode=dark"><img alt="License" src="https://www.shieldcn.dev/github/license/Jack5237/wi-system.svg?variant=ghost&size=sm&mode=light"></picture>
+
 **One woven intelligence. Every brain that's touched your problem, feeding one compounding graph.**
 
 Your notes. Claude's conversations. GPT's exports. Gemini's answers. Articles you clipped at 2am. A video transcript from six months ago. Every brain that's ever thought about your problem — human or AI — has produced fragments of an answer, scattered across a dozen tools you'll never reopen.
@@ -154,6 +161,10 @@ MIT — see [LICENSE](LICENSE)
 ## Contributing
 
 Contributions welcome. See **[CONTRIBUTING.md](CONTRIBUTING.md)** to get started and **[CLAUDE.md](CLAUDE.md)** for how the project is organized.
+
+[![Jack5237/wi-system contributors](https://shieldcn.dev/contributors/Jack5237/wi-system.svg?preset=transparent&names=true&titleAlign=center&align=left&mode=dark)](https://github.com/Jack5237/wi-system/graphs/contributors)
+
+![Star history chart](https://shieldcn.dev/chart/github/stars/Jack5237/wi-system.svg)
 
 ---
 
