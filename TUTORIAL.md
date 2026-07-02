@@ -20,19 +20,19 @@ cp -r template pasta-wiki
 cd pasta-wiki
 ```
 
-### Open in Obsidian
-
-Drag `pasta-wiki/` into Obsidian or use "Open folder as vault".
-
-You should see `sources/` (typed subfolders: `01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`) and `wiki/` (subject subfolders: `topics/`, `entities/`, `projects/`, `syntheses/`, plus `index.md`), all empty to start.
-
 ### Open your AI agent
 
 ```bash
 claude code .
 ```
 
-Or open the same `pasta-wiki/` folder in Cursor, VS Code, or your AI agent of choice. Read the `AGENTS.md` file — this is your contract with the AI.
+Or open `pasta-wiki/` in Cursor, VS Code, or your AI agent of choice. Read the `AGENTS.md` file — this is your contract with the AI, and the agent reads it automatically.
+
+### Open in Obsidian
+
+Drag `pasta-wiki/` into Obsidian or use "Open folder as vault".
+
+You should see `sources/` (typed subfolders: `01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`) and `wiki/` (subject subfolders: `topics/`, `entities/`, `projects/`, `syntheses/`, plus `index.md`), all empty to start.
 
 ## Part 2: Your First Source
 

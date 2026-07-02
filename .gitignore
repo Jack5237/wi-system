@@ -4,3 +4,10 @@ test-wiki/
 .claude/
 node_modules/
 *.log
+
+# Obsidian local workspace state — only graph.json is checked in
+template/.obsidian/app.json
+template/.obsidian/appearance.json
+template/.obsidian/core-plugins.json
+template/.obsidian/workspace.json
+template/.obsidian/workspace-mobile.json

@@ -1,36 +1,53 @@
-# WI System — A Woven Intelligence Template
+# WI System
 
-The WI System is a **template** for building a local-first knowledge base that grows smarter every time you add sources.
+**One woven intelligence. Every brain that's touched your problem, feeding one compounding graph.**
 
-Imagine you clip web articles about pasta cooking, Svelte web development, and pasta restaurant businesses. Instead of a pile of PDFs, an AI agent reads each one and builds a structured wiki where ideas are linked together. When you ask "How do I build a pasta restaurant website in Svelte?", the AI synthesizes knowledge from all three sources into a new page.
+Your notes. Claude's conversations. GPT's exports. Gemini's answers. Articles you clipped at 2am. A video transcript from six months ago. Every brain that's ever thought about your problem — human or AI — has produced fragments of an answer, scattered across a dozen tools you'll never reopen.
 
-**That's the WI System.** The wiki is persistent, compounding knowledge — not one-time RAG retrieval.
+The WI System is a template for pulling all of it into one place and letting an AI agent weave it into a living wiki. Not a chat log. Not a pile of PDFs. A structured, interlinked knowledge base that gets smarter with every source you feed it — and remembers, so you never have to ask the same question twice.
 
 ---
 
-## For Users: Get Started Now
+## The flow
 
-**Copy the `template/` folder** — that's your vault:
+```
+1. Clone this repo
+2. Open template/ in Claude Code      → the agent does the work
+   (or Cursor, or any AI agent — the interface is agentic, not a plugin)
+3. Open template/ in Obsidian         → watch the graph
+4. Drop sources in, tell the agent to ingest
+5. Ask it anything — it answers from the wiki first, raw sources second
+```
+
+The AI agent is the engine. Obsidian is the windshield. You drive by talking, not clicking.
 
 ```bash
-cp -r template my-wiki
+git clone https://github.com/Jack5237/wi-system.git
+cp -r wi-system/template my-wiki
 cd my-wiki
 ```
 
-Then open it in Obsidian (visualization) alongside Claude Code, Cursor, or any AI agent (does the work). See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
+Open `my-wiki/` in Claude Code (or Cursor, or any agent) — that's the actual interface, and it reads `AGENTS.md` and knows exactly what to do. Open the same folder in Obsidian for the visual graph. Full walkthrough in **[GETTING_STARTED.md](GETTING_STARTED.md)** (5 minutes).
 
 ---
 
-## Features
+## Why this exists
 
-✅ **Clip anything** — Use any web clipper to save articles as markdown  
-✅ **AI maintains your wiki** — Claude Code, Cursor, OpenAI Code, or any agent updates pages  
-✅ **Structured knowledge** — Interlinked concepts, entity pages, synthesis  
-✅ **Visual exploration** — Open in Obsidian to see the graph and connections  
-✅ **Local-first** — Plain markdown files, version controlled with git  
-✅ **Works with any AI agent** — Claude Code, Cursor, GPT-4, Ollama, etc.
+Every AI conversation you have is a dead end. You ask Claude something brilliant, close the tab, and it's gone. You ask GPT the same question three months later because you forgot the answer existed. Your knowledge doesn't compound — it evaporates.
 
-## Quick Start (5 minutes)
+The WI System fixes that by treating every brain's output as raw material for one persistent structure:
+
+- ✅ **Any source, any brain** — clip articles, drop chat exports from Claude/GPT/Gemini, paste transcripts, drag PDFs
+- ✅ **Agent-native** — no plugin, no dashboard. You talk to your AI agent; it reads, classifies, and writes
+- ✅ **Structured, not stacked** — pages organize by *subject* (topics, entities, projects, syntheses), never by which tool produced the source
+- ✅ **Traceable** — every wiki page links back to the exact raw files that built it
+- ✅ **Compounding** — each new source makes every future answer better, because the wiki remembers
+- ✅ **Visual** — open the same folder in Obsidian and watch the graph grow as the AI works
+- ✅ **Yours** — plain markdown, local-first, version-controlled with git. No lock-in, no server
+
+---
+
+## Quick start (5 minutes)
 
 ### 1. Copy the template
 
@@ -39,108 +56,105 @@ cp -r template my-wiki
 cd my-wiki
 ```
 
-### 2. Open Obsidian (visualization)
+### 2. Open your AI agent — the engine
 
 ```bash
-# Install Obsidian from obsidian.md if needed
-# Open my-wiki/ as a vault
-# Click Graph View (left sidebar) — you'll see it grow as you add sources
-```
-
-### 3. Open your AI agent (in the same folder)
-
-```bash
-# Using Claude Code
 claude code .
-
-# Or Cursor, VS Code, ChatGPT Web, Ollama, etc.
-# The AGENTS.md file tells the AI how to operate
+# or open my-wiki/ in Cursor, VS Code + an agent, ChatGPT, Ollama — anything agentic
 ```
 
-**You now have:**
-- **Left side:** Obsidian showing the visual graph of your knowledge
-- **Right side:** AI agent (Claude Code, Cursor) doing the work
+The agent reads `AGENTS.md` on its own. No config, no setup, no plugin to install.
 
-### 4. Clip your first article
+### 3. Open Obsidian — the graph
 
-Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or drag/paste to save markdown into `sources/01-articles/`. PDFs, videos, chat exports, images — drop them anywhere in `sources/`.
+Open `my-wiki/` as a vault, click **Graph View**. Empty for now. It fills in as you feed it.
 
-### 5. Tell the AI to ingest it
+### 4. Feed it a source
 
-Say to your AI agent: *"Ingest new sources"* or *"Run ingest"*
+Clip an article with [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper), or just drag a file into `sources/`. Chat exports, PDFs, transcripts, screenshots — all valid, all fine wherever they land.
 
-The AI reads `AGENTS.md`, sorts your sources, and updates the wiki. Watch Obsidian's graph update in real-time.
+### 5. Tell the agent to ingest
 
-Done. Your wiki is now growing.
+> "Ingest new sources"
 
-## How It Works
+Watch the graph in Obsidian fill in as the agent classifies the source, writes wiki pages, and links everything together.
 
-A woven intelligence system: every brain that's touched a problem — your notes, Claude conversations, ChatGPT/Gemini exports, clipped articles, videos — dumps its raw output into `sources/`. One brain, the wiki, reads and connects all of them.
+**That's the loop.** Feed sources, ask questions, watch it compound.
+
+---
+
+## How it's woven together
 
 ```
-Any brain's output → sources/ (typed dump) → AI reads AGENTS.md → wiki/ (organized by subject) → Obsidian (visual)
-                                                    ↓
-                                              Ask questions
-                                                    ↓
-                                          Synthesize new pages
+Every brain's output → sources/ (typed dump) → agent reads AGENTS.md → wiki/ (organized by subject) → graph (visual)
+                                                        ↓
+                                                  ask a question
+                                                        ↓
+                                              synthesis becomes a page
 ```
 
-**Three layers:**
+**Three layers, one contract:**
 
-1. **Sources** — Raw input, organized by *type* (`articles/`, `videos/`, `conversations/`, `documents/`, `images/`, `audio/`) — immutable, your source of truth
-2. **Wiki** — AI-generated pages, organized by *subject* (`topics/`, `entities/`, `projects/`, `syntheses/`) — interlinked, maintained, never mirrors the source-type folders
-3. **AGENTS.md** — The rules file (in `template/`) that tells the AI how to operate
+| Layer | Organized by | Role |
+|---|---|---|
+| `sources/` | *type* — articles, videos, conversations, documents, images, audio | Immutable raw input, any brain, any format |
+| `wiki/` | *subject* — topics, entities, projects, syntheses | AI-maintained, interlinked, compounding knowledge |
+| `AGENTS.md` | — | The one file every agent reads to know the rules |
 
-Every wiki page has a `## Sources` section pointing at the exact raw files (of any type) that fed it — that link is the actual weave, not the folder structure.
+Every wiki page carries a `## Sources` section pointing straight at the raw files that built it — human notes, a Claude session, a GPT export, an article, whatever. That link is the actual weave. Not the folders — the citations.
 
-### Working with the wiki
+Talk to your agent in plain language. No slash commands, no memorized syntax:
 
-Simply ask your AI agent to ingest, synthesize, or lint — the rules are in `template/AGENTS.md`. Any AI agent that reads AGENTS.md will understand the workflows without you having to re-explain them each time.
+> "Ingest new sources" · "Lint the wiki" · "What do I know about X?" · "Where do my sources disagree?"
 
-## Real-World Uses
+The rules live in `template/AGENTS.md`. Any agent that reads it understands the whole system.
 
-- **Personal learning** — Build a wiki as you read papers on a topic
-- **Trip planning** — Clip travel articles, ask "Where should I stay?" — AI synthesizes recommendations
-- **Business** — Feed in meeting notes, market research, customer feedback; build shared team knowledge
-- **Research** — Track findings, flag contradictions, see emerging patterns
-- **Book notes** — Clip summaries and reviews; build a structured reading journal
+---
+
+## What people build with it
+
+- **Personal learning** — a compounding wiki as you read into a topic
+- **Trip planning** — clip everything, ask "where should I stay?", get an answer synthesized from all of it
+- **Team knowledge** — feed in meeting notes, research, customer feedback; one shared brain
+- **Research** — track findings, surface contradictions between sources automatically
+- **Reading journal** — clip reviews and summaries, build a structured library of what you've read
+
+---
 
 ## Documentation
 
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** — Setup and first steps (5 min)
-- **[TUTORIAL.md](TUTORIAL.md)** — Full walkthrough with complete example
+- **[TUTORIAL.md](TUTORIAL.md)** — Full walkthrough with a real example
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute to this project
 - **[CLAUDE.md](CLAUDE.md)** — Architecture and developer notes
 
 ## Tips
 
-- Open the same folder in **Obsidian** (visualization) and **Claude Code**, **Cursor**, or any AI agent (does the work)
-- The agent reads `template/AGENTS.md` to understand how to operate — no other config needed
-- Use **Obsidian Web Clipper** to quickly save articles into `sources/01-articles/`
-- Drop ChatGPT/Gemini/Claude conversation exports into `sources/03-conversations/` — any brain's transcript is a valid input
-- Say **"lint the wiki"** regularly to check for contradictions and orphan pages
-- **Commit after each ingest** — your wiki is version controlled
-- Open Graph View in Obsidian to see the wiki as a connected brain — `sources/` is filtered out by default (see `.obsidian/graph.json`)
+- Keep Obsidian and your AI agent open on the same folder at the same time — visualize while it works
+- Drop ChatGPT/Gemini/Claude exports into `sources/03-conversations/` — any brain's transcript is valid input
+- Say **"lint the wiki"** regularly to catch contradictions and orphan pages
+- Commit after every ingest — your wiki's history is its memory
+- `sources/` is hidden from the default graph view so it reads as a brain, not a dump (see `.obsidian/graph.json`)
 
-## Optional: Publish the Wiki
+## Optional: publish the wiki
 
-`wiki/` is just markdown, so you can optionally render it as a browsable site later (e.g. with [Fumadocs](https://fumadocs.dev)) for sharing outside Obsidian. This is off by default and not required — the core system never depends on it.
+`wiki/` is just markdown — render it as a browsable site later (e.g. [Fumadocs](https://fumadocs.dev)) if you want to share it outside Obsidian. Off by default, never required.
 
 ## Limitations
 
-- Works best at personal scale (~100 sources, ~hundreds of pages)
-- The AI is the engine — you need access to Claude, GPT-4, Ollama, or similar
-- Quality depends on what you feed in (garbage in, garbage out)
-- The AI can make mistakes (lint catches most of them)
+- Built for personal/team scale (~100 sources, hundreds of pages) — not enterprise RAG
+- The agent is the engine — you need access to Claude, GPT, Ollama, or similar
+- Garbage in, garbage out — quality depends on what you feed it
+- Agents make mistakes; that's what linting is for
 
 ## License
 
-MIT — See [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE)
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get started, and [CLAUDE.md](CLAUDE.md) for project architecture.
+Contributions welcome. See **[CONTRIBUTING.md](CONTRIBUTING.md)** to get started and **[CLAUDE.md](CLAUDE.md)** for how the project is organized.
 
 ---
 
-**Ready to start?** Copy the `template/` folder, open it in Obsidian + your AI agent of choice. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup.
+**Ready?** Copy `template/`, open it in your AI agent of choice, add Obsidian for the visuals, and start weaving. Full setup in **[GETTING_STARTED.md](GETTING_STARTED.md)**.

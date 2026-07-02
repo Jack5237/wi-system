@@ -1,49 +1,49 @@
 # Getting Started
 
-Get your WI System vault up and running in 5 minutes.
+Get your woven intelligence vault up and running in 5 minutes.
 
 ## What You Need
 
-1. **Obsidian** (free) — [Download](https://obsidian.md) — for visualizing the graph
-2. **An AI agent** — Claude Code, Cursor, VS Code + extension, ChatGPT, Ollama, or similar — for doing the work
+1. **An AI agent** — Claude Code, Cursor, VS Code + extension, ChatGPT, Ollama, or similar. This is the engine — it does the reading, classifying, and writing.
+2. **Obsidian** (free) — [Download](https://obsidian.md). This is the windshield — it visualizes the graph the agent builds.
 3. **A web clipper** (optional but recommended) — [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper)
 
 ## Setup (3 steps)
 
-### Step 1: Copy the template
+### Step 1: Clone and copy the template
 
 ```bash
-cp -r template my-wiki
+git clone https://github.com/Jack5237/wi-system.git
+cp -r wi-system/template my-wiki
 cd my-wiki
 ls -la
 ```
 
 You should see:
-- `AGENTS.md` — Rules for the AI (the entire contract, no other config needed)
+- `AGENTS.md` — The entire contract. Every agent reads this and knows what to do — no other config needed.
 - `log.md` — Operation log
 - `sources/` — Raw data dump, organized by type (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
-- `wiki/` — Where AI creates pages, organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `index.md` as the navigation hub
+- `wiki/` — Where the agent creates pages, organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `index.md` as the navigation hub
 - `.obsidian/graph.json` — pre-configured graph view (color-grouped, `sources/` hidden by default)
 
-### Step 2: Open in Obsidian
+### Step 2: Open your AI agent — this is the main interface
+
+```bash
+claude code .
+
+# Or open my-wiki/ in Cursor, VS Code + an agent, ChatGPT, Ollama — any agentic interface
+```
+
+The agent reads `AGENTS.md` on its own and understands how to operate. No slash commands to memorize, no plugin to install — you just talk to it.
+
+### Step 3: Open Obsidian — this is the visualization
 
 1. Launch Obsidian
 2. Click "Open folder as vault"
 3. Select `my-wiki/`
-4. Click Graph View (left sidebar) — empty for now, it grows as you add sources
+4. Click Graph View (left sidebar) — empty for now, it fills in as the agent works
 
-### Step 3: Open your AI agent (same folder)
-
-```bash
-# Using Claude Code
-claude code .
-
-# Or open my-wiki/ in Cursor, VS Code, ChatGPT Web, Ollama, etc.
-```
-
-The AI reads `AGENTS.md` and understands how to operate — no extra setup required.
-
-**You now have:** Obsidian open for visualization, and your AI agent open to do the work, both pointed at the same `my-wiki/` folder.
+**You now have:** your AI agent doing the work, and Obsidian showing you the graph it's building — both pointed at the same `my-wiki/` folder.
 
 ## First Ingestion
 
