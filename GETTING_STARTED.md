@@ -30,4 +30,12 @@ claude code .
 
 **Open Obsidian:** launch it, "Open folder as vault," select `my-wiki/`.
 
+Graph View will look empty — that's correct. The only real notes in a fresh template are `AGENTS.md`, `log.md`, and `wiki/index.md`; everything else is a placeholder folder waiting for content. It fills in once you ingest something.
+
+## Optional: set up the web clipper
+
+Install [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper), open its extension settings, and under **Behavior → Note location**, point it at `sources/01-articles` in your vault. Now every clip lands pre-sorted.
+
+Don't stress about getting this exact — anything dropped anywhere in `sources/` gets sorted correctly during ingest anyway. The clipper folder setting just saves your agent a step.
+
 You're set up. For how to actually use it — the prompts you'll type day to day — see **[TUTORIAL.md](TUTORIAL.md)**.

@@ -34,7 +34,7 @@ Setup done? See [GETTING_STARTED.md](GETTING_STARTED.md) if not. This is what yo
 
 ## Try it once
 
-1. Drop any file into `sources/` — a pasted paragraph, an article, a chat export
+1. Drop any file into `sources/` — a pasted paragraph, an article, a chat export. For a Claude or GPT conversation: copy the conversation text and paste it into a new `.md` file (e.g. `sources/03-conversations/claude-session.md`) — you don't need a formal data export, just the text.
 2. Say **"Ingest new sources"**
 3. Your agent reads it, files it under the right `sources/` subfolder with frontmatter, creates or updates pages in `wiki/`, and adds a `## Sources` link back to your file
 4. Check Obsidian — a new node appears in Graph View, colored by folder
