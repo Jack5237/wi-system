@@ -81,7 +81,7 @@ When ingesting a new source, link it up to its folder's hub. When creating a new
 
 Six source folders max. Anything that doesn't fit goes in `04-documents/`. Don't invent new type folders per edge case. Wiki subject folders (`topics/`, `entities/`, `projects/`, `syntheses/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
 
-**Dumping is allowed anywhere in `sources/`.** A file landing in the wrong subfolder, or in the root of `sources/`, is fine — part of ingest is the AI moving it to the right place. Classification is the AI's job, not the user's.
+**Dumping is allowed anywhere in `sources/`.** A file landing in the wrong subfolder, or in the root of `sources/`, is fine — part of ingest is the AI moving it to the right place. Classification is the AI's job, not the user's. This only covers `sources/` itself — a file sitting at the vault root (e.g. a `Clippings/` folder some tools create by default, outside `sources/` entirely) won't be picked up by "ingest new sources," since that scans inside `sources/` only. Move it in first.
 
 ## Source Files
 

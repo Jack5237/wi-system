@@ -36,8 +36,8 @@ Graph View shows the skeleton immediately — two small trees (`sources/` in gre
 
 Install [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper), then open its extension settings (puzzle-piece icon in your browser toolbar → Obsidian Web Clipper → the gear/settings icon).
 
-The save folder isn't a general setting — it's set per **Template**. Go to **Templates** in the left sidebar, open the **Default** template (or create a new one), and set its note location/path to `sources/01-articles`. Now every clip using that template lands pre-sorted.
+The save folder isn't a general setting — it's set per **Template**. Go to **Templates** in the left sidebar, click into the **Default** template itself (not just the list — open the card), and set its own **Path** field to `sources/01-articles`. That's different from picking a vault in the clip popup, which doesn't persist the folder on its own.
 
-Don't stress about getting this exact — anything dropped anywhere in `sources/` gets sorted correctly during ingest anyway. The clipper folder setting just saves your agent a step.
+If it still won't stick and keeps landing in a `Clippings/` folder or asking every time — don't fight it. The one thing that actually matters is that clips end up **somewhere inside `sources/`**, not at the vault root. Any subfolder, or even the root of `sources/` itself, works — ingest sorts it correctly regardless (`AGENTS.md`: dumping anywhere inside `sources/` is fine). A vault-root `Clippings/` folder is the one place to avoid, since ingest only scans inside `sources/`.
 
 You're set up. For how to actually use it — the prompts you'll type day to day — see **[TUTORIAL.md](TUTORIAL.md)**.
