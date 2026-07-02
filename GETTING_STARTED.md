@@ -34,7 +34,9 @@ Graph View shows the skeleton immediately — two small trees (`sources/` in gre
 
 ## Optional: set up the web clipper
 
-Install [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper), open its extension settings, and under **Behavior → Note location**, point it at `sources/01-articles` in your vault. Now every clip lands pre-sorted.
+Install [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper), then open its extension settings (puzzle-piece icon in your browser toolbar → Obsidian Web Clipper → the gear/settings icon).
+
+The save folder isn't a general setting — it's set per **Template**. Go to **Templates** in the left sidebar, open the **Default** template (or create a new one), and set its note location/path to `sources/01-articles`. Now every clip using that template lands pre-sorted.
 
 Don't stress about getting this exact — anything dropped anywhere in `sources/` gets sorted correctly during ingest anyway. The clipper folder setting just saves your agent a step.
 
