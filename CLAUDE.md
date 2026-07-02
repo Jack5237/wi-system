@@ -33,7 +33,7 @@ This is **a minimal template and documentation project**.
   - `template/log.md` — Operation log
   - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
   - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `wiki/index.md` as the navigation hub
-  - `template/.obsidian/graph.json` — pre-configured graph view (color-grouped by wiki subfolder, `sources/` hidden by default)
+  - `template/.obsidian/graph.json` — pre-configured graph view, every `sources/` and `wiki/` subfolder color-grouped out of the box (10 color groups, no user setup required)
 
 ### Key Points
 

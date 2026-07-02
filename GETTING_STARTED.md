@@ -24,7 +24,7 @@ You should see:
 - `log.md` — Operation log
 - `sources/` — Raw data dump, organized by type (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
 - `wiki/` — Where the agent creates pages, organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `index.md` as the navigation hub
-- `.obsidian/graph.json` — pre-configured graph view (color-grouped, `sources/` hidden by default)
+- `.obsidian/graph.json` — pre-configured graph view, every `sources/` and `wiki/` subfolder already color-grouped — nothing to set up
 
 ### Step 2: Open your AI agent — this is the main interface
 
@@ -77,7 +77,7 @@ The AI will:
 In Obsidian:
 1. Open `wiki/topics/` or `wiki/entities/` to see new pages
 2. Click on one → see the backlinks and its `## Sources` section
-3. View → Graph View to see connections forming (`sources/` is hidden from the graph by default — see `.obsidian/graph.json`)
+3. View → Graph View to see connections forming — raw sources and wiki pages are already color-coded by folder, so you can see at a glance what's raw input versus structured knowledge (see `.obsidian/graph.json`)
 
 ## Querying Your Wiki
 

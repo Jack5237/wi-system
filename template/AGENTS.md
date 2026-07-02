@@ -192,7 +192,7 @@ Manual pages (pure thinking, no ingest event) are allowed — they just skip `##
 - **No per-source summary pages by default** — only for long/dense/heavily-referenced sources.
 - **No folder bloat** — new wiki folders only when 10+ pages genuinely demand it.
 - **No external cron/bash daemons** — automation stays inside the AI agent's own primitives (slash commands, hooks, scheduled agents), never external infrastructure.
-- **No cluttered graph view** — `sources/` stays out of the default Obsidian graph; see `.obsidian/graph.json`.
+- **No manual graph setup** — every `sources/` and `wiki/` subfolder is already color-grouped in `.obsidian/graph.json`; the user should never need to configure colors or filters themselves.
 
 ## DO NOT
 

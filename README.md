@@ -134,7 +134,7 @@ The rules live in `template/AGENTS.md`. Any agent that reads it understands the 
 - Drop ChatGPT/Gemini/Claude exports into `sources/03-conversations/` — any brain's transcript is valid input
 - Say **"lint the wiki"** regularly to catch contradictions and orphan pages
 - Commit after every ingest — your wiki's history is its memory
-- `sources/` is hidden from the default graph view so it reads as a brain, not a dump (see `.obsidian/graph.json`)
+- Every folder is pre-colored in the graph — `sources/` subfolders and `wiki/` subfolders all get distinct colors out of the box, zero setup (see `.obsidian/graph.json`)
 
 ## Optional: publish the wiki
 

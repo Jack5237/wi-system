@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Pull request template for contributions
 - Enhanced README with side-by-side Obsidian + AI workflow
 - Fixed Obsidian graph config to color all 4 wiki folders (topics, entities, projects, syntheses)
+- Expanded Obsidian graph config to color all 6 `sources/` subfolders too (previously hidden from the graph entirely) — 10 color groups total, fully pre-configured, zero setup required from the user
 
 ### Changed
 - Cleaned template structure: removed AI-specific config from template/

@@ -95,7 +95,7 @@ Refresh Obsidian. You should see new files in `wiki/topics/`.
 
 Click on `pasta.md` → see backlinks to spaghetti, penne, ravioli, and its `## Sources` section pointing at the article.
 
-View → Graph View — you should see a small network forming (`sources/` stays out of the default view).
+View → Graph View — you should see a small network forming, with the source article and its wiki pages in different colors (see `.obsidian/graph.json` for the color scheme).
 
 ## Part 3: Your Second Source
 
