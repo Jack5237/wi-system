@@ -41,6 +41,23 @@ Setup done? See [GETTING_STARTED.md](GETTING_STARTED.md) if not. This is what yo
 
 Repeat that loop every time you have something new. Once you've ingested a few sources, ask a real question — the agent answers from the wiki first, and can save the answer as a new page in `wiki/syntheses/`.
 
+## How merging actually works
+
+Sources are raw and disposable-in-spirit; wiki pages are what tie them together — and that tying-together is **automatic**, not something you trigger separately.
+
+Every ingest starts with "search the wiki first, update an existing page before creating a new one." So if you drop in three separate GPT conversations that all touch Svelte reactivity, the agent doesn't make three pages — it makes (or finds) one `wiki/topics/reactivity.md`, and each ingest just appends a new line to that page's `## Sources` section:
+
+```yaml
+## Sources
+- sources/03-conversations/2026-07-01-gpt-reactivity-question.md
+- sources/03-conversations/2026-07-03-gpt-reactivity-followup.md
+- sources/01-articles/2026-07-05-svelte-docs-clip.md
+```
+
+Three different conversations, one page, growing over time. No prompt needed — it's what ingest does by default.
+
+**You can still create pages manually.** Ask your agent to write a page yourself ("create a topic page for X, here's what I know"), or write one directly in `wiki/` — manual pages just skip the `## Sources` section since there's no ingest event behind them. Automatic merging and manual authorship coexist; nothing forces you into one or the other.
+
 ## Example: two sources become one answer
 
 Drop an article about pasta into `sources/`, ingest it — you get `wiki/topics/pasta.md` and related pages. Drop an article about Svelte, ingest it — you get `wiki/topics/svelte.md` and friends. Now ask:
@@ -48,6 +65,15 @@ Drop an article about pasta into `sources/`, ingest it — you get `wiki/topics/
 > "I want to start an online pasta shop using Svelte. What should I know?"
 
 Your agent searches both sets of wiki pages, follows their `## Sources` links for detail, and writes `wiki/syntheses/pasta-ecommerce-with-svelte.md` — a page that only exists because it read and combined two unrelated sources. That's the actual point of the system: not storage, synthesis.
+
+## Less manual: automating the "say ingest" step
+
+By default you type "ingest new sources" yourself — that's Level 1, zero setup, works with any agent. If you're tired of typing it:
+
+- **Claude Code users:** a `SessionStart` hook can check `sources/` for anything not yet `ingested: true` and nudge you the moment you open the vault. This still asks before acting — it just removes the "did I forget something?" check. See Claude Code's hooks docs for the `SessionStart` event; point the hook at a `grep` over `sources/**/*.md` for `ingested: false`.
+- **Scheduled ingest:** if your tooling supports cron-style scheduled agent runs, ingest can run on a timer against the repo automatically. Don't turn this on until the manual loop feels solid — automating an unproven workflow just automates the mess.
+
+Both are optional add-ons layered on top of `AGENTS.md`, not requirements — the template ships with neither configured, so it works identically in every agent out of the box. See the "Automation" section at the bottom of `template/AGENTS.md` for the full breakdown.
 
 ## Common workflows
 

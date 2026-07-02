@@ -43,7 +43,7 @@ That's the whole loop: drop files in `sources/`, tell your agent to ingest, watc
 | `wiki/` | *subject* — topics, entities, projects, syntheses | AI-maintained, interlinked, compounding knowledge |
 | `AGENTS.md` | — | The one file every agent reads to know the rules |
 
-Every wiki page has a `## Sources` section pointing at the exact raw files that built it. That link is the actual weave.
+Every wiki page has a `## Sources` section pointing at the exact raw files that built it. That link is the actual weave — and merging is automatic: three GPT conversations that all touch the same topic don't become three pages, they become three lines in one page's `## Sources` section, because ingest always searches the wiki and updates an existing page before creating a new one. See [TUTORIAL.md](TUTORIAL.md) for a concrete example.
 
 ## Documentation
 
