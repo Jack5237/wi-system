@@ -20,10 +20,11 @@ ls -la
 
 You should see:
 - `AGENTS.md` — Rules for the AI
-- `index.md` — Navigation
 - `log.md` — Operation log
-- `sources/` — Where clipped articles go
-- `wiki/` — Where AI creates pages
+- `sources/` — Raw data dump, organized by type (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
+- `wiki/` — Where AI creates pages, organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `index.md` as the navigation hub
+- `.claude/commands/` — `/ingest`, `/synthesize`, `/lint` slash commands
+- `.obsidian/graph.json` — pre-configured graph view (color-grouped, `sources/` hidden by default)
 
 ### Step 2: Open in Claude Code (or your AI agent)
 
@@ -44,42 +45,41 @@ The AI reads `AGENTS.md` and understands how to operate.
 
 ### Clip an article
 
-Use the Obsidian Web Clipper browser extension to save an article. It will be saved as markdown.
+Use the Obsidian Web Clipper browser extension to save an article. It will be saved as markdown. (Chat exports, PDFs, and transcripts work too — drop them anywhere in `sources/`.)
 
 ### Save it to sources/
 
 Either:
-- Drag the file directly into Obsidian → `sources/` folder
-- Or manually copy it: `cp ~/Downloads/article.md my-wiki/sources/`
+- Drag the file directly into Obsidian → `sources/` folder (any subfolder, or the root — the AI sorts it)
+- Or manually copy it: `cp ~/Downloads/article.md my-wiki/sources/01-articles/`
 
 ### Tell the AI to ingest it
 
-In Claude Code, ask:
+In Claude Code, run:
 
 ```
-I just clipped an article about [topic].
-The file is in sources/article.md.
-Please read it and update the wiki.
+/ingest
 ```
 
 The AI will:
-1. Read the article
-2. Extract key concepts
-3. Create wiki pages
-4. Link related ideas
-5. Update index.md
-6. Log the changes
+1. Read each unprocessed file in `sources/`
+2. Classify it, rename it, move it to the right typed subfolder, and add frontmatter
+3. Extract key concepts and search the wiki before creating anything
+4. Create or update pages in `wiki/topics/`, `wiki/entities/`, or `wiki/projects/`
+5. Weave the source's file path into every touched page's `## Sources` section
+6. Update `wiki/index.md`
+7. Log the changes and commit
 
 ### See the results
 
 In Obsidian:
-1. Open `wiki/` to see new pages
-2. Click on one → see the backlinks
-3. View → Graph View to see connections forming
+1. Open `wiki/topics/` or `wiki/entities/` to see new pages
+2. Click on one → see the backlinks and its `## Sources` section
+3. View → Graph View to see connections forming (`sources/` is hidden from the graph by default — see `.obsidian/graph.json`)
 
 ## Querying Your Wiki
 
-Once you have a few sources, ask questions:
+Once you have a few sources, ask questions directly, or run `/synthesize <question>`:
 
 ```
 What are the main topics in my wiki?
@@ -93,21 +93,17 @@ How would I combine topic A with topic B?
 Are there any contradictions in my wiki?
 ```
 
-The AI searches your wiki (not raw sources), synthesizes an answer, and can create a new page with the result.
+The AI searches your wiki (not raw sources) first, then falls back to raw sources and general knowledge (clearly labelled), and can save a new page in `wiki/syntheses/` with the result.
 
 ## Linting
 
-Periodically ask:
+Periodically run:
 
 ```
-Please lint the wiki. Check for:
-- Contradictions
-- Orphan pages
-- Unlinked concepts
-- Missing cross-references
+/lint
 ```
 
-The AI will review everything and suggest fixes.
+This checks for un-ingested files, contradictions, orphan pages, duplicates, dead source links, and a stale index — then offers fixes.
 
 ## Next Steps
 

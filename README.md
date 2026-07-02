@@ -36,12 +36,12 @@ claude code .
 
 ### 3. Clip your first article
 
-Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or any tool to save a markdown article to `sources/`.
+Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or any tool to save a markdown article into `sources/01-articles/`. Chat exports, PDFs, or transcripts can be dropped anywhere in `sources/` — the AI sorts them into the right typed subfolder during ingest.
 
 ### 4. Ask the AI to ingest it
 
-In Claude Code, ask:
-> "I clipped an article about pasta cooking. Please read `sources/article.md` and update the wiki."
+In Claude Code, run:
+> `/ingest`
 
 ### 5. Explore in Obsidian
 
@@ -55,19 +55,27 @@ Done. Your wiki is now growing.
 
 ## How It Works
 
+A woven intelligence system: every brain that's touched a problem — your notes, Claude conversations, ChatGPT/Gemini exports, clipped articles, videos — dumps its raw output into `sources/`. One brain, the wiki, reads and connects all of them.
+
 ```
-Web Clipper → sources/ (raw) → AI reads AGENTS.md → wiki/ (structured) → Obsidian (visual)
-                                    ↓
-                              Ask questions
-                                    ↓
-                          Synthesize new pages
+Any brain's output → sources/ (typed dump) → AI reads AGENTS.md → wiki/ (organized by subject) → Obsidian (visual)
+                                                    ↓
+                                              Ask questions
+                                                    ↓
+                                          Synthesize new pages
 ```
 
 **Three layers:**
 
-1. **Sources** — Web clipped articles (immutable, your source of truth)
-2. **Wiki** — AI-generated pages (interlinked, organized, maintained)
+1. **Sources** — Raw input, organized by *type* (`articles/`, `videos/`, `conversations/`, `documents/`, `images/`, `audio/`) — immutable, your source of truth
+2. **Wiki** — AI-generated pages, organized by *subject* (`topics/`, `entities/`, `projects/`, `syntheses/`) — interlinked, maintained, never mirrors the source-type folders
 3. **AGENTS.md** — The rules file (in `template/`) that tells the AI how to operate
+
+Every wiki page has a `## Sources` section pointing at the exact raw files (of any type) that fed it — that link is the actual weave, not the folder structure.
+
+### Working with the wiki
+
+Use `/ingest`, `/synthesize`, and `/lint` (shipped in `template/.claude/commands/`) — the AI runs the workflows in `AGENTS.md` without you having to re-explain them each time. A `SessionStart` hook nudges you when there are unprocessed sources waiting.
 
 ## Real-World Uses
 
@@ -87,9 +95,15 @@ Web Clipper → sources/ (raw) → AI reads AGENTS.md → wiki/ (structured) →
 
 - Open the folder in **Claude Code**, **Cursor**, **VS Code + CodeCompanion**, or any AI agent
 - The agent reads `template/AGENTS.md` to understand how to operate
-- Use **Obsidian Web Clipper** to quickly save articles
-- **Lint regularly** — ask the AI to check for contradictions and orphan pages
-- **Commit after each ingest** — your wiki is version controlled
+- Use **Obsidian Web Clipper** to quickly save articles into `sources/01-articles/`
+- Drop ChatGPT/Gemini/Claude conversation exports into `sources/03-conversations/` — any brain's transcript is a valid input
+- Run **`/lint`** regularly to check for contradictions and orphan pages
+- **Commit after each `/ingest`** — your wiki is version controlled
+- Open Graph View in Obsidian to see the wiki as a connected brain — `sources/` is filtered out by default (see `.obsidian/graph.json`)
+
+## Optional: Publish the Wiki
+
+`wiki/` is just markdown, so you can optionally render it as a browsable site later (e.g. with [Fumadocs](https://fumadocs.dev)) for sharing outside Obsidian. This is off by default and not required — the core system never depends on it.
 
 ## Limitations
 

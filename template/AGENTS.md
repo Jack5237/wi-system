@@ -4,7 +4,9 @@ This document tells AI agents how to operate this wiki. Follow these rules stric
 
 ## Purpose
 
-Build a structured, interlinked knowledge base from clipped web content. Works for **any workflow**:
+Build a structured, interlinked knowledge base — a **woven intelligence system**. Your notes, Claude's conversations, ChatGPT exports, Gemini exports, articles, videos: every brain that's touched a problem dumps its raw output into `sources/`, and `wiki/` is the one brain that reads and connects all of them.
+
+Works for **any workflow**:
 - **Broad wikis:** General knowledge bases (e.g., "Jack's Brain" with diverse topics)
 - **Narrow wikis:** Project-specific docs (e.g., "Gambling Site" focused on one project)
 
@@ -16,70 +18,130 @@ The AI maintains this wiki; you curate sources and ask questions.
 
 Every workflow follows this cycle:
 
-1. **Ingest** — You clip web content into `sources/`. Manual, user-driven.
-2. **Interact** — AI reads sources and synthesizes into structured wiki pages. Agentic processing layer.
+1. **Ingest** — Raw data (any brain's output, any format) lands in `sources/`. Manual, user-driven.
+2. **Interact** — AI classifies, reads, and weaves it into `wiki/`. Agentic processing layer.
 3. **Inspect** — You view, query, and use the wiki in Obsidian. Manual discovery and exploration.
+
+```txt
+raw data → sources/ (dump) → AI classifies & ingests → wiki/ (compounds) → questions become pages
+```
+
+No inbox. No middle layer. `sources/` **is** the dump zone — the AI sorts it in place.
 
 This is a **manual personal RAG** — sources as context, AI as synthesizer, Obsidian as interface.
 
 ## Folder Structure
 
-**Raw Data Layer** (immutable)
-- `sources/` — Clipped web articles (read-only, never edit)
+```txt
+vault/
+├── sources/                 ← Raw Data Layer (immutable), organized by TYPE only
+│   ├── 01-articles/         ← web clips, blog posts, docs
+│   ├── 02-videos/           ← transcripts, talk notes
+│   ├── 03-conversations/    ← Claude/GPT/Gemini exports, meeting notes — any brain's transcript
+│   ├── 04-documents/        ← PDFs, specs, papers, books
+│   ├── 05-images/           ← screenshots, diagrams
+│   └── 06-audio/            ← podcast notes, voice memos
+├── wiki/                    ← Structured Data Layer (AI-maintained), organized by SUBJECT only
+│   ├── topics/              ← concepts, ideas, workflows
+│   ├── entities/            ← people, tools, companies, products
+│   ├── projects/            ← things you're building
+│   ├── syntheses/           ← saved answers to your questions
+│   └── index.md             ← curated navigation hub
+├── AGENTS.md                ← this file
+└── log.md                   ← append-only operation history
+```
 
-**Structured Data Layer** (AI-maintained)
-- `wiki/` — Knowledge pages, synthesized from sources
+**Never mix the two organizing principles.** `sources/` sorts by *what kind of raw file this is*. `wiki/` sorts by *what the page is about*. Don't create `wiki/conversations/` or `wiki/videos/` — that's a source-type concern, not a subject concern. The two layers connect through the `## Sources` section on each wiki page, not through mirrored folders.
 
-**System Files** (at vault root)
-- `index.md` — Navigation and TOC
-- `log.md` — Operation history (append-only)
+Six source folders max. Anything that doesn't fit goes in `04-documents/`. Don't invent new type folders per edge case. Wiki subject folders (`topics/`, `entities/`, `projects/`, `syntheses/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
+
+**Dumping is allowed anywhere in `sources/`.** A file landing in the wrong subfolder, or in the root of `sources/`, is fine — part of ingest is the AI moving it to the right place. Classification is the AI's job, not the user's.
+
+## Source Files
+
+Once ingested, every source file is normalized:
+
+**Name:** `YYYY-MM-DD-short-slug.md`
+
+**Frontmatter:**
+```yaml
+---
+type: article        # article | video | conversation | document | image | audio
+url: https://example.com/react-flow-review
+captured: 2026-06-28
+ingested: true
+---
+```
+
+For files in `03-conversations/`, add which brain produced it:
+```yaml
+---
+type: conversation
+brain: claude         # claude | gpt | gemini | human
+captured: 2026-06-28
+ingested: true
+---
+```
+This makes provenance visible — if two brains disagree on a topic, the wiki page's `## Open Questions` can attribute each claim to its source rather than silently picking one.
+
+`ingested: false` (or missing frontmatter entirely) marks a raw file as queued for processing. This one flag is the entire queue system — no inbox folder needed.
+
+After ingest, source files are **immutable**. Never edit them. They're the ground truth the wiki compresses from.
 
 ## Core Workflow: Ingest
 
-When you say "I clipped a new article, please ingest it":
+When told to ingest (or when you find unprocessed sources), for each unprocessed file:
 
-1. **Read** the source file from `sources/`
-2. **Extract** key concepts, entities, facts, relationships
-3. **Create or update** wiki pages in `wiki/`:
-   - Create a summary page for the source (if substantive)
-   - Create/update concept pages (e.g., "Pasta", "Svelte")
-   - Create/update entity pages (e.g., "Rome", "React Framework")
-   - Create/update relationship pages if meaningful
-4. **Quality Gate: No Stubs** — Only create a page if it has ≥3 substantive key points OR a meaningful relationship to existing pages. Single mentions don't warrant pages.
-5. **Quality Gate: No Slop** — Summaries extract *insights*, not transcribe sources. Max 150 words per summary section. Every claim must reference the source.
-6. **Add cross-references** — Link only when conceptually relevant. Not every mention needs a link. Ask: "Would this link help someone understand?"
-7. **Update `index.md`** — add new pages to the index with one-line summaries
-8. **Append to `log.md`** — record what was ingested and what changed
+1. **Read** the file.
+2. **Classify** — determine type, rename to convention, move to the correct `sources/` subfolder, add frontmatter (including `brain:` if it's a conversation).
+3. **Extract** — main topics, entities, projects, ideas.
+4. **Search the wiki first.** Never assume a page doesn't exist — check `wiki/topics/`, `wiki/entities/`, `wiki/projects/` before creating anything.
+5. **Update existing pages before creating new ones.** Creating a new page is the fallback, not the default.
+6. **Quality Gate: No Stubs** — Only create a new page if it has ≥3 substantive key points OR a meaningful relationship to existing pages.
+7. **Quality Gate: No Slop** — Extract *insights*, don't transcribe. Max 150 words per summary section. Every claim traces to a source.
+8. **Weave** — add the source's file path to every touched page's `## Sources` section. This is the mapping mechanism between raw data and structured knowledge — a topic page can be fed by an article, a Claude conversation, and a video at once, and each is an explicit line in `## Sources`.
+9. **Flag contradictions** in the page's `## Open Questions` section instead of silently overwriting a claim.
+10. **Add cross-references** — link only when conceptually relevant (`[[Other Page]]`). Not every mention needs a link.
+11. **Update `wiki/index.md`** — curated, not auto-appended. Add genuinely new topic/entity/project pages.
+12. **Mark** the source `ingested: true`.
+13. **Append to `log.md`** — record what was ingested and what changed.
+14. **Commit.**
 
-## Core Workflow: Query
+Per-source summary pages are **not created by default** — only for long, dense, or heavily-referenced sources where a standalone summary adds value beyond what the topic pages already capture.
+
+## Core Workflow: Synthesis
 
 When you ask a question:
 
-1. **Read `index.md`** to understand what's in the wiki
-2. **Search relevant pages** based on your question
-3. **Synthesize** an answer using wiki content
-4. **Cite sources** — link to the wiki pages you used
-5. **Optionally create a new page** if the answer is valuable for future reference
+1. **Search `wiki/` first** — topics, entities, projects, existing syntheses.
+2. **Follow `## Sources` links** down into the raw files when you need detail the wiki compressed away.
+3. **Answer in this priority order: wiki knowledge first, raw sources second, general model knowledge last and clearly labelled as such.**
+4. **Cite** — link to the wiki pages and source files you used.
+5. If the answer is valuable for future reference, **save it** as a new page in `wiki/syntheses/`, linked to every topic, entity, and source it drew from.
+
+Because syntheses are saved as pages, questions compound too — they become nodes in the graph, not lost chat messages.
 
 ## Core Workflow: Lint
 
 When you say "please lint the wiki":
 
-1. **Check for contradictions** — do any pages claim conflicting facts?
-2. **Find orphans** — pages with no inbound links
-3. **Find unlinked concepts** — mentioned but lacking their own page
-4. **Check source citations** — are all claims tied to a source?
-5. **Report findings** and offer fixes
+1. **Un-ingested files** — anything in `sources/` with `ingested: false` or missing frontmatter → ingest it.
+2. **Contradictions** — do any pages claim conflicting facts? (Check `## Open Questions` first.)
+3. **Orphans** — pages with no inbound links → link or merge.
+4. **Duplicates** — two pages about the same thing → merge.
+5. **Dead source links** — `## Sources` entries pointing at renamed/moved files → fix.
+6. **Unlinked concepts** — mentioned but lacking their own page.
+7. **`wiki/index.md` out of date** → refresh (curated, never auto-append everything).
+8. **Report findings** and offer fixes.
 
-## Page Format
+Commit after every ingest and lint pass. Git history is the wiki's memory.
 
-All wiki pages use this structure:
+## Wiki Page Format
 
 ```markdown
 ---
-source: source-file.md
-date: 2026-05-09
-tags: [tag1, tag2]
+type: topic           # topic | entity | project | synthesis
+updated: 2026-07-02
 ---
 
 # Page Title
@@ -91,28 +153,46 @@ One-paragraph overview.
 - Bullet point 1
 - Bullet point 2
 
-## Related Pages
+## Notes
+Refined synthesis and context beyond the bullet points.
+
+## Open Questions
+- Unresolved gaps or contradictions across sources (attribute to `brain:` when relevant).
+
+## Related
 - [[Other Page]]
 - [[Concept]]
 
 ## Sources
-- Source file: `sources/source-file.md`
+- `sources/01-articles/2026-06-28-react-flow-review.md`
+- `sources/03-conversations/2026-06-30-claude-session.md`
 ```
+
+Manual pages (pure thinking, no ingest event) are allowed — they just skip `## Sources`.
 
 ## Linking Rules
 
 - Link to related concepts: `[[Concept Name]]`
-- Link to sources: reference the original filename
+- Link to sources by file path, not by name
 - Create a page for any concept you mention more than once
 - Update backlinks when creating new pages
 
 ## Rules for This Vault
 
-- **Sources are immutable** — Never edit files in `raw-data/sources/`. Read-only. Period.
-- **Wiki is AI-owned** — You curate sources, I maintain wiki structure and quality
-- **Log is append-only** — Every operation gets a record
-- **All markdown** — No binary formats
-- **Git-friendly** — Commit after each ingest/lint pass
+- **Sources are immutable** — Never edit files in `sources/`. Read-only after ingest. Period.
+- **Wiki is AI-owned** — You curate sources, I maintain wiki structure and quality.
+- **Log is append-only** — Every operation gets a record.
+- **All markdown** — No binary formats.
+- **Git-friendly** — Commit after each ingest/lint pass.
+
+## What Stays Out (on purpose)
+
+- **No `_inbox/`** — `sources/` is the dump zone; the `ingested` flag is the queue.
+- **No mirroring source-type folders inside `wiki/`** — knowledge organizes by subject, never by where it came from.
+- **No per-source summary pages by default** — only for long/dense/heavily-referenced sources.
+- **No folder bloat** — new wiki folders only when 10+ pages genuinely demand it.
+- **No external cron/bash daemons** — automation stays inside the AI agent's own primitives (slash commands, hooks, scheduled agents), never external infrastructure.
+- **No cluttered graph view** — `sources/` stays out of the default Obsidian graph; see `.obsidian/graph.json`.
 
 ## DO NOT
 
@@ -120,7 +200,7 @@ One-paragraph overview.
 - **Do not create stub pages** — Pages need substance (≥3 key points) or meaningful relationships.
 - **Do not over-link** — Link only when it helps understanding. Not every mention is a link.
 - **Do not transcribe sources** — Extract insights, synthesize knowledge. Paraphrase, don't copy.
-- **Do not mix raw and structured** — Keep sources (raw data) separate from wiki (structured knowledge).
+- **Do not mix raw and structured** — Keep `sources/` (by type) separate from `wiki/` (by subject).
 - **Do not cite without sourcing** — Every claim in wiki pages must trace back to a source.
 
 ---
@@ -141,14 +221,14 @@ This article is all about React Flow, which is a library for React. It talks abo
 
 ### Good Linking (Selective)
 ```
-Related Pages:
+## Related
 - [[Node-Based UI]] (React Flow is an implementation of this pattern)
 - [[xyflow]] (the company behind React Flow)
 ```
 
 ### Bad Linking (Over-linked)
 ```
-Related Pages:
+## Related
 - [[React]] (mentioned in title)
 - [[JavaScript]] (implied by React)
 - [[Canvas]] (used by node editors)
@@ -156,9 +236,30 @@ Related Pages:
 - [[npm]] (how you install it)
 ```
 
+### Good Weaving (multiple brains, one page)
+```
+## Sources
+- `sources/01-articles/2026-06-28-react-flow-review.md`
+- `sources/03-conversations/2026-06-29-chatgpt-flow-comparison.md`
+- `sources/02-videos/2026-06-30-xyflow-talk.md`
+```
+Three different brains and formats, one topic page — this is the weave, not three separate pages.
+
 ### Good Page Decision
-- ✅ Create a page for "React Flow" — has 5+ distinct concepts (library, use cases, features, ecosystem)
-- ❌ Do NOT create a page for "MIT License" — single mention, not substantive enough
+- Create a page for "React Flow" — has 5+ distinct concepts (library, use cases, features, ecosystem)
+- Do NOT create a page for "MIT License" — single mention, not substantive enough
+
+---
+
+## Automation (optional, layered)
+
+You don't need any of this to start — Level 1 alone is a complete workflow.
+
+1. **Manual** — drop files in `sources/`, say "ingest."
+2. **Slash commands** — `.claude/commands/ingest.md`, `synthesize.md`, `lint.md` run the workflows above without re-explaining them each time. A `SessionStart` hook (`.claude/settings.json`) checks for unprocessed sources and nudges you.
+3. **Scheduled agent (later)** — a Claude Code scheduled routine can run `/ingest` on a cadence. Don't turn this on until the manual loop is proven — automating an unproven workflow just automates mess.
+
+**Optional future layer (off by default):** publishing `wiki/` as a browsable site via a tool like Fumadocs. Not part of the core system — a toggleable extra for sharing the wiki outside Obsidian.
 
 ---
 

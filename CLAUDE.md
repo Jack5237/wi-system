@@ -9,9 +9,11 @@ Users copy the `template/` folder, open in Claude Code, clip web content to `sou
 ## Architecture Overview
 
 **Three layers:**
-1. **Sources** — Immutable clipped web content (markdown files)
-2. **Wiki** — AI-maintained structured markdown pages (created/updated by AI)
+1. **Sources** — Immutable raw data, organized by *type* (articles, videos, conversations, documents, images, audio)
+2. **Wiki** — AI-maintained structured markdown pages, organized by *subject* (topics, entities, projects, syntheses) — never mirrors source types
 3. **AGENTS.md** — Rules telling the AI how to operate
+
+Every wiki page links back to its raw files via a `## Sources` section — that mapping, not folder structure, is what ties the two layers together.
 
 **Key insight:** The wiki is persistent and compounding (not one-time RAG). Each new source makes it smarter.
 
@@ -27,10 +29,12 @@ This is **a minimal template and documentation project**.
 - `CLAUDE.md` — This file, for developers
 - `template/` — Starter vault (users copy this)
   - `template/AGENTS.md` — Rules for how the AI operates
-  - `template/index.md` — Wiki navigation
   - `template/log.md` — Operation log
-  - `template/sources/` — Where users clip content
-  - `template/wiki/` — Where AI maintains pages
+  - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
+  - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `wiki/index.md` as the navigation hub
+  - `template/.claude/commands/` — `/ingest`, `/synthesize`, `/lint` slash commands
+  - `template/.claude/settings.json` — SessionStart hook nudging on unprocessed sources
+  - `template/.obsidian/graph.json` — pre-configured graph view (color-grouped by wiki subfolder, `sources/` hidden by default)
 
 ### Key Points
 

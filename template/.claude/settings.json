@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "count=$(grep -rL 'ingested: true' \"$CLAUDE_PROJECT_DIR/sources\" --include='*.md' 2>/dev/null | wc -l); if [ \"$count\" -gt 0 ]; then echo \"$count unprocessed source(s) in sources/ — run /ingest to process them.\"; fi",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

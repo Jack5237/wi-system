@@ -32,7 +32,7 @@ Read the `AGENTS.md` file — this is your contract with the AI.
 
 Drag `pasta-wiki/` into Obsidian or use "Open folder as vault".
 
-You should see three empty folders: `wiki/`, `sources/`, and an `index.md` file.
+You should see `sources/` (typed subfolders: `01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`) and `wiki/` (subject subfolders: `topics/`, `entities/`, `projects/`, `syntheses/`, plus `index.md`), all empty to start.
 
 ## Part 2: Your First Source
 
@@ -45,7 +45,7 @@ Go to a blog or website about pasta. For this example, let's say:
 
 Click the Obsidian Web Clipper extension → save as markdown.
 
-Or manually create a file: `sources/pasta-types.md`
+Or manually create a file: `sources/01-articles/pasta-types.md`
 
 ```markdown
 # Italian Pasta Types
@@ -72,46 +72,38 @@ Ravioli are pockets filled with cheese. Each has a traditional pairing with sauc
 
 ### Ask the AI to ingest it
 
-In Claude Code, copy this into the prompt:
+In Claude Code, run:
 
 ```
-I clipped a new article about Italian pasta types.
-It's in sources/pasta-types.md.
-
-Please read it and update the wiki. Follow the rules in AGENTS.md:
-- Extract key concepts (Spaghetti, Penne, Ravioli, etc.)
-- Create pages for each
-- Link them together
-- Update index.md
-- Log the ingestion
+/ingest
 ```
 
 ### Watch the AI work
 
 The AI will:
-1. Read the article
+1. Read the article, rename it (`sources/01-articles/2026-07-02-pasta-types.md`), and add frontmatter
 2. Create pages:
-   - `wiki/Spaghetti.md` — long noodles, light sauces
-   - `wiki/Penne.md` — tubes, chunky sauces
-   - `wiki/Ravioli.md` — pockets, fillings
-   - `wiki/Pasta.md` — overview
-3. Add links between them
+   - `wiki/topics/spaghetti.md` — long noodles, light sauces
+   - `wiki/topics/penne.md` — tubes, chunky sauces
+   - `wiki/topics/ravioli.md` — pockets, fillings
+   - `wiki/topics/pasta.md` — overview, linking to the three above
+3. Add each page's `## Sources` entry pointing at the article
 4. Update `wiki/index.md`
-5. Append to `wiki/log.md`
+5. Append to `log.md`
 
 ### Check in Obsidian
 
-Refresh Obsidian. You should see new files in `wiki/`.
+Refresh Obsidian. You should see new files in `wiki/topics/`.
 
-Click on `Pasta.md` → see backlinks to Spaghetti, Penne, Ravioli.
+Click on `pasta.md` → see backlinks to spaghetti, penne, ravioli, and its `## Sources` section pointing at the article.
 
-View → Graph View — you should see a small network forming.
+View → Graph View — you should see a small network forming (`sources/` stays out of the default view).
 
 ## Part 3: Your Second Source
 
 ### Clip an article about Svelte
 
-Create `sources/svelte-basics.md`:
+Create `sources/01-articles/svelte-basics.md`:
 
 ```markdown
 # Svelte Basics
@@ -136,20 +128,17 @@ This makes apps smaller and faster.
 
 ### Ingest it
 
-In Claude Code:
+In Claude Code, run:
 
 ```
-I clipped an article about Svelte.
-It's in sources/svelte-basics.md.
-
-Please ingest it and update the wiki.
+/ingest
 ```
 
 The AI will create:
-- `wiki/Svelte.md`
-- `wiki/Reactivity.md`
-- `wiki/Components.md`
-- `wiki/JavaScript.md`
+- `wiki/topics/svelte.md`
+- `wiki/topics/reactivity.md`
+- `wiki/topics/components.md`
+- `wiki/topics/javascript.md`
 
 And update the index again.
 
@@ -161,25 +150,20 @@ You now have two islands: Pasta pages and Web Development pages.
 
 ### Ask a synthesizing question
 
-Now the interesting part. In Claude Code, ask:
+Now the interesting part. In Claude Code, run:
 
 ```
-I want to start an online pasta shop using Svelte.
-What should I know?
-
-Please:
-1. Search the wiki for relevant pages
-2. Create a new page that combines the insights
-3. Update index.md to link to this new page
+/synthesize I want to start an online pasta shop using Svelte. What should I know?
 ```
 
 The AI will:
-1. Read Pasta pages, Svelte pages, and concepts like "Components" and "Reactivity"
-2. Create `wiki/Building a Pasta E-Commerce Site with Svelte.md`
-3. Synthesize advice like:
-   - "Show pasta types (link to Pasta.md)"
+1. Search `wiki/topics/` for pasta, svelte, components, reactivity
+2. Follow their `## Sources` links back to the raw articles for any detail it needs
+3. Create `wiki/syntheses/pasta-ecommerce-with-svelte.md`, synthesizing advice like:
+   - "Show pasta types (link to `wiki/topics/pasta.md`)"
    - "Use Svelte components for product listings"
    - "Reactive pricing based on selected items"
+4. Link the new page to every topic and source it drew from, and update `wiki/index.md`
 
 ### Check the graph
 
@@ -187,21 +171,13 @@ Your graph now has a new hub connecting Pasta and Web Development. This is the r
 
 ## Part 5: Linting
 
-Over time, you add more sources. Ask the AI:
+Over time, you add more sources. Run:
 
 ```
-Please lint the wiki.
-
-Check for:
-- Contradictions (does any page contradict another?)
-- Orphan pages (pages with no backlinks)
-- Unlinked concepts (mentioned but no own page)
-- Missing citations (claims without a source)
-
-Report what you find.
+/lint
 ```
 
-The AI will scan everything and suggest fixes.
+The AI checks for contradictions, orphan pages, duplicates, dead source links, unlinked concepts, and a stale index — then reports what it finds and offers fixes.
 
 ## Part 6: Queries
 
