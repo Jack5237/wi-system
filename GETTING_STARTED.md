@@ -17,8 +17,8 @@ cd my-wiki
 
 `my-wiki/` contains:
 - `AGENTS.md` — the entire contract, every agent reads it, nothing else to configure
-- `sources/` — drop raw files here (articles, PDFs, chat exports, anything). Ships with one worked example per type (a "React Flow" research thread) so you can see the pattern before adding your own.
-- `wiki/` — where your agent writes structured pages. Ships with the wiki pages that example thread produced — one topic, one entity, one project, one synthesis, fully cross-linked.
+- `sources/` — drop raw files here (articles, PDFs, chat exports, anything)
+- `wiki/` — where your agent writes structured pages
 - `.obsidian/graph.json` — pre-colored: green for `sources/`, blue for `wiki/`, grey for `AGENTS.md`/`log.md` — zero setup
 
 **Open your agent:**
@@ -30,7 +30,7 @@ claude code .
 
 **Open Obsidian:** launch it, "Open folder as vault," select `my-wiki/`.
 
-Graph View shows a real, connected graph immediately — the example thread, plus `AGENTS.md` and `log.md` linked into both trees. Sources are green, wiki pages are blue, so you can see the weave at a glance: which wiki page a source fed, and which folder hub each node belongs to. When you're ready, delete the example files (or ask your agent to) and start feeding it your own sources — the pattern stays the same.
+Graph View shows the skeleton immediately — two small trees (`sources/` in green, `wiki/` in blue) hanging off their folder hubs, plus `AGENTS.md` and `log.md` linked in grey. No content nodes yet — that's correct. It fills in and starts connecting laterally (a source to the wiki page it fed) once you ingest something.
 
 ## Optional: set up the web clipper
 
