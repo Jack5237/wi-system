@@ -1,4 +1,4 @@
-# LLM Wiki Schema
+# WI System — Agent Rules
 
 This document tells AI agents how to operate this wiki. Follow these rules strictly.
 
@@ -255,9 +255,9 @@ Three different brains and formats, one topic page — this is the weave, not th
 
 You don't need any of this to start — Level 1 alone is a complete workflow.
 
-1. **Manual** — drop files in `sources/`, say "ingest."
-2. **Slash commands** — `.claude/commands/ingest.md`, `synthesize.md`, `lint.md` run the workflows above without re-explaining them each time. A `SessionStart` hook (`.claude/settings.json`) checks for unprocessed sources and nudges you.
-3. **Scheduled agent (later)** — a Claude Code scheduled routine can run `/ingest` on a cadence. Don't turn this on until the manual loop is proven — automating an unproven workflow just automates mess.
+1. **Manual (default)** — drop files in `sources/`, say "ingest" (or "synthesize: <question>", "lint the wiki"). Works with any AI agent, zero setup.
+2. **Shortcuts (agent-specific, optional)** — if your AI agent supports custom commands or hooks (e.g. Claude Code's slash commands and hooks), you can wire "ingest" / "synthesize" / "lint" to a shortcut so you don't retype the phrasing. This is a convenience layer on top of the rules in this file, not a requirement.
+3. **Scheduled agent (later)** — if your AI tooling supports scheduled/cron runs, ingest can run on a cadence. Don't turn this on until the manual loop is proven — automating an unproven workflow just automates mess.
 
 **Optional future layer (off by default):** publishing `wiki/` as a browsable site via a tool like Fumadocs. Not part of the core system — a toggleable extra for sharing the wiki outside Obsidian.
 

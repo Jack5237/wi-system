@@ -17,16 +17,9 @@ cp -r template my-wiki
 cd my-wiki
 ```
 
-Then open it in Claude Code, Cursor, or any AI agent (+ Obsidian for visualization). See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
+Then open it in Obsidian (visualization) alongside Claude Code, Cursor, or any AI agent (does the work). See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
 
 ---
-
-## For Contributors: Develop the Template
-
-This repository (`wi-system/`) contains the template project. Everything here is for developing and improving the WI System template.
-
-- **`template/`** — The actual product (what users copy)
-- **Everything else** — Project docs, setup guides, contributor info
 
 ## Features
 
@@ -116,16 +109,17 @@ Simply ask your AI agent to ingest, synthesize, or lint — the rules are in `te
 
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** — Setup and first steps (5 min)
 - **[TUTORIAL.md](TUTORIAL.md)** — Full walkthrough with complete example
-- **[CLAUDE.md](CLAUDE.md)** — For developers and contributors
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute to this project
+- **[CLAUDE.md](CLAUDE.md)** — Architecture and developer notes
 
 ## Tips
 
-- Open the folder in **Claude Code**, **Cursor**, **VS Code + CodeCompanion**, or any AI agent
-- The agent reads `template/AGENTS.md` to understand how to operate
+- Open the same folder in **Obsidian** (visualization) and **Claude Code**, **Cursor**, or any AI agent (does the work)
+- The agent reads `template/AGENTS.md` to understand how to operate — no other config needed
 - Use **Obsidian Web Clipper** to quickly save articles into `sources/01-articles/`
 - Drop ChatGPT/Gemini/Claude conversation exports into `sources/03-conversations/` — any brain's transcript is a valid input
-- Run **`/lint`** regularly to check for contradictions and orphan pages
-- **Commit after each `/ingest`** — your wiki is version controlled
+- Say **"lint the wiki"** regularly to check for contradictions and orphan pages
+- **Commit after each ingest** — your wiki is version controlled
 - Open Graph View in Obsidian to see the wiki as a connected brain — `sources/` is filtered out by default (see `.obsidian/graph.json`)
 
 ## Optional: Publish the Wiki
@@ -145,8 +139,8 @@ MIT — See [LICENSE](LICENSE)
 
 ## Contributing
 
-We welcome contributions! Check [CLAUDE.md](CLAUDE.md) for development info.
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get started, and [CLAUDE.md](CLAUDE.md) for project architecture.
 
 ---
 
-**Ready to start?** Copy the `template/` folder and open it in Claude Code. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup.
+**Ready to start?** Copy the `template/` folder, open it in Obsidian + your AI agent of choice. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup.

@@ -1,10 +1,10 @@
-# WI-System Development
+# WI System Development
 
 ## Project
 
-A schema-driven **LLM Wiki template** — a local-first knowledge base system that works with any AI agent (Claude Code, Cursor, etc.).
+A schema-driven **WI System template** — a local-first knowledge base system that works with any AI agent (Claude Code, Cursor, ChatGPT, Ollama, etc.).
 
-Users copy the `template/` folder, open in Claude Code, clip web content to `sources/`, and the AI reads `AGENTS.md` to understand how to build and maintain a structured, interlinked wiki in `wiki/`.
+Users copy the `template/` folder, open it in Obsidian (visualization) alongside their AI agent of choice, clip web content to `sources/`, and the AI reads `AGENTS.md` to understand how to build and maintain a structured, interlinked wiki in `wiki/`.
 
 ## Architecture Overview
 
@@ -26,14 +26,13 @@ This is **a minimal template and documentation project**.
 - `README.md` — What this is, features, quick start (end-user focused)
 - `GETTING_STARTED.md` — 5-minute setup guide
 - `TUTORIAL.md` — Full walkthrough with pasta + Svelte example
+- `CONTRIBUTING.md` — How to contribute to this project
 - `CLAUDE.md` — This file, for developers
-- `template/` — Starter vault (users copy this)
-  - `template/AGENTS.md` — Rules for how the AI operates
+- `template/` — Starter vault (users copy this, and only this)
+  - `template/AGENTS.md` — Rules for how the AI operates (the entire contract — no tool-specific config needed)
   - `template/log.md` — Operation log
   - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
   - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `wiki/index.md` as the navigation hub
-  - `template/.claude/commands/` — `/ingest`, `/synthesize`, `/lint` slash commands
-  - `template/.claude/settings.json` — SessionStart hook nudging on unprocessed sources
   - `template/.obsidian/graph.json` — pre-configured graph view (color-grouped by wiki subfolder, `sources/` hidden by default)
 
 ### Key Points

@@ -1,11 +1,11 @@
 # Getting Started
 
-Get your LLM Wiki up and running in 5 minutes.
+Get your WI System vault up and running in 5 minutes.
 
 ## What You Need
 
-1. **Obsidian** (free) — [Download](https://obsidian.md)
-2. **An AI agent** — Claude Code, Cursor, VS Code + extension, or similar
+1. **Obsidian** (free) — [Download](https://obsidian.md) — for visualizing the graph
+2. **An AI agent** — Claude Code, Cursor, VS Code + extension, ChatGPT, Ollama, or similar — for doing the work
 3. **A web clipper** (optional but recommended) — [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper)
 
 ## Setup (3 steps)
@@ -19,27 +19,31 @@ ls -la
 ```
 
 You should see:
-- `AGENTS.md` — Rules for the AI
+- `AGENTS.md` — Rules for the AI (the entire contract, no other config needed)
 - `log.md` — Operation log
 - `sources/` — Raw data dump, organized by type (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`)
 - `wiki/` — Where AI creates pages, organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), with `index.md` as the navigation hub
-- `.claude/commands/` — `/ingest`, `/synthesize`, `/lint` slash commands
 - `.obsidian/graph.json` — pre-configured graph view (color-grouped, `sources/` hidden by default)
 
-### Step 2: Open in Claude Code (or your AI agent)
-
-```bash
-claude code .
-```
-
-The AI reads `AGENTS.md` and understands how to operate.
-
-### Step 3: Open in Obsidian
+### Step 2: Open in Obsidian
 
 1. Launch Obsidian
 2. Click "Open folder as vault"
 3. Select `my-wiki/`
-4. You're done!
+4. Click Graph View (left sidebar) — empty for now, it grows as you add sources
+
+### Step 3: Open your AI agent (same folder)
+
+```bash
+# Using Claude Code
+claude code .
+
+# Or open my-wiki/ in Cursor, VS Code, ChatGPT Web, Ollama, etc.
+```
+
+The AI reads `AGENTS.md` and understands how to operate — no extra setup required.
+
+**You now have:** Obsidian open for visualization, and your AI agent open to do the work, both pointed at the same `my-wiki/` folder.
 
 ## First Ingestion
 
@@ -55,11 +59,9 @@ Either:
 
 ### Tell the AI to ingest it
 
-In Claude Code, run:
+Say to your AI agent:
 
-```
-/ingest
-```
+> "Ingest new sources"
 
 The AI will:
 1. Read each unprocessed file in `sources/`
@@ -79,29 +81,21 @@ In Obsidian:
 
 ## Querying Your Wiki
 
-Once you have a few sources, ask questions directly, or run `/synthesize <question>`:
+Once you have a few sources, just ask questions directly:
 
-```
-What are the main topics in my wiki?
-```
+> "What are the main topics in my wiki?"
 
-```
-How would I combine topic A with topic B?
-```
+> "How would I combine topic A with topic B?"
 
-```
-Are there any contradictions in my wiki?
-```
+> "Are there any contradictions in my wiki?"
 
 The AI searches your wiki (not raw sources) first, then falls back to raw sources and general knowledge (clearly labelled), and can save a new page in `wiki/syntheses/` with the result.
 
 ## Linting
 
-Periodically run:
+Periodically say:
 
-```
-/lint
-```
+> "Lint the wiki"
 
 This checks for un-ingested files, contradictions, orphan pages, duplicates, dead source links, and a stale index — then offers fixes.
 

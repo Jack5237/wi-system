@@ -20,19 +20,19 @@ cp -r template pasta-wiki
 cd pasta-wiki
 ```
 
-### Open in Claude Code
-
-```bash
-claude code .
-```
-
-Read the `AGENTS.md` file — this is your contract with the AI.
-
 ### Open in Obsidian
 
 Drag `pasta-wiki/` into Obsidian or use "Open folder as vault".
 
 You should see `sources/` (typed subfolders: `01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`) and `wiki/` (subject subfolders: `topics/`, `entities/`, `projects/`, `syntheses/`, plus `index.md`), all empty to start.
+
+### Open your AI agent
+
+```bash
+claude code .
+```
+
+Or open the same `pasta-wiki/` folder in Cursor, VS Code, or your AI agent of choice. Read the `AGENTS.md` file — this is your contract with the AI.
 
 ## Part 2: Your First Source
 
@@ -72,11 +72,9 @@ Ravioli are pockets filled with cheese. Each has a traditional pairing with sauc
 
 ### Ask the AI to ingest it
 
-In Claude Code, run:
+Say to your AI agent:
 
-```
-/ingest
-```
+> "Ingest new sources"
 
 ### Watch the AI work
 
@@ -128,11 +126,9 @@ This makes apps smaller and faster.
 
 ### Ingest it
 
-In Claude Code, run:
+Say to your AI agent:
 
-```
-/ingest
-```
+> "Ingest new sources"
 
 The AI will create:
 - `wiki/topics/svelte.md`
@@ -150,11 +146,9 @@ You now have two islands: Pasta pages and Web Development pages.
 
 ### Ask a synthesizing question
 
-Now the interesting part. In Claude Code, run:
+Now the interesting part. Ask your AI agent:
 
-```
-/synthesize I want to start an online pasta shop using Svelte. What should I know?
-```
+> "I want to start an online pasta shop using Svelte. What should I know?"
 
 The AI will:
 1. Search `wiki/topics/` for pasta, svelte, components, reactivity
@@ -171,11 +165,9 @@ Your graph now has a new hub connecting Pasta and Web Development. This is the r
 
 ## Part 5: Linting
 
-Over time, you add more sources. Run:
+Over time, you add more sources. Say:
 
-```
-/lint
-```
+> "Lint the wiki"
 
 The AI checks for contradictions, orphan pages, duplicates, dead source links, unlinked concepts, and a stale index — then reports what it finds and offers fixes.
 
@@ -223,4 +215,4 @@ The AI searches the wiki (not the raw articles), synthesizes an answer, and opti
 
 ---
 
-Next: [docs/ADVANCED.md](ADVANCED.md) for schema customization and power features.
+Next: See [CONTRIBUTING.md](CONTRIBUTING.md) if you want to help improve the template, or dive back into your own vault and keep feeding it sources.
