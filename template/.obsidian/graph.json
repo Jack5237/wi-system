@@ -8,73 +8,24 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:sources/01-articles",
+      "query": "path:sources",
       "color": {
         "a": 1,
-        "rgb": 4886745
+        "rgb": 1096065
       }
     },
     {
-      "query": "path:sources/02-videos",
+      "query": "path:wiki",
       "color": {
         "a": 1,
-        "rgb": 15238942
+        "rgb": 3900150
       }
     },
     {
-      "query": "path:sources/03-conversations",
+      "query": "path:AGENTS.md OR path:log.md",
       "color": {
         "a": 1,
-        "rgb": 3126962
-      }
-    },
-    {
-      "query": "path:sources/04-documents",
-      "color": {
-        "a": 1,
-        "rgb": 7041664
-      }
-    },
-    {
-      "query": "path:sources/05-images",
-      "color": {
-        "a": 1,
-        "rgb": 14243482
-      }
-    },
-    {
-      "query": "path:sources/06-audio",
-      "color": {
-        "a": 1,
-        "rgb": 14263854
-      }
-    },
-    {
-      "query": "path:wiki/topics",
-      "color": {
-        "a": 1,
-        "rgb": 4633958
-      }
-    },
-    {
-      "query": "path:wiki/entities",
-      "color": {
-        "a": 1,
-        "rgb": 14701138
-      }
-    },
-    {
-      "query": "path:wiki/projects",
-      "color": {
-        "a": 1,
-        "rgb": 11206560
-      }
-    },
-    {
-      "query": "path:wiki/syntheses",
-      "color": {
-        "a": 1,
-        "rgb": 9793478
+        "rgb": 4937059
       }
     }
   ],
@@ -88,6 +39,6 @@
   "repelStrength": 12,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.5087618855792562,
+  "scale": 1,
   "close": false
 }

@@ -2,6 +2,8 @@
 
 This document tells AI agents how to operate this wiki. Follow these rules strictly.
 
+Governs [[sources]] and [[wiki]].
+
 ## Purpose
 
 Build a structured, interlinked knowledge base — a **woven intelligence system**. Your notes, Claude's conversations, ChatGPT exports, Gemini exports, articles, videos: every brain that's touched a problem dumps its raw output into `sources/`, and `wiki/` is the one brain that reads and connects all of them.

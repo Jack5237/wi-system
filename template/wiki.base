@@ -1,0 +1,14 @@
+filters:
+  and:
+    - file.folder.startsWith("wiki")
+    - file.name != "wiki"
+views:
+  - type: table
+    name: All Wiki Pages
+    order:
+      - file.name
+      - type
+      - updated
+    sort:
+      - property: updated
+        direction: DESC

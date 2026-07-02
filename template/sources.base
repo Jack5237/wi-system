@@ -1,0 +1,15 @@
+filters:
+  and:
+    - file.folder.startsWith("sources")
+views:
+  - type: table
+    name: All Sources
+    order:
+      - file.name
+      - type
+      - resource
+      - captured
+      - ingested
+    sort:
+      - property: captured
+        direction: DESC

@@ -2,8 +2,8 @@
 
 Append-only record of all operations. Format: `## [YYYY-MM-DD] TYPE | Description`
 
-## [2026-05-09] init | Wiki initialized
-- Created index.md
-- Created log.md
-- Created .schema.md
+Tracks changes across [[sources]] and [[wiki]].
+
+## [2026-07-02] init | Vault initialized
+
 - Ready for first ingestion
