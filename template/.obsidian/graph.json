@@ -22,6 +22,13 @@
       }
     },
     {
+      "query": "path:wiki/projects",
+      "color": {
+        "a": 1,
+        "rgb": 11206560
+      }
+    },
+    {
       "query": "path:wiki/syntheses",
       "color": {
         "a": 1,

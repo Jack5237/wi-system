@@ -17,7 +17,7 @@ cp -r template my-wiki
 cd my-wiki
 ```
 
-Then open it in Claude Code, Cursor, or any AI agent. See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
+Then open it in Claude Code, Cursor, or any AI agent (+ Obsidian for visualization). See **[GETTING_STARTED.md](GETTING_STARTED.md)** for the 5-minute setup.
 
 ---
 
@@ -46,32 +46,37 @@ cp -r template my-wiki
 cd my-wiki
 ```
 
-### 2. Open in an AI agent
+### 2. Open Obsidian (visualization)
+
+```bash
+# Install Obsidian from obsidian.md if needed
+# Open my-wiki/ as a vault
+# Click Graph View (left sidebar) — you'll see it grow as you add sources
+```
+
+### 3. Open your AI agent (in the same folder)
 
 ```bash
 # Using Claude Code
 claude code .
 
-# Or open in your editor + AI agent of choice
+# Or Cursor, VS Code, ChatGPT Web, Ollama, etc.
 # The AGENTS.md file tells the AI how to operate
 ```
 
-### 3. Clip your first article
+**You now have:**
+- **Left side:** Obsidian showing the visual graph of your knowledge
+- **Right side:** AI agent (Claude Code, Cursor) doing the work
 
-Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or any tool to save a markdown article into `sources/01-articles/`. Chat exports, PDFs, or transcripts can be dropped anywhere in `sources/` — the AI sorts them into the right typed subfolder during ingest.
+### 4. Clip your first article
 
-### 4. Ask the AI to ingest it
+Use [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipper) or drag/paste to save markdown into `sources/01-articles/`. PDFs, videos, chat exports, images — drop them anywhere in `sources/`.
 
-In Claude Code, run:
-> `/ingest`
+### 5. Tell the AI to ingest it
 
-### 5. Explore in Obsidian
+Say to your AI agent: *"Ingest new sources"* or *"Run ingest"*
 
-```bash
-# Install Obsidian from obsidian.md
-# Open my-wiki/ as a vault
-# Click Graph View to see connections form
-```
+The AI reads `AGENTS.md`, sorts your sources, and updates the wiki. Watch Obsidian's graph update in real-time.
 
 Done. Your wiki is now growing.
 

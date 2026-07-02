@@ -7,11 +7,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
-- Professional project structure: CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md
+- Professional project structure: CONTRIBUTING.md, SECURITY.md
 - Configuration files: .editorconfig, .gitattributes
 - GitHub issue templates (bug report, feature request)
 - Pull request template for contributions
-- Enhanced README with clear user/contributor distinction
+- Enhanced README with side-by-side Obsidian + AI workflow
+- Fixed Obsidian graph config to color all 4 wiki folders (topics, entities, projects, syntheses)
 
 ### Changed
 - Cleaned template structure: removed AI-specific config from template/
