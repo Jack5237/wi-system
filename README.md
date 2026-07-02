@@ -39,7 +39,7 @@ That's the whole loop: drop files in `sources/`, tell your agent to ingest, watc
 
 | Layer | Organized by | Role |
 |---|---|---|
-| `sources/` | *type* — articles, videos, conversations, documents, images, audio | Immutable raw input, any brain, any format |
+| `sources/` | *type* — articles, videos, conversations, documents, images, audio | Immutable raw input, any brain — text, PDFs, and images natively; video/audio as transcripts |
 | `wiki/` | *subject* — topics, entities, projects, syntheses | AI-maintained, interlinked, compounding knowledge |
 | `AGENTS.md` | — | The one file every agent reads to know the rules |
 

@@ -67,6 +67,11 @@ Web Clipper is fundamentally "save the page I'm browsing" — it fits some sourc
 
 Web Clipper auto-selects whichever template's trigger matches the page you're on, so clipping a YouTube video and clipping a blog post can land in different folders with different hub links automatically, with no manual folder-picking either way.
 
-**Images and audio don't fit this pattern.** Those are almost never a webpage you're browsing — they're a screenshot you took or an audio file you have. There's nothing for Web Clipper to clip. Drag the file into `sources/05-images` or `sources/06-audio` directly (or write a short note describing it, same as the example format in `AGENTS.md`), and let ingest add the hub link — or just type `Part of [[05-images|Images]]` / `Part of [[06-audio|Audio]]` yourself when you create the note, which takes two seconds and needs no template at all.
+**Images and audio don't fit the clipper pattern** — they're almost never a webpage you're browsing, they're a file you already have. There's nothing for Web Clipper to clip. But the two behave differently once dropped in:
+
+- **Images:** an actual `.png`/`.jpg` file is fine to drag straight into `sources/05-images/`. A capable AI agent can look at the image directly during ingest and write the description — you don't need to caption it yourself first.
+- **Audio:** dropping a raw `.mp3` doesn't work — most agents can't listen to audio during ingest, so it just sits there unprocessed. You need an actual transcript (text) in `sources/06-audio/` instead. Generate one with a transcription tool, or with an agent that specifically supports audio input, before it becomes a source.
+
+Either way, drag the file/text in and let ingest add the hub link — or just type `Part of [[05-images|Images]]` / `Part of [[06-audio|Audio]]` yourself when you create the note, which takes two seconds and needs no template at all.
 
 You're set up. For how to actually use it — the prompts you'll type day to day — see **[TUTORIAL.md](TUTORIAL.md)**.

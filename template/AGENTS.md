@@ -38,17 +38,17 @@ This is a **manual personal RAG** — sources as context, AI as synthesizer, Obs
 vault/
 ├── sources/                 ← Raw Data Layer (immutable), organized by TYPE only
 │   ├── sources.md            ← hub — links down to each type folder's hub
-│   ├── 01-articles/         ← web clips, blog posts, docs
+│   ├── 01-articles/         ← web clips, blog posts, docs (text)
 │   │   └── 01-articles.md    ← hub — every article in this folder links up here
-│   ├── 02-videos/           ← transcripts, talk notes
+│   ├── 02-videos/           ← TRANSCRIPTS and talk notes (text) — not video files, see below
 │   │   └── 02-videos.md
-│   ├── 03-conversations/    ← Claude/GPT/Gemini exports, meeting notes — any brain's transcript
+│   ├── 03-conversations/    ← Claude/GPT/Gemini exports, meeting notes (text) — any brain's transcript
 │   │   └── 03-conversations.md
-│   ├── 04-documents/        ← PDFs, specs, papers, books
+│   ├── 04-documents/        ← PDFs, specs, papers, books (native files OK, see below)
 │   │   └── 04-documents.md
-│   ├── 05-images/           ← screenshots, diagrams
+│   ├── 05-images/           ← screenshots, diagrams (native image files OK, see below)
 │   │   └── 05-images.md
-│   └── 06-audio/            ← podcast notes, voice memos
+│   └── 06-audio/            ← TRANSCRIPTS and voice-memo notes (text) — not audio files, see below
 │       └── 06-audio.md
 ├── wiki/                    ← Structured Data Layer (AI-maintained), organized by SUBJECT only
 │   ├── wiki.md               ← curated top-level navigation hub
@@ -220,7 +220,9 @@ Manual pages (pure thinking, no ingest event) are allowed — they just skip `##
 - **Sources are immutable** — Never edit files in `sources/`. Read-only after ingest. Period.
 - **Wiki is AI-owned** — You curate sources, I maintain wiki structure and quality.
 - **Log is append-only** — Every operation gets a record.
-- **All markdown** — No binary formats.
+- **`wiki/` is always markdown** — no binary formats there, ever. `sources/` can hold a source's native format *if the AI agent can actually process it*:
+  - **Native format is fine:** PDFs in `04-documents/`, image files in `05-images/` — a capable agent can read PDF text or view an image directly during ingest.
+  - **Text only:** `02-videos/` and `06-audio/` need a transcript or notes, not the raw video/audio file. Most AI agents can't watch or listen during ingest — dropping an actual `.mp4` or `.mp3` there just sits inert, nothing can process it. Get a transcript first (many tools do this, or a multimodal agent that supports audio/video input directly), then drop the text in.
 - **Git-friendly** — Commit after each ingest/lint pass.
 
 ## What Stays Out (on purpose)
