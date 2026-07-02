@@ -123,8 +123,8 @@ The rules live in `template/AGENTS.md`. Any agent that reads it understands the 
 
 ## Documentation
 
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** — Setup and first steps (5 min)
-- **[TUTORIAL.md](TUTORIAL.md)** — Full walkthrough with a real example
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** — Install and set up your vault (5 min)
+- **[TUTORIAL.md](TUTORIAL.md)** — How to actually use it: a full prompt library plus a worked example
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute to this project
 - **[CLAUDE.md](CLAUDE.md)** — Architecture and developer notes
 

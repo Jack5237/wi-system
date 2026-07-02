@@ -45,65 +45,18 @@ The agent reads `AGENTS.md` on its own and understands how to operate. No slash 
 
 **You now have:** your AI agent doing the work, and Obsidian showing you the graph it's building — both pointed at the same `my-wiki/` folder.
 
-## First Ingestion
+## You're set up. Now what?
 
-### Clip an article
+Setup is done — `my-wiki/` exists, your agent reads `AGENTS.md`, Obsidian is watching. That's it for installation.
 
-Use the Obsidian Web Clipper browser extension to save an article. It will be saved as markdown. (Chat exports, PDFs, and transcripts work too — drop them anywhere in `sources/`.)
-
-### Save it to sources/
-
-Either:
-- Drag the file directly into Obsidian → `sources/` folder (any subfolder, or the root — the AI sorts it)
-- Or manually copy it: `cp ~/Downloads/article.md my-wiki/sources/01-articles/`
-
-### Tell the AI to ingest it
-
-Say to your AI agent:
-
-> "Ingest new sources"
-
-The AI will:
-1. Read each unprocessed file in `sources/`
-2. Classify it, rename it, move it to the right typed subfolder, and add frontmatter
-3. Extract key concepts and search the wiki before creating anything
-4. Create or update pages in `wiki/topics/`, `wiki/entities/`, or `wiki/projects/`
-5. Weave the source's file path into every touched page's `## Sources` section
-6. Update `wiki/index.md`
-7. Log the changes and commit
-
-### See the results
-
-In Obsidian:
-1. Open `wiki/topics/` or `wiki/entities/` to see new pages
-2. Click on one → see the backlinks and its `## Sources` section
-3. View → Graph View to see connections forming — raw sources and wiki pages are already color-coded by folder, so you can see at a glance what's raw input versus structured knowledge (see `.obsidian/graph.json`)
-
-## Querying Your Wiki
-
-Once you have a few sources, just ask questions directly:
-
-> "What are the main topics in my wiki?"
-
-> "How would I combine topic A with topic B?"
-
-> "Are there any contradictions in my wiki?"
-
-The AI searches your wiki (not raw sources) first, then falls back to raw sources and general knowledge (clearly labelled), and can save a new page in `wiki/syntheses/` with the result.
-
-## Linting
-
-Periodically say:
-
-> "Lint the wiki"
-
-This checks for un-ingested files, contradictions, orphan pages, duplicates, dead source links, and a stale index — then offers fixes.
+Everything about actually *using* the system — the prompts you type, ingesting your first source, asking questions, linting — lives in **[TUTORIAL.md](TUTORIAL.md)**. It has a full prompt reference plus a worked example so you're not guessing what to say.
 
 ## Next Steps
 
-- Read [TUTORIAL.md](TUTORIAL.md) for a complete example walkthrough
-- Check [CLAUDE.md](CLAUDE.md) for developer information
+1. Drop one real file into `sources/` (an article, a chat export, anything)
+2. Open **[TUTORIAL.md](TUTORIAL.md)** and follow "Your First Ingest"
+3. Keep the prompt library there open as a reference while you work
 
 ---
 
-**Questions?** Check the README or TUTORIAL, or open an issue.
+**Questions?** Check the [README](README.md) or [TUTORIAL.md](TUTORIAL.md), or open an issue.
