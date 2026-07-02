@@ -55,4 +55,18 @@ Leave the existing variable content below it untouched. Every future clip using 
 
 This only covers clips made through the Web Clipper. Files added any other way (pasted manually, dragged in as PDFs, chat export text files) won't get the hub link until your agent ingests them — there's no Obsidian-native way to auto-insert a link based on folder alone. See TUTORIAL.md's "Less manual" section for a way to make even that automatic, by having your agent auto-ingest on every session start instead of waiting to be told.
 
+### Doing this for other source types
+
+Web Clipper is fundamentally "save the page I'm browsing" — it fits some source types and not others. For the ones that fit, create **additional templates** (not just Default), each with its own **Template triggers** (URL pattern), **Note location**, and hub line:
+
+| Source type | Trigger URL pattern (example) | Note location | Note content prefix |
+|---|---|---|---|
+| Videos | `youtube.com`, `vimeo.com` | `sources/02-videos` | `Part of [[02-videos\|Videos]]` |
+| Conversations | `chatgpt.com`, `claude.ai`, `gemini.google.com` | `sources/03-conversations` | `Part of [[03-conversations\|Conversations]]` — also set the `brain` property (claude/gpt/gemini) per template |
+| Documents | doc-site domains you use often | `sources/04-documents` | `Part of [[04-documents\|Documents]]` |
+
+Web Clipper auto-selects whichever template's trigger matches the page you're on, so clipping a YouTube video and clipping a blog post can land in different folders with different hub links automatically, with no manual folder-picking either way.
+
+**Images and audio don't fit this pattern.** Those are almost never a webpage you're browsing — they're a screenshot you took or an audio file you have. There's nothing for Web Clipper to clip. Drag the file into `sources/05-images` or `sources/06-audio` directly (or write a short note describing it, same as the example format in `AGENTS.md`), and let ingest add the hub link — or just type `Part of [[05-images|Images]]` / `Part of [[06-audio|Audio]]` yourself when you create the note, which takes two seconds and needs no template at all.
+
 You're set up. For how to actually use it — the prompts you'll type day to day — see **[TUTORIAL.md](TUTORIAL.md)**.
