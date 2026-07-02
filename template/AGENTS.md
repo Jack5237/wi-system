@@ -99,7 +99,7 @@ When told to ingest (or when you find unprocessed sources), for each unprocessed
 5. **Update existing pages before creating new ones.** Creating a new page is the fallback, not the default.
 6. **Quality Gate: No Stubs** — Only create a new page if it has ≥3 substantive key points OR a meaningful relationship to existing pages.
 7. **Quality Gate: No Slop** — Extract *insights*, don't transcribe. Max 150 words per summary section. Every claim traces to a source.
-8. **Weave** — add the source's file path to every touched page's `## Sources` section. This is the mapping mechanism between raw data and structured knowledge — a topic page can be fed by an article, a Claude conversation, and a video at once, and each is an explicit line in `## Sources`.
+8. **Weave** — add the source as a `[[wikilink]]` (filename, no extension) to every touched page's `## Sources` section — not a backtick-quoted path, which renders as inert code and creates no graph edge. This is the mapping mechanism between raw data and structured knowledge, and it's what makes the Obsidian graph actually show sources connected to the wiki pages they fed — a topic page can be fed by an article, a Claude conversation, and a video at once, and each is an explicit `[[link]]` in `## Sources`.
 9. **Flag contradictions** in the page's `## Open Questions` section instead of silently overwriting a claim.
 10. **Add cross-references** — link only when conceptually relevant (`[[Other Page]]`). Not every mention needs a link.
 11. **Update `wiki/index.md`** — curated, not auto-appended. Add genuinely new topic/entity/project pages.
@@ -164,9 +164,11 @@ Refined synthesis and context beyond the bullet points.
 - [[Concept]]
 
 ## Sources
-- `sources/01-articles/2026-06-28-react-flow-review.md`
-- `sources/03-conversations/2026-06-30-claude-session.md`
+- [[2026-06-28-react-flow-review]]
+- [[2026-06-30-claude-session]]
 ```
+
+**Sources entries must be `[[wikilinks]]` to the filename (no extension, no path), not backtick-quoted plain text.** Obsidian only draws a graph edge for an actual link — a backtick-quoted path renders as inline code and creates no connection. This is the difference between the graph showing the weave and the graph showing two piles of unconnected dots. Filenames are unique (`YYYY-MM-DD-slug.md`), so a bare `[[filename]]` wikilink resolves correctly regardless of which `sources/` subfolder it's actually in — no relative path math required.
 
 Manual pages (pure thinking, no ingest event) are allowed — they just skip `## Sources`.
 
@@ -239,9 +241,9 @@ This article is all about React Flow, which is a library for React. It talks abo
 ### Good Weaving (multiple brains, one page)
 ```
 ## Sources
-- `sources/01-articles/2026-06-28-react-flow-review.md`
-- `sources/03-conversations/2026-06-29-chatgpt-flow-comparison.md`
-- `sources/02-videos/2026-06-30-xyflow-talk.md`
+- [[2026-06-28-react-flow-review]]
+- [[2026-06-29-chatgpt-flow-comparison]]
+- [[2026-06-30-xyflow-talk]]
 ```
 Three different brains and formats, one topic page — this is the weave, not three separate pages.
 

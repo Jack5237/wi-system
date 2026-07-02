@@ -47,14 +47,14 @@ Sources are raw and disposable-in-spirit; wiki pages are what tie them together 
 
 Every ingest starts with "search the wiki first, update an existing page before creating a new one." So if you drop in three separate GPT conversations that all touch Svelte reactivity, the agent doesn't make three pages — it makes (or finds) one `wiki/topics/reactivity.md`, and each ingest just appends a new line to that page's `## Sources` section:
 
-```yaml
+```
 ## Sources
-- sources/03-conversations/2026-07-01-gpt-reactivity-question.md
-- sources/03-conversations/2026-07-03-gpt-reactivity-followup.md
-- sources/01-articles/2026-07-05-svelte-docs-clip.md
+- [[2026-07-01-gpt-reactivity-question]]
+- [[2026-07-03-gpt-reactivity-followup]]
+- [[2026-07-05-svelte-docs-clip]]
 ```
 
-Three different conversations, one page, growing over time. No prompt needed — it's what ingest does by default.
+Three different conversations, one page, growing over time — and because these are real `[[wikilinks]]`, not plain text, Obsidian's Graph View draws an actual edge from each source to the page. That's what makes the graph show the weave instead of two unconnected piles of dots, one colored by source folder and one colored by wiki folder. No prompt needed — it's what ingest does by default.
 
 **You can still create pages manually.** Ask your agent to write a page yourself ("create a topic page for X, here's what I know"), or write one directly in `wiki/` — manual pages just skip the `## Sources` section since there's no ingest event behind them. Automatic merging and manual authorship coexist; nothing forces you into one or the other.
 
