@@ -67,7 +67,7 @@ Once ingested, every source file is normalized:
 ```yaml
 ---
 type: article        # article | video | conversation | document | image | audio
-url: https://example.com/react-flow-review
+resource: https://example.com/react-flow-review
 captured: 2026-06-28
 ingested: true
 ---
