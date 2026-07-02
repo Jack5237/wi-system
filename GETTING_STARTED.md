@@ -38,8 +38,4 @@ Install [Obsidian Web Clipper](https://obsidian.md/plugins?id=obsidian-web-clipp
 
 Don't stress about getting this exact — anything dropped anywhere in `sources/` gets sorted correctly during ingest anyway. The clipper folder setting just saves your agent a step.
 
-## Optional: table view with Obsidian Bases
-
-`sources.base` and `wiki.base` (vault root) give you a spreadsheet-style table of every source or wiki page — filterable and sortable by `type`, `captured`/`updated`, `ingested`, etc. — as an alternative to the graph. Open one from the file explorer or the command palette ("Open base"). If Obsidian's Base editor flags the syntax, use its visual editor to regenerate the file — Bases is a newer feature and its schema may have moved since these were written.
-
 You're set up. For how to actually use it — the prompts you'll type day to day — see **[TUTORIAL.md](TUTORIAL.md)**.

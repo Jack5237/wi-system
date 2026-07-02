@@ -34,7 +34,6 @@ This is **a minimal template and documentation project**.
   - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`), each subfolder with a hub note named after itself (`01-articles/01-articles.md`, etc.) plus a root `sources/sources.md`
   - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), each with a hub note named after itself, plus `wiki/wiki.md` as the curated navigation hub
   - `template/.obsidian/graph.json` — pre-configured graph view: green for `sources/`, blue for `wiki/`, grey for `AGENTS.md`/`log.md`, no user setup required
-  - `template/sources.base`, `template/wiki.base` — optional Obsidian Bases table views over source/wiki frontmatter (type, captured/updated, ingested)
 
 ### Key Points
 
