@@ -68,12 +68,35 @@ Your agent searches both sets of wiki pages, follows their `## Sources` links fo
 
 ## Less manual: automating the "say ingest" step
 
-By default you type "ingest new sources" yourself — that's Level 1, zero setup, works with any agent. If you're tired of typing it:
+By default you type "ingest new sources" yourself — that's Level 1, zero setup, works with any agent. There's no reliable Obsidian-native way to auto-connect a folder-dropped file to its hub (even Templater's folder templates don't fire on files that arrive already-populated from outside Obsidian, like a dragged PDF or a pasted chat export) — the AI agent is the only part of this system that can reliably handle arbitrary file types and content, so automation belongs there, not in Obsidian.
 
-- **Claude Code users:** a `SessionStart` hook can check `sources/` for anything not yet `ingested: true` and nudge you the moment you open the vault. This still asks before acting — it just removes the "did I forget something?" check. See Claude Code's hooks docs for the `SessionStart` event; point the hook at a `grep` over `sources/**/*.md` for `ingested: false`.
-- **Scheduled ingest:** if your tooling supports cron-style scheduled agent runs, ingest can run on a timer against the repo automatically. Don't turn this on until the manual loop feels solid — automating an unproven workflow just automates the mess.
+**Full auto-ingest on session start (Claude Code):** add this as `.claude/settings.json` in your own vault (not shipped in the template — keeps the template working identically in every agent). Instead of just nudging you, it hands the agent a direct instruction the moment you open it:
 
-Both are optional add-ons layered on top of `AGENTS.md`, not requirements — the template ships with neither configured, so it works identically in every agent out of the box. See the "Automation" section at the bottom of `template/AGENTS.md` for the full breakdown.
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "count=$(grep -rL 'ingested: true' \"$CLAUDE_PROJECT_DIR/sources\" --include='*.md' 2>/dev/null | wc -l); if [ \"$count\" -gt 0 ]; then echo \"$count unprocessed source(s) in sources/. Ingest them now: read each, classify, link to its folder hub, extract concepts, weave into wiki/, mark ingested: true, and commit.\"; fi",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Every time you open Claude Code on this vault, it checks for anything sitting in `sources/` without `ingested: true` — clipper output, manually dropped files, anything — and processes it before you type a word. Verify it actually triggers the agent to act rather than just print a message (hook behavior can vary by Claude Code version); if it only nudges, just confirm with "yes" and it runs.
+
+**Scheduled ingest:** if your tooling supports cron-style scheduled agent runs, ingest can run on a timer even when you haven't opened the agent at all. Don't turn this on until the manual loop feels solid — automating an unproven workflow just automates the mess.
+
+Both are optional add-ons layered on top of `AGENTS.md`, not requirements. See the "Automation" section at the bottom of `template/AGENTS.md` for the full breakdown.
 
 ## Common workflows
 
