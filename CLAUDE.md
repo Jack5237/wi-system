@@ -9,9 +9,10 @@ Users copy the `template/` folder, open it in Obsidian (visualization) alongside
 ## Architecture Overview
 
 **Three layers:**
-1. **Sources** — Immutable raw data, organized by *type* (articles, videos, conversations, documents, images, audio)
-2. **Wiki** — AI-maintained structured markdown pages, organized by *subject* (topics, entities, projects, syntheses) — never mirrors source types
+1. **Sources** — Immutable raw data, organized by *type* (Media, Articles, Transcripts)
+2. **Wiki** — AI-maintained structured markdown pages, organized by *subject* (Records, Individuals, Execution) — never mirrors source types
 3. **AGENTS.md** — Rules telling the AI how to operate
+4. **log.md** — Every ingestion logged with wikilinks to every source and wiki page touched — graph node connected to everything processed
 
 Every wiki page links back to its raw files via a `## Sources` section — that mapping, not folder structure, is what ties the two layers together.
 
@@ -30,9 +31,9 @@ This is **a minimal template and documentation project**.
 - `CLAUDE.md` — This file, for developers
 - `template/` — Starter vault (users copy this, and only this)
   - `template/AGENTS.md` — Rules for how the AI operates (the entire contract — no tool-specific config needed)
-  - `template/log.md` — Operation log
-  - `template/sources/` — Typed raw-data dump (`01-articles/`, `02-videos/`, `03-conversations/`, `04-documents/`, `05-images/`, `06-audio/`), each subfolder with a hub note named after itself (`01-articles/01-articles.md`, etc.) plus a root `sources/sources.md`
-  - `template/wiki/` — AI-maintained pages organized by subject (`topics/`, `entities/`, `projects/`, `syntheses/`), each with a hub note named after itself, plus `wiki/wiki.md` as the curated navigation hub
+  - `template/log.md` — Append-only operation log; also a graph node — every entry `[[wikilinks]]` the sources and wiki pages it touched
+  - `template/sources/` — Typed raw-data dump (Media/, Articles/, Transcripts/), each with a hub note (`Media.md`, etc.) plus root `sources.md`
+  - `template/wiki/` — AI-maintained pages organized by subject (Records/, Individuals/, Execution/), each with a hub note, plus `wiki.md` as the curated navigation hub
   - `template/.obsidian/graph.json` — pre-configured graph view: green for `sources/`, blue for `wiki/`, grey for `AGENTS.md`/`log.md`, no user setup required
 
 ### Key Points

@@ -1,30 +1,24 @@
 # Wiki Index
 
-This is your navigation hub — a curated entry point into `wiki/`. The AI keeps this updated as pages are created, but curates rather than auto-appending everything.
+Consolidated knowledge layer. Everything you've synthesized and learned. **R**ecords · **I**ndividuals · e**X**ecution.
 
-## Topics
+## Records
 
-Concepts, ideas, and workflows. See [[topics]].
+Consolidated topics, permanent knowledge base, ideas synthesized from your sources. See [[Records]].
 
-- _(no topics yet — ingest a source to get started)_
+- _(no records yet — ingest a source to get started)_
 
-## Entities
+## Individuals
 
-People, tools, companies, products. See [[entities]].
+People, companies, teams, profiles, and organizations. See [[Individuals]].
 
-- _(no entities yet)_
+- _(no individuals yet)_
 
-## Projects
+## Execution
 
-Things you're building. See [[projects]].
+Active projects, tasks, roadmaps, and things in progress. See [[Execution]].
 
-- _(no projects yet)_
-
-## Syntheses
-
-Saved answers to questions you've asked — these are where cross-topic insight lives. See [[syntheses]].
-
-- _(no syntheses yet)_
+- _(no execution items yet)_
 
 ---
 

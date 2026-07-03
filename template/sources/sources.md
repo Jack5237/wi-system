@@ -4,11 +4,8 @@ type: hub
 
 # Sources
 
-Raw data, organized by type. Read-only after ingest.
+Raw data input. Everything you collect. **M**edia · **A**rticles · **T**ranscripts.
 
-- [[01-articles|Articles]]
-- [[02-videos|Videos]]
-- [[03-conversations|Conversations]]
-- [[04-documents|Documents]]
-- [[05-images|Images]]
-- [[06-audio|Audio]]
+- [[Media|Media]] — Images, videos, audio files (native media assets)
+- [[Articles|Articles]] — Web clips, PDFs, text notes, personal writings
+- [[Transcripts|Transcripts]] — Conversations, chat logs, meeting notes, dialogue

@@ -1,9 +1,9 @@
 # Operation Log
 
-Append-only record of all operations. Format: `## [YYYY-MM-DD] TYPE | Description`
+Append-only record of every ingestion and change. Every entry is linked — each source and wiki page touched gets a `[[wikilink]]` here. This makes log.md a real graph node connected to everything ever processed.
 
-Tracks changes across [[sources]] and [[wiki]].
+Format: `## [YYYY-MM-DD] TYPE | Description` followed by bullets with real `[[wikilinks]]`. See AGENTS.md's "Log Format" section for examples.
 
 ## [2026-07-02] init | Vault initialized
 
-- Ready for first ingestion
+Ready for first ingestion

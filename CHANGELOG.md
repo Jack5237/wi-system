@@ -12,10 +12,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - GitHub issue templates (bug report, feature request)
 - Pull request template for contributions
 - Enhanced README with side-by-side Obsidian + AI workflow
-- Fixed Obsidian graph config to color all 4 wiki folders (topics, entities, projects, syntheses)
-- Expanded Obsidian graph config to color all 6 `sources/` subfolders too (previously hidden from the graph entirely) — 10 color groups total, fully pre-configured, zero setup required from the user
+- `.wi/schema.yaml` — a normative, machine-readable folder/type/frontmatter/log contract, making the "schema-driven" description literal. AGENTS.md references it and carries a human-readable Frontmatter Reference table
+- Pre-configured Obsidian graph colors via path-based groups (`path:sources` green, `path:wiki` blue, `AGENTS.md`/`log.md` grey) — 3 groups, zero setup, and survives folder renames because it keys off the top-level path rather than each subfolder
+- **`log.md` is now a real graph node** — AGENTS.md defines a mandatory "Log Format": every entry must `[[wikilink]]` the exact source and wiki files it touched, instead of describing them in prose. Lint now checks for un-linked log entries the same way it checks for missing hub links
 
 ### Changed
+- **Restructured `sources/` from 6 folders to 3:** `01-articles` (authored text), `02-conversations` (dialogue & talk transcripts, incl. video/audio transcripts), `03-attachments` (raw native files — PDFs, images, audio, video). `type:` frontmatter stays granular
+- **Restructured `wiki/` from 4 folders to 3:** `pages`, `entities`, `projects`. Syntheses now live in `pages/` marked `type: synthesis` — no separate folder
+- **Renamed `wiki/topics/` to `wiki/pages/`** (hub note, folder, and every cross-reference in AGENTS.md/docs/schema updated to match)
+- Elevated the wiki-page → subject-hub link to mandatory (same weight as `## Sources` weaving), fixing the graph defect where a new page connected to its sources but floated free of the wiki tree
 - Cleaned template structure: removed AI-specific config from template/
 - AGENTS.md is now the single source of truth for all AI agents
 - Documentation reorganized for clarity

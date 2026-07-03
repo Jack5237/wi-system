@@ -24,28 +24,28 @@ Setup done? See [GETTING_STARTED.md](GETTING_STARTED.md) if not. This is what yo
 |---|---|
 | Full health check | "Lint the wiki" |
 | Fix a fact | "Page X says Y, but that's outdated — update it" |
-| Merge duplicates | "Merge wiki/topics/a.md and b.md — same thing" |
+| Merge duplicates | "Merge wiki/pages/a.md and b.md — same thing" |
 
 **By source type**
 | Want | Say |
 |---|---|
-| Only AI chat exports | "What have I learned from conversations in sources/03-conversations/?" |
-| Attribute disagreement | "Claude and GPT disagree on X — check sources/03-conversations/ and flag it" |
+| Only AI chat exports | "What have I learned from conversations in sources/02-conversations/?" |
+| Attribute disagreement | "Claude and GPT disagree on X — check sources/02-conversations/ and flag it" |
 
 ## Try it once
 
-1. Drop any file into `sources/` — a pasted paragraph, an article, a chat export. For a Claude or GPT conversation: copy the conversation text and paste it into a new `.md` file (e.g. `sources/03-conversations/claude-session.md`) — you don't need a formal data export, just the text.
+1. Drop any file into `sources/` — a pasted paragraph, an article, a chat export. For a Claude or GPT conversation: copy the conversation text and paste it into a new `.md` file (e.g. `sources/02-conversations/claude-session.md`) — you don't need a formal data export, just the text.
 2. Say **"Ingest new sources"**
-3. Your agent reads it, files it under the right `sources/` subfolder with frontmatter, links it up to that folder's hub, creates or updates pages in `wiki/`, and adds a `## Sources` link back to your file
-4. Check Obsidian — a new node appears in Graph View, colored by folder, connected up to its type hub and across to the wiki page it fed
+3. Your agent reads it, files it under the right `sources/` subfolder with frontmatter, links it up to that folder's hub, creates or updates pages in `wiki/`, adds a `## Sources` link back to your file, and appends a linked entry to `log.md`
+4. Check Obsidian — a new node appears in Graph View, colored by folder, connected up to its type hub, across to the wiki page it fed, and to `log.md`
 
-Repeat that loop every time you have something new. Once you've ingested a few sources, ask a real question — the agent answers from the wiki first, and can save the answer as a new page in `wiki/syntheses/`.
+Repeat that loop every time you have something new. Once you've ingested a few sources, ask a real question — the agent answers from the wiki first, and can save the answer as a new page in `wiki/pages/` marked `type: synthesis`.
 
 ## How merging actually works
 
 Sources are raw and disposable-in-spirit; wiki pages are what tie them together — and that tying-together is **automatic**, not something you trigger separately.
 
-Every ingest starts with "search the wiki first, update an existing page before creating a new one." So if you drop in three separate GPT conversations that all touch Svelte reactivity, the agent doesn't make three pages — it makes (or finds) one `wiki/topics/reactivity.md`, and each ingest just appends a new line to that page's `## Sources` section:
+Every ingest starts with "search the wiki first, update an existing page before creating a new one." So if you drop in three separate GPT conversations that all touch Svelte reactivity, the agent doesn't make three pages — it makes (or finds) one `wiki/pages/reactivity.md`, and each ingest just appends a new line to that page's `## Sources` section:
 
 ```
 ## Sources
@@ -60,11 +60,11 @@ Three different conversations, one page, growing over time — and because these
 
 ## Example: two sources become one answer
 
-Drop an article about pasta into `sources/`, ingest it — you get `wiki/topics/pasta.md` and related pages. Drop an article about Svelte, ingest it — you get `wiki/topics/svelte.md` and friends. Now ask:
+Drop an article about pasta into `sources/`, ingest it — you get `wiki/pages/pasta.md` and related pages. Drop an article about Svelte, ingest it — you get `wiki/pages/svelte.md` and friends. Now ask:
 
 > "I want to start an online pasta shop using Svelte. What should I know?"
 
-Your agent searches both sets of wiki pages, follows their `## Sources` links for detail, and writes `wiki/syntheses/pasta-ecommerce-with-svelte.md` — a page that only exists because it read and combined two unrelated sources. That's the actual point of the system: not storage, synthesis.
+Your agent searches both sets of wiki pages, follows their `## Sources` links for detail, and writes `wiki/pages/pasta-ecommerce-with-svelte.md` (marked `type: synthesis`) — a page that only exists because it read and combined two unrelated sources. That's the actual point of the system: not storage, synthesis.
 
 ## Less manual: automating the "say ingest" step
 
