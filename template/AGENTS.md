@@ -182,3 +182,20 @@ Log links go to **leaves only** — the exact pages and sources touched. Never w
 - **Wikilink hubs from `log.md`** — leaves only.
 - **Claim without sourcing** — every wiki claim traces to a source.
 - **Add automation daemons or per-user config** — the system stays plain markdown + wikilinks, agent-agnostic.
+
+## Using Obsidian
+
+Open this vault in [Obsidian](https://obsidian.md) for graph visualization and template-assisted file creation.
+
+**Create a new source or wiki page:**
+
+1. In the file explorer (left sidebar), navigate to the folder (`sources/Articles/`, `wiki/Records/`, etc.)
+2. Right-click the folder → **New file** (or use Ctrl+N)
+3. Name the file with a date prefix for sources: `YYYY-MM-DD-title` (e.g., `2026-07-22-ai-trends`)
+4. Once created, insert the template:
+   - Press `Ctrl+P` (Cmd+P on Mac)
+   - Type "Insert" → select **Templates: Insert template**
+   - Pick the matching template: `articles.md`, `records.md`, `individuals.md`, etc.
+5. The template fills in frontmatter, hub link (`Part of [[...]]`), and title with today's date
+
+**Graph view:** Open the graph icon (top-right) to visualize the wiki. Sources (red), wiki (blue), logs (gold). Hover over nodes to highlight connections.
