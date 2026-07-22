@@ -1,60 +1,46 @@
-# WI System Development
+# WI System — Project Development
 
-## Project
+## What This Is
 
-A schema-driven **WI System template** — a local-first knowledge base system that works with any AI agent (Claude Code, Cursor, ChatGPT, Ollama, etc.).
+**WI System** is a schema-driven knowledge-base template. Users copy `template/`, open it in Obsidian alongside Claude Code or any AI agent, clip content into `sources/`, and the AI maintains a structured, interlinked wiki in `wiki/` following rules in `template/AGENTS.md`.
 
-Users copy the `template/` folder, open it in Obsidian (visualization) alongside their AI agent of choice, clip web content to `sources/`, and the AI reads `AGENTS.md` to understand how to build and maintain a structured, interlinked wiki in `wiki/`.
+Three-layer architecture: immutable sources (organized by *type*), AI-maintained wiki (organized by *subject*), and an append-only log connecting both. Persistent, compounding RAG — each source makes the wiki smarter.
 
-## Architecture Overview
+## Project Structure
 
-**Three layers:**
-1. **Sources** — Immutable raw data, organized by *type* (Media, Articles, Transcripts)
-2. **Wiki** — AI-maintained structured markdown pages, organized by *subject* (Records, Individuals, Execution) — never mirrors source types
-3. **AGENTS.md** — Rules telling the AI how to operate
-4. **log.md** — Every ingestion logged with wikilinks to every source and wiki page touched — graph node connected to everything processed
+- **Docs** (`README.md`, `GETTING_STARTED.md`, `TUTORIAL.md`, `CONTRIBUTING.md`) — User-facing
+- **`template/`** — What users copy; only essential files, no bloat
+  - `template/AGENTS.md` — Rules end-users' AI agents follow to operate their wiki
+  - `template/sources/`, `template/wiki/`, `template/log.md`, `.obsidian/graph.json`
+- **`AGENTS.md`** (root) — Rules for contributors modifying the WI System itself
+- **`CLAUDE.md`** (this file) — Dev workflow and architecture
 
-Every wiki page links back to its raw files via a `## Sources` section — that mapping, not folder structure, is what ties the two layers together.
+## Development Workflow
 
-**Key insight:** The wiki is persistent and compounding (not one-time RAG). Each new source makes it smarter.
+**To modify core system rules:** Edit `template/AGENTS.md`.
 
-## For Contributors
+**To change project docs:** Edit `.md` files in root.
 
-This is **a minimal template and documentation project**.
+**To modify `template/` structure:** Update folder hierarchy or `.obsidian/graph.json` — then test end-to-end by copying `template/` to a scratch dir, opening in Claude Code + Obsidian, running a full ingest → synthesize → lint cycle.
 
-### Main Files
+**Testing:** No unit tests needed. Verify changes by copying the modified `template/`, seeding it with sample sources, and running actual workflows. The system's contract lives in `template/AGENTS.md` — breaking changes there break every user's wiki.
 
-- `README.md` — What this is, features, quick start (end-user focused)
-- `GETTING_STARTED.md` — 5-minute setup guide
-- `TUTORIAL.md` — Full walkthrough with pasta + Svelte example
-- `CONTRIBUTING.md` — How to contribute to this project
-- `CLAUDE.md` — This file, for developers
-- `template/` — Starter vault (users copy this, and only this)
-  - `template/AGENTS.md` — Rules for how the AI operates (the entire contract — no tool-specific config needed)
-  - `template/log.md` — Append-only operation log; also a graph node — every entry `[[wikilinks]]` the sources and wiki pages it touched
-  - `template/sources/` — Typed raw-data dump (Media/, Articles/, Transcripts/), each with a hub note (`Media.md`, etc.) plus root `sources.md`
-  - `template/wiki/` — AI-maintained pages organized by subject (Records/, Individuals/, Execution/), each with a hub note, plus `wiki.md` as the curated navigation hub
-  - `template/.obsidian/graph.json` — pre-configured graph view: green for `sources/`, blue for `wiki/`, grey for `AGENTS.md`/`log.md`, no user setup required
+## Rules for Changes
 
-### Key Points
+1. Keep `template/` minimal — only files end-users absolutely need
+2. Maintain the three-layer architecture (sources/wiki/log)
+3. Never change file naming conventions or frontmatter schema without updating `template/AGENTS.md` *and* all examples
+4. Hub-link pattern is mandatory — every source and wiki page must link to its folder hub
+5. Log entries must use real wikilinks, never prose descriptions
+6. All changes require `template/AGENTS.md` review — if the rule changed or an AI agent's job changed, update that doc
 
-1. **Minimal and focused** — Only essential files, no bloat
-2. **End-user first** — Everything designed for users copying the template
-3. **AI reads AGENTS.md** — That's the contract between the system and AI
-4. **Test with real wikis** — Copy `template/`, verify in Claude Code + Obsidian
-5. **Keep it simple** — Lightweight, understandable, maintainable
+See `AGENTS.md` (root) for contributor workflow details.
 
-### Workflow for Changes
+## Git Conventions
 
-1. Edit `template/AGENTS.md` if you're changing how the AI operates
-2. Update docs if you're explaining something better
-3. Update `template/` structure if needed
-4. Test by copying `template/` and using it end-to-end
-5. Commit with clear messages
+- `refactor:` — Structural changes to template or docs
+- `docs:` — Documentation updates, no code
+- `fix:` — Bug fixes, schema corrections
+- `feat:` — New capabilities or optional layers (rare)
 
-### Git Conventions
-
-- `refactor:` — Major structural changes
-- `docs:` — Documentation updates
-- `fix:` — Bug fixes
-- Keep messages clear and focused
+Keep messages focused. Example: `docs: clarify hub-link pattern in AGENTS.md`

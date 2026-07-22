@@ -22,7 +22,7 @@
       }
     },
     {
-      "query": "path:AGENTS.md OR path:log.md",
+      "query": "path:AGENTS.md OR path:CLAUDE.md OR path:log.md",
       "color": {
         "a": 1,
         "rgb": 4937059
@@ -39,6 +39,6 @@
   "repelStrength": 12,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.5087618855792576,
+  "scale": 0.7132754626224406,
   "close": true
 }
