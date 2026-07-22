@@ -1,8 +1,13 @@
+<!-- template-version: 2026-07-22 -->
+<!-- Check for updates: https://github.com/jackmcguinness/wi-systems/blob/main/template/AGENTS.md -->
+
 # WI System — Agent Rules
 
 This document tells AI agents how to operate this wiki. Follow these rules strictly.
 
 Governs [[sources]] and [[wiki]].
+
+**Version Check:** If this file's version is more than 3 months old, ask the user if they want to check for updates in the repository. You can flag this with: "Your template is from [DATE]. Check if there's a newer version at the link above—pull the repo again if there's an update you want."
 
 ## Purpose
 
@@ -64,20 +69,13 @@ Three source folders, three wiki folders — that's the whole shape. Never mix t
 
 ## Hub Pages and the Graph Hierarchy
 
-Every subfolder — every `sources/` type and every `wiki/` subject — has a hub note named after the folder itself (`Media/Media.md`, `wiki/Records/Records.md`, etc.), not `index.md`. This matters for the graph: Obsidian labels every node with its filename, so if every hub were called `index.md`, the graph would show identical "index" labels with no way to tell them apart. Naming each hub after its folder means the graph node for the media hub actually says "Media."
+Every `sources/` type and `wiki/` subject folder has a hub file named after the folder (`Media.md`, `Records.md`, etc.). Every new page links to its hub — `Part of [[Records|Records]]` for wiki pages, `Part of [[Articles|Articles]]` for sources — before any other content. This is non-optional; skip it and the page floats in the graph.
 
-Because every hub name is now unique across the whole vault, **all links use the same bare `[[filename]]` style** — hub links and per-source citations alike, no special-casing:
-- A media file links up to its folder hub: `Part of [[Media|Media]]`
-- A folder hub links up to its root: `Part of [[sources|Sources]]` or `Part of [[wiki|Wiki]]`
-- A wiki page cites the sources that fed it: `[[2026-06-28-react-flow-review]]` in its `## Sources` section
+Hub names are unique across the vault, so all links use bare `[[filename]]` wikilinks — no special-casing.
 
-This gives a visible hierarchy in Graph View: individual source → type hub → sources root, and individual wiki page → subject hub → wiki root, with the `## Sources` citations cutting laterally across the two trees connecting a specific source to the specific page it fed.
+Max six source folders. Anything else goes in `Media/` (file) or `Articles/` (text). Wiki folders are fixed: `Records/`, `Individuals/`, `Execution/`. Don't add more until 10+ pages demand it.
 
-**The hub link is non-optional, on both sides.** Every new source links up to its folder hub; every new wiki page links up to its subject hub — `Part of [[Records|Records]]` on a new record page, same as a source gets `Part of [[Articles|Articles]]`. Skip it and the page floats free of its tree — the #1 graph defect is always a missing hub link. Same weight as the `## Sources` weave: a page isn't finished until both exist. The hub file itself never needs editing — backlinks show the connection automatically.
-
-Six folders is also the cap. Anything that doesn't fit a source type goes in `Media/` (if it's a file) or `Articles/` (if it's text). Don't invent new type folders per edge case. Wiki subject folders (`Records/`, `Individuals/`, `Execution/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
-
-**Dumping is allowed anywhere in `sources/`.** A file landing in the wrong subfolder, or in the root of `sources/`, is fine — part of ingest is the AI moving it to the right place. Classification is the AI's job, not the user's. This only covers `sources/` itself — a file sitting at the vault root won't be picked up by "ingest new sources," since that scans inside `sources/` only. Move it in first.
+Misplaced files in `sources/` are fine — the AI moves them during ingest. Classification is the AI's job.
 
 ## Source Files
 
@@ -280,37 +278,6 @@ This describes the operation but links nothing — Obsidian draws zero edges fro
 - **Do not transcribe sources** — Extract insights, synthesize knowledge. Paraphrase, don't copy.
 - **Do not mix raw and structured** — Keep `sources/` (by type) separate from `wiki/` (by subject).
 - **Do not cite without sourcing** — Every claim in wiki pages must trace back to a source.
-
----
-
-## Examples
-
-### Good Summary (Concise, Insightful)
-```
-## Summary
-React Flow is a node-based editor library for React with built-in dragging, zooming, and multi-selection. MIT-licensed, 7.4M weekly installs, used by Stripe and Typeform for workflow builders and data visualization.
-```
-
-### Good Weaving (multiple brains, one page)
-```
-## Sources
-- [[2026-06-28-react-flow-review]]
-- [[2026-06-29-chatgpt-flow-comparison]]
-- [[2026-06-30-xyflow-talk]]
-```
-Three different brains and formats, one record page — this is the weave, not three separate pages.
-
----
-
-## Automation (optional, layered)
-
-You don't need any of this to start — Level 1 alone is a complete workflow.
-
-1. **Manual (default)** — drop files in `sources/`, say "ingest" (or "synthesize: <question>", "lint the wiki"). Works with any AI agent, zero setup.
-2. **Shortcuts (agent-specific, optional)** — if your AI agent supports custom commands or hooks (e.g. Claude Code's slash commands and hooks), you can wire "ingest" / "synthesize" / "lint" to a shortcut so you don't retype the phrasing. This is a convenience layer on top of the rules in this file, not a requirement.
-3. **Scheduled agent (later)** — if your AI tooling supports scheduled/cron runs, ingest can run on a cadence. Don't turn this on until the manual loop is proven — automating an unproven workflow just automates mess.
-
-**Optional future layer (off by default):** publishing `wiki/` as a browsable site via a tool like Fumadocs. Not part of the core system — a toggleable extra for sharing the wiki outside Obsidian.
 
 ---
 
