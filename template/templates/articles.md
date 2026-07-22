@@ -7,4 +7,4 @@ ingested: false
 
 Part of [[Articles|Articles]].
 
-# {{title}}
+# {{date}} — {{title}}

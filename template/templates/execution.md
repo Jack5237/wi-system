@@ -6,5 +6,3 @@ updated: {{date}}
 Part of [[Execution|Execution]].
 
 # {{title}}
-
-## Sources

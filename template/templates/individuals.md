@@ -6,5 +6,3 @@ updated: {{date}}
 Part of [[Individuals|Individuals]].
 
 # {{title}}
-
-## Sources

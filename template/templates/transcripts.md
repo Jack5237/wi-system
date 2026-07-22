@@ -1,11 +1,10 @@
 ---
-type: 
-brain: 
-resource: 
+type: transcript
+resource:
 captured: {{date}}
 ingested: false
 ---
 
 Part of [[Transcripts|Transcripts]].
 
-# {{title}}
+# {{date}} — {{title}}
