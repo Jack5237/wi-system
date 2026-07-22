@@ -74,7 +74,7 @@ Every prompt starts with "Follow the AGENTS.md in this wiki folder" — that pin
 - **Project folders:** Your wiki folder **and** the parent folder containing your repos (e.g., `~/Desktop/YOUR_AGENT_NAME/` + `~/Desktop/Code/`)
 - **Prompt:**
 
-  > Follow the AGENTS.md in my wiki folder (`YOUR_AGENT_NAME/AGENTS.md`) — it governs all wiki writes. Ignore any AGENTS.md or CLAUDE.md inside the project repos; those govern their own codebases, not this wiki. Check `[YOUR_PROJECT1]`, `[YOUR_PROJECT2]`, `[YOUR_PROJECT3]` repos read-only. Summarize commits, PRs, blockers. Create `wiki/Execution/project-status-[date].md` with `Part of [[Execution|Execution]].` at top (link to the Execution hub only, never the wiki node), frontmatter (`type: project`, `updated`), then content. Append the operation to `log.md` with wikilinks.
+  > Follow the AGENTS.md in my wiki folder (`YOUR_AGENT_NAME/AGENTS.md`) — it governs all wiki writes. Ignore any AGENTS.md or CLAUDE.md inside the project repos; those govern their own codebases, not this wiki. Check `[YOUR_PROJECT1]`, `[YOUR_PROJECT2]`, `[YOUR_PROJECT3]` repos read-only. Summarize commits, PRs, blockers. Create `wiki/Execution/project-status-[date].md` with `Part of [[Execution|Execution]].` at top (link to the Execution hub only, never the wiki node), frontmatter (`type: project`, `updated`), then content. Append the operation to `log.md` with a wikilink to each created/updated page only — never wikilink hubs or pages that don't exist (plain text for repo/folder names).
 
 ### 2. hot-topics
 
@@ -82,7 +82,7 @@ Every prompt starts with "Follow the AGENTS.md in this wiki folder" — that pin
 - **Project folders:** None
 - **Prompt:**
 
-  > Follow the AGENTS.md in this wiki folder — it governs all writes. Search YouTube for trending `[YOUR_TOPIC]`. List top 3 with links. Create `wiki/Records/hot-topics-[date].md` with `Part of [[Records|Records]].` at top (link to the Records hub only, never the wiki node), frontmatter (`type: record`, `updated`), then content. Append the operation to `log.md` with wikilinks.
+  > Follow the AGENTS.md in this wiki folder — it governs all writes. Search YouTube for trending `[YOUR_TOPIC]`. List top 3 with links. Create `wiki/Records/hot-topics-[date].md` with `Part of [[Records|Records]].` at top (link to the Records hub only, never the wiki node), frontmatter (`type: record`, `updated`), then content. Append the operation to `log.md` with a wikilink to each created/updated page only — never wikilink hubs or pages that don't exist (plain text for repo/folder names).
 
 ### 3. people-tracking
 
@@ -90,7 +90,7 @@ Every prompt starts with "Follow the AGENTS.md in this wiki folder" — that pin
 - **Project folders:** None
 - **Prompt:**
 
-  > Follow the AGENTS.md in this wiki folder — it governs all writes. For `[PERSON1]`, `[PERSON2]`, `[PERSON3]`: search recent work, talks, articles. List top 3 sources. Save them into `sources/Articles/` with frontmatter (`type: article`, `captured`, `resource`, `ingested: true`) and `Part of [[Articles|Articles]].` at top (link to the Articles hub only, never the sources node). Create/update `wiki/Individuals/[person].md` with `Part of [[Individuals|Individuals]].` at top, frontmatter (`type: individual`, `updated`), bio, expertise, recent work, and each source as a `[[wikilink]]` under `## Sources`. Append the operation to `log.md` with wikilinks.
+  > Follow the AGENTS.md in this wiki folder — it governs all writes. For `[PERSON1]`, `[PERSON2]`, `[PERSON3]`: search recent work, talks, articles. List top 3 sources. Save them into `sources/Articles/` with frontmatter (`type: article`, `captured`, `resource`, `ingested: true`) and `Part of [[Articles|Articles]].` at top (link to the Articles hub only, never the sources node). Create/update `wiki/Individuals/[person].md` with `Part of [[Individuals|Individuals]].` at top, frontmatter (`type: individual`, `updated`), bio, expertise, recent work, and each source as a `[[wikilink]]` under `## Sources`. Append the operation to `log.md` with a wikilink to each created/updated page only — never wikilink hubs or pages that don't exist (plain text for repo/folder names).
 
 ---
 

@@ -177,9 +177,10 @@ When you say "please lint the wiki":
 3. **Orphans** — pages with no inbound links → link or merge. A page linked only to its folder hub and nothing else still counts as an orphan in spirit — it's in the hierarchy but disconnected from the actual weave.
 4. **Duplicates** — two pages about the same thing → merge.
 5. **Dead source links** — `## Sources` entries pointing at renamed/moved files, or `Part of [[...]]` hub links pointing at the wrong folder → fix.
+   Also **ghost links** — any `[[wikilink]]` to a page that doesn't exist (grey nodes in the graph) → create the page or downgrade to plain text.
 6. **Unlinked concepts** — mentioned but lacking their own page.
 7. **Missing hub links** — any source or wiki page missing its `Part of [[...]]` line → add it. Pay special attention to wiki pages that have a `## Sources` section but no `Part of [[...]]` line: those are the nodes that show in the graph connected to their sources but disconnected from their subject hub. Every wiki page must link up to `Records`, `Individuals`, or `Execution` — never directly to `wiki.md` or `sources.md` (that's the hubs' job; fix any page that skips a level).
-8. **Unlinked log entries** — scan `log.md` for entries that describe a file in prose instead of `[[linking]]` it (e.g. "ingested a conversation about X" with no wikilink). Rewrite the entry to link the actual file. This is the same defect class as a missing hub link, just on the fourth tree.
+8. **Unlinked log entries** — scan `log.md` for entries that describe a file in prose instead of `[[linking]]` it (e.g. "ingested a conversation about X" with no wikilink). Rewrite the entry to link the actual file. Also strip any hub wikilinks (`[[Records]]`, `[[Execution]]`, etc.) from log entries — the log links leaves only.
 9. **`wiki/wiki.md` out of date** → refresh (curated, never auto-append everything).
 10. **Report findings** and offer fixes.
 
@@ -240,6 +241,8 @@ Manual pages (pure thinking, no ingest event) are allowed — they just skip `##
 
 Every entry names, as a wikilink, the source file(s) it processed and the wiki page(s) it created or updated — no source type gets a free pass into prose-only logging. That's what makes `log.md` a real graph node instead of a text file the graph can't see into.
 
+**Log links only to actual files touched — never to hubs.** Don't wikilink `Records`, `Individuals`, `Execution`, `Media`, `Articles`, `Transcripts`, `wiki`, or `sources` in a log entry — name the folder in plain text ("created in Records"). Pages already connect to hubs via their `Part of [[...]]` line; a log-to-hub edge duplicates that and tangles the graph. The log's edges go to leaves: `[[hot-topics-2026-07-22]]`, `[[project-status-2026-07-22]]`, source files.
+
 **Bad (no edges drawn):**
 ```markdown
 ## [2026-07-03] ingest | Ingested a video about React Flow and updated the topic page
@@ -249,6 +252,7 @@ This describes the operation but links nothing — Obsidian draws zero edges fro
 ## Linking Rules
 
 - Link to related concepts: `[[Concept Name]]`
+- **Never wikilink a page that doesn't exist.** A `[[link]]` to a missing file renders as a grey ghost node in the graph. Repo names, tools, people, and companies without wiki pages stay plain text (or backticks) until the page is actually created. No "`[[foo]]` (if a page exists)" placeholders — either create the page or don't link.
 - Link to sources by `[[filename]]` wikilink, never a backtick-quoted path — backticks render as inert code and create no graph edge
 - Link to folder hubs the same way: `[[Media|Media]]`, `[[Records|Records]]`, `[[sources|Sources]]`, `[[wiki|Wiki]]` — every hub is named after its folder, so hub names are unique across the vault and resolve with a plain bare wikilink like everything else
 - Create a page for any concept you mention more than once
@@ -282,6 +286,8 @@ This describes the operation but links nothing — Obsidian draws zero edges fro
 - **Do not transcribe sources** — Extract insights, synthesize knowledge. Paraphrase, don't copy.
 - **Do not mix raw and structured** — Keep `sources/` (by type) separate from `wiki/` (by subject).
 - **Do not link pages to the top nodes** — Only hubs link to `[[wiki|Wiki]]` / `[[sources|Sources]]`. Pages link to their folder hub only.
+- **Do not wikilink nonexistent pages** — No ghost links. Plain text until the page exists.
+- **Do not wikilink hubs from `log.md`** — Log entries link only the pages and sources they touched; folders are named in plain text.
 - **Do not cite without sourcing** — Every claim in wiki pages must trace back to a source.
 
 ---
