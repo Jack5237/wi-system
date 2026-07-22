@@ -109,27 +109,18 @@ After ingest, source files are **immutable**. Never edit them. They're the groun
 
 ## Using Templates
 
-Templates in `templates/` folder auto-fill scaffolding. When creating a file:
+`templates/` holds one template per folder — pre-wired in `.obsidian/templates.json`, so in Obsidian it's just `Ctrl+P` → `Templates: Insert template` (date fills in automatically). Agents creating files start from the matching template file instead: copy it, **fill in the fields, never rebuild the format from scratch**.
 
-1. Create new file in the folder
-2. Command palette: `Ctrl+P` → `Templates: Insert template`
-3. Pick the template for that folder (see table below)
-4. Edit in-place: fill frontmatter `type`, date, and resource fields; add content
-
-Templates provide minimal structure — **just edit, don't reformat**. Every template has:
-- Frontmatter with `type` and date — fill in values
-- `Part of [[...]]` hub link — already correct, no edit needed
-- Title placeholder — replace `{{TITLE}}`
-- Source section (wiki only) — add wikilinks as you reference
-
-| Folder | Template | Frontmatter: type values |
+| Folder | Template | `type` values |
 |---|---|---|
 | `sources/Articles/` | `articles.md` | `article` |
-| `sources/Transcripts/` | `transcripts.md` | `transcript`, `video`, `audio` |
-| `sources/Media/` | `media.md` | `image`, `document` |
+| `sources/Transcripts/` | `transcripts.md` | `transcript` · `video` · `audio` |
+| `sources/Media/` | `media.md` | `image` · `document` |
 | `wiki/Records/` | `records.md` | `record` |
 | `wiki/Individuals/` | `individuals.md` | `individual` |
 | `wiki/Execution/` | `execution.md` | `project` |
+
+To fill in: empty frontmatter fields (`type`, `resource`, `brain`), any `{{date}}`/`{{title}}` placeholders (agents substitute these manually; Obsidian expands them on insert), and the content itself. The `Part of [[...]]` hub link is already correct — leave it. That line is what keeps every new note attached to the graph.
 
 ## Frontmatter Reference
 

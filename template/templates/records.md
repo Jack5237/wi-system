@@ -1,10 +1,10 @@
 ---
 type: record
-updated: {{DATE}}
+updated: {{date}}
 ---
 
 Part of [[Records|Records]].
 
-# {{TITLE}}
+# {{title}}
 
 ## Sources

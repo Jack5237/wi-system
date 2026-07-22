@@ -1,10 +1,10 @@
 ---
 type: article
 resource:
-captured: {{DATE}}
+captured: {{date}}
 ingested: false
 ---
 
 Part of [[Articles|Articles]].
 
-# {{TITLE}}
+# {{title}}

@@ -1,10 +1,10 @@
 ---
 type: 
 resource: 
-captured: {{DATE}}
+captured: {{date}}
 ingested: false
 ---
 
 Part of [[Media|Media]].
 
-# {{TITLE}}
+# {{title}}

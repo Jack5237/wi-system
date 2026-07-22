@@ -1,10 +1,10 @@
 ---
 type: project
-updated: {{DATE}}
+updated: {{date}}
 ---
 
 Part of [[Execution|Execution]].
 
-# {{TITLE}}
+# {{title}}
 
 ## Sources

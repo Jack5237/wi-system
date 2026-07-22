@@ -1,10 +1,10 @@
 ---
 type: individual
-updated: {{DATE}}
+updated: {{date}}
 ---
 
 Part of [[Individuals|Individuals]].
 
-# {{TITLE}}
+# {{title}}
 
 ## Sources

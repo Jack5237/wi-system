@@ -2,10 +2,10 @@
 type: 
 brain: 
 resource: 
-captured: {{DATE}}
+captured: {{date}}
 ingested: false
 ---
 
 Part of [[Transcripts|Transcripts]].
 
-# {{TITLE}}
+# {{title}}

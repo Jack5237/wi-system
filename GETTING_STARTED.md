@@ -31,13 +31,7 @@ claude code .
 
 **Optional:** Open in Obsidian — File → Open folder as vault → select `my-wiki/`. Graph View shows folder structure immediately (green for `sources/`, blue for `wiki/`).
 
-### Set up templates (1 min)
-
-After opening vault in Obsidian:
-1. Settings → **Templates** → **Folder for templates** → select `templates/`
-2. Done. When creating files, use command palette: `Ctrl+P` → `Templates: Insert template`
-
-Templates auto-populate frontmatter + `Part of [[...]]` hub links based on folder.
+**Templates** are pre-configured: when creating a note, `Ctrl+P` → `Templates: Insert template` → pick the one named after the note's folder. Frontmatter and the `Part of [[...]]` hub link fill in automatically.
 
 ---
 
