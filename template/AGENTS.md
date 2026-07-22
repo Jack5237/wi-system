@@ -107,6 +107,24 @@ Files in `Transcripts/` also carry `brain:` — which brain produced it. That ma
 
 After ingest, source files are **immutable**. Never edit them. They're the ground truth the wiki compresses from.
 
+## Using Templates
+
+Templates are pre-configured in `templates/` folder. When creating a new file:
+
+1. Create the file in the correct folder (`sources/Articles/`, `wiki/Records/`, etc.)
+2. Open command palette (`Ctrl+P` / `Cmd+P`)
+3. Type `Templates: Insert template`
+4. Pick the matching template (e.g., `article.md` for `sources/Articles/`)
+
+Templates auto-populate:
+- Frontmatter with correct `type`, `captured`, or `updated` date
+- `Part of [[...]]` hub link (exact folder link based on template)
+- Wiki pages include full structure (`## Summary`, `## Sources`, etc.)
+
+**For daily work:** Create files in `sources/Articles/` → use `article.md` template. Creates source file with backfill link automatically.
+
+**For wiki pages:** Create files in `wiki/Records/`, `wiki/Individuals/`, or `wiki/Execution/` → use matching template (`record.md`, `individual.md`, `project.md`).
+
 ## Frontmatter Reference
 
 **Source files** (`sources/`):
