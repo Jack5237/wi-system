@@ -64,7 +64,7 @@ Every prompt starts with "Follow AGENTS.md in this wiki folder" — that pins th
 - **Project folders:** None
 - **Prompt:**
 
-  > Follow AGENTS.md in this wiki folder. Search for this week's trending `[YOUR_TOPIC]` news. Save top 3 with links into `wiki/Records/hot-topics-[date].md`, then log it.
+  > Follow AGENTS.md in this wiki folder. Search for this week's trending `[YOUR_TOPIC]` news. Save the top 3 sources into `sources/Articles/` (marked `ingested: true`), summarize them in `wiki/Records/hot-topics-[date].md` with each source under `## Sources`, then log it.
 
 ### 3. people-tracking
 
