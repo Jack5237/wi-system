@@ -1,8 +1,18 @@
-# WI System — Contributor Workflow
+# WI System — Contributor Guide
 
-This document tells contributors how to modify and extend the WI System itself.
+**WI System** is a schema-driven knowledge-base template. Users copy `template/`, open it in Obsidian alongside Claude Code or any AI agent, clip content into `sources/`, and the AI maintains a structured, interlinked wiki in `wiki/` following rules in `template/AGENTS.md`.
 
-End-users who copy `template/` follow rules in `template/AGENTS.md`. **That file is the contract** — changes there ripple to every user's workflow. Treat it like a published API.
+Three-layer architecture: immutable sources (organized by *type*), AI-maintained wiki (organized by *subject*), and an append-only log connecting both. Persistent, compounding RAG — each source makes the wiki smarter.
+
+This document tells contributors how to modify and extend the system itself. End-users who copy `template/` follow rules in `template/AGENTS.md`. **That file is the contract** — changes there ripple to every user's workflow. Treat it like a published API.
+
+## Project Structure
+
+- **Docs** (`README.md`, `GETTING_STARTED.md`, `TUTORIAL.md`) — User-facing
+- **`template/`** — What users copy; only essential files, no bloat
+  - `template/AGENTS.md` — Rules end-users' AI agents follow to operate their wiki
+  - `template/sources/`, `template/wiki/`, `template/log.md`, `.obsidian/graph.json`
+- **`AGENTS.md`** (this file) — Contributor workflow; `CLAUDE.md` and `CONTRIBUTING.md` point here
 
 ## Principles
 
@@ -23,10 +33,24 @@ End-users who copy `template/` follow rules in `template/AGENTS.md`. **That file
 1. **Edit `template/AGENTS.md`** — Propose what the rule is now. Make it clear, precise, example-rich.
 2. **Update examples** in that file (Summary format, Log format, Wiki page template, etc.) to match.
 3. **Update folder structure in `template/`** only if the rules demand it.
-4. **Test by copying `template/`** to a scratch directory, creating sample sources, ingesting, synthesizing, linting. Confirm the workflow works end-to-end.
+4. **Test by copying `template/`** to a scratch directory, creating sample sources, ingesting, synthesizing, linting. Confirm the workflow works end-to-end:
+   ```bash
+   cp -r template my-test-vault
+   # open my-test-vault/ in Claude Code, Cursor, or another agent and run the workflows
+   ```
 5. **Update `template/.obsidian/graph.json`** if folder names or colors changed.
 6. **Update root docs** (`README.md`, `TUTORIAL.md`, etc.) if the mental model changed.
 7. **Commit** with a clear message explaining what changed in the contract and why.
+
+## Commit Conventions
+
+- `docs:` — Documentation updates, no structure change
+- `refactor:` — Structural changes to template or docs
+- `fix:` — Bug fixes, schema corrections
+- `feat:` — New capabilities or optional layers (rare)
+- `chore:` — Maintenance (CI, config, etc.)
+
+Keep messages focused. Example: `docs: clarify hub-link pattern in AGENTS.md`
 
 ## Quality Gates
 
@@ -48,23 +72,11 @@ End-users who copy `template/` follow rules in `template/AGENTS.md`. **That file
 - Stub files or example stubs (users create their own content)
 - Anything that assumes a specific AI agent
 
-## Workflow: Propose a Change
+## Proposing and Reviewing Changes
 
-1. Open an issue or comment on `CONTRIBUTING.md` — describe what's broken or unclear.
-2. Propose the rule change in `template/AGENTS.md` language (not code).
-3. Share an example (a screenshot or markdown walkthrough of the proposed flow).
-4. Test it. Report back: "tested with [scenario], works / doesn't work."
-5. If ready, create a PR with the updated `template/AGENTS.md`, examples, docs, and any structure changes.
+**Propose:** fork, branch (`feature/your-feature`), make the change in `template/AGENTS.md` language, test it end-to-end, then open a PR with the updated contract, examples, docs, and any structure changes. One focused change per PR.
 
-## Workflow: Review a Change
-
-1. Does the change solve a real problem, or add something speculative?
-2. Is `template/AGENTS.md` updated to match the new rule?
-3. Do the examples in that file reflect the change?
-4. Did the author test end-to-end with a real wiki?
-5. Will existing user vaults still work (migration clear if not)?
-
-If all yes, merge. Otherwise, ask for revision.
+**Review:** does it solve a real problem (not speculative)? Is `template/AGENTS.md` updated and do its examples match? Was it tested end-to-end? Will existing vaults still work (migration clear if not)? All yes → merge; otherwise ask for revision.
 
 ---
 

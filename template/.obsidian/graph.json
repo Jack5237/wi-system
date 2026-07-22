@@ -22,7 +22,7 @@
       }
     },
     {
-      "query": "path:AGENTS.md OR path:CLAUDE.md OR path:log.md",
+      "query": "path:AGENTS.md OR path:log.md",
       "color": {
         "a": 1,
         "rgb": 4937059

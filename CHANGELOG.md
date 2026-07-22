@@ -7,19 +7,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 ### Added
-- Professional project structure: CONTRIBUTING.md, SECURITY.md
+- Professional project structure: CONTRIBUTING.md
 - Configuration files: .editorconfig, .gitattributes
 - GitHub issue templates (bug report, feature request)
 - Pull request template for contributions
 - Enhanced README with side-by-side Obsidian + AI workflow
-- `.wi/schema.yaml` — a normative, machine-readable folder/type/frontmatter/log contract, making the "schema-driven" description literal. AGENTS.md references it and carries a human-readable Frontmatter Reference table
+- Frontmatter Reference table in AGENTS.md — the human-readable folder/type/frontmatter contract
 - Pre-configured Obsidian graph colors via path-based groups (`path:sources` green, `path:wiki` blue, `AGENTS.md`/`log.md` grey) — 3 groups, zero setup, and survives folder renames because it keys off the top-level path rather than each subfolder
 - **`log.md` is now a real graph node** — AGENTS.md defines a mandatory "Log Format": every entry must `[[wikilink]]` the exact source and wiki files it touched, instead of describing them in prose. Lint now checks for un-linked log entries the same way it checks for missing hub links
 
 ### Changed
-- **Restructured `sources/` from 6 folders to 3:** `01-articles` (authored text), `02-conversations` (dialogue & talk transcripts, incl. video/audio transcripts), `03-attachments` (raw native files — PDFs, images, audio, video). `type:` frontmatter stays granular
-- **Restructured `wiki/` from 4 folders to 3:** `pages`, `entities`, `projects`. Syntheses now live in `pages/` marked `type: synthesis` — no separate folder
-- **Renamed `wiki/topics/` to `wiki/pages/`** (hub note, folder, and every cross-reference in AGENTS.md/docs/schema updated to match)
+- **Restructured to MAT/RIX:** `sources/` holds 3 type folders (`Media`, `Articles`, `Transcripts`), `wiki/` holds 3 subject folders (`Records`, `Individuals`, `Execution`), each with a hub note named after the folder. `type:` frontmatter stays granular; saved answers live in `Records/` marked `type: record`
 - Elevated the wiki-page → subject-hub link to mandatory (same weight as `## Sources` weaving), fixing the graph defect where a new page connected to its sources but floated free of the wiki tree
 - Cleaned template structure: removed AI-specific config from template/
 - AGENTS.md is now the single source of truth for all AI agents

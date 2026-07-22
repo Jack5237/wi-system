@@ -73,9 +73,9 @@ Because every hub name is now unique across the whole vault, **all links use the
 
 This gives a visible hierarchy in Graph View: individual source → type hub → sources root, and individual wiki page → subject hub → wiki root, with the `## Sources` citations cutting laterally across the two trees connecting a specific source to the specific page it fed.
 
-**The hub link is non-optional, on both sides.** When ingesting a new source, link it up to its folder's hub. When creating a new wiki page, link it up to its subject hub — `Part of [[Records|Records]]` on a new record page, same as a source gets `Part of [[Articles|Articles]]`. This is the single line that draws the wiki → record edge in the graph. Skip it and the page still connects *down* to the sources it cites (via `## Sources`) but floats free of the wiki tree — a node hanging off two sources with no path back to records. That disconnected-looking node is the #1 graph defect, and it's always a missing hub link. Treat this line with exactly the same weight as the `## Sources` weave: a page isn't finished until both exist. Neither hub file itself needs editing when a child links up to it — Obsidian's backlinks make the connection visible from both directions automatically.
+**The hub link is non-optional, on both sides.** Every new source links up to its folder hub; every new wiki page links up to its subject hub — `Part of [[Records|Records]]` on a new record page, same as a source gets `Part of [[Articles|Articles]]`. Skip it and the page floats free of its tree — the #1 graph defect is always a missing hub link. Same weight as the `## Sources` weave: a page isn't finished until both exist. The hub file itself never needs editing — backlinks show the connection automatically.
 
-Three source folders, three wiki folders — that's the cap. Anything that doesn't fit a source type goes in `Media/` (if it's a file) or `Articles/` (if it's text). Don't invent new type folders per edge case. Wiki subject folders (`Records/`, `Individuals/`, `Execution/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
+Six folders is also the cap. Anything that doesn't fit a source type goes in `Media/` (if it's a file) or `Articles/` (if it's text). Don't invent new type folders per edge case. Wiki subject folders (`Records/`, `Individuals/`, `Execution/`) are fixed too — don't add new top-level wiki folders until at least 10+ pages genuinely demand a new category.
 
 **Dumping is allowed anywhere in `sources/`.** A file landing in the wrong subfolder, or in the root of `sources/`, is fine — part of ingest is the AI moving it to the right place. Classification is the AI's job, not the user's. This only covers `sources/` itself — a file sitting at the vault root won't be picked up by "ingest new sources," since that scans inside `sources/` only. Move it in first.
 
@@ -151,13 +151,13 @@ When told to ingest (or when you find unprocessed sources), for each unprocessed
 6. **Update existing pages before creating new ones.** Creating a new page is the fallback, not the default.
 7. **Quality Gate: No Stubs** — Only create a new page if it has ≥3 substantive key points OR a meaningful relationship to existing pages.
 8. **Quality Gate: No Slop** — Extract *insights*, don't transcribe. Max 150 words per summary section. Every claim traces to a source.
-9. **Weave** — add the source as a `[[wikilink]]` (filename, no extension) to every touched page's `## Sources` section — not a backtick-quoted path, which renders as inert code and creates no graph edge. This is the mapping mechanism between raw data and structured knowledge.
-10. **Link every new wiki page to its subject hub — mandatory, same weight as step 9.** A new `wiki/Records/react-flow.md` page gets `Part of [[Records|Records]]` under its frontmatter, same pattern a source gets `Part of [[Articles|Articles]]`. This one line draws the wiki → record edge; omit it and the page floats free of the wiki tree. A new page isn't done until this line exists. Pages that already exist and are just being updated don't need this re-added.
+9. **Weave** — add the source as a `[[wikilink]]` (filename, no extension) to every touched page's `## Sources` section. This is the mapping mechanism between raw data and structured knowledge.
+10. **Link every new wiki page to its subject hub — mandatory, same weight as step 9.** `Part of [[Records|Records]]` under the frontmatter. Existing pages being updated don't need it re-added.
 11. **Flag contradictions** in the page's `## Open Questions` section instead of silently overwriting a claim.
 12. **Add cross-references** — link only when conceptually relevant (`[[Other Page]]`). Not every mention needs a link.
-13. **Update `wiki/RIX_WIKI.md`** — curated, not auto-appended. Add genuinely new record/individual/project pages.
+13. **Update `wiki/wiki.md`** — curated, not auto-appended. Add genuinely new record/individual/project pages.
 14. **Mark** the source `ingested: true`.
-15. **Append to `log.md` — with real wikilinks, not prose.** Every source ingested and every wiki page touched gets `[[linked]]` in the entry (see the "Log Format" section below). This is the same weight as steps 9 and 10: the entry isn't done until it links out to every file the operation touched, source and wiki page alike.
+15. **Append to `log.md` — with real wikilinks, not prose** (see "Log Format" below). Same weight as steps 9 and 10.
 16. **Commit.**
 
 Per-source summary pages are **not created by default** — only for long, dense, or heavily-referenced sources where a standalone summary adds value beyond what the record pages already capture.
@@ -187,7 +187,7 @@ When you say "please lint the wiki":
 6. **Unlinked concepts** — mentioned but lacking their own page.
 7. **Missing hub links** — any source or wiki page missing its `Part of [[...]]` line → add it. Pay special attention to wiki pages that have a `## Sources` section but no `Part of [[...]]` line: those are the nodes that show in the graph connected to their sources but disconnected from their subject hub. Every wiki page must link up to `Records`, `Individuals`, or `Execution`.
 8. **Unlinked log entries** — scan `log.md` for entries that describe a file in prose instead of `[[linking]]` it (e.g. "ingested a conversation about X" with no wikilink). Rewrite the entry to link the actual file. This is the same defect class as a missing hub link, just on the fourth tree.
-9. **`wiki/RIX_WIKI.md` out of date** → refresh (curated, never auto-append everything).
+9. **`wiki/wiki.md` out of date** → refresh (curated, never auto-append everything).
 10. **Report findings** and offer fixes.
 
 Commit after every ingest and lint pass. Git history is the wiki's memory.
@@ -226,7 +226,7 @@ Refined synthesis and context beyond the bullet points.
 - [[2026-06-30-claude-session]]
 ```
 
-**Sources entries must be `[[wikilinks]]` to the filename (no extension, no path), not backtick-quoted plain text.** Obsidian only draws a graph edge for an actual link — a backtick-quoted path renders as inline code and creates no connection. Filenames are unique (`YYYY-MM-DD-slug.md`), so a bare `[[filename]]` wikilink resolves correctly regardless of which `sources/` subfolder it's actually in — no relative path math required.
+**Sources entries must be `[[wikilinks]]` to the filename (no extension, no path)** — see Linking Rules. Filenames are unique (`YYYY-MM-DD-slug.md`), so a bare `[[filename]]` resolves regardless of subfolder.
 
 Manual pages (pure thinking, no ingest event) are allowed — they just skip `## Sources`. Still add the `Part of [[...]]` hub link so the page shows up in the graph hierarchy like everything else.
 
@@ -245,7 +245,7 @@ Manual pages (pure thinking, no ingest event) are allowed — they just skip `##
 - [[pasta-ecommerce-with-svelte]] ← drew from [[pasta]], [[svelte]], [[2026-06-28-svelte-docs]]
 ```
 
-Every entry names, as a wikilink: the source file(s) it processed, and the wiki page(s) it created or updated. This applies uniformly across source types — a transcript, an article, a note, a doc, a video file, an image — none get a free pass into prose-only logging. This is what makes `log.md` a real graph node connected to everything the vault has ever touched, instead of a text file the graph can't see into.
+Every entry names, as a wikilink, the source file(s) it processed and the wiki page(s) it created or updated — no source type gets a free pass into prose-only logging. That's what makes `log.md` a real graph node instead of a text file the graph can't see into.
 
 **Bad (no edges drawn):**
 ```markdown

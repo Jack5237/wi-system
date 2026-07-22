@@ -49,12 +49,11 @@ Every wiki page has a `## Sources` section pointing at the exact raw files that 
 
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** — Install and set up (5 min)
 - **[TUTORIAL.md](TUTORIAL.md)** — Prompt library and worked example
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — How to contribute
-- **[CLAUDE.md](CLAUDE.md)** — Architecture notes
+- **[AGENTS.md](AGENTS.md)** — Contributor guide and architecture notes
 
 ## Limitations
 
-Built for personal/team scale, not enterprise RAG. Requires an AI agent (Claude, GPT, Ollama, etc). Quality depends on what you feed it.
+Built for personal/team scale, not enterprise RAG. Requires an AI agent (Claude, GPT, Ollama, etc). Quality depends on what you feed it. Everything is plain markdown with no encryption or access control — keep secrets and regulated data out of your vault, and use a private repo if you push it.
 
 ## License
 

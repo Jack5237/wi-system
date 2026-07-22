@@ -3,6 +3,3 @@ contact_links:
   - name: Documentation
     url: https://github.com/Jack5237/wi-system
     about: Check the README, GETTING_STARTED, or TUTORIAL for help
-  - name: Security Issue
-    url: https://github.com/Jack5237/wi-system/blob/main/SECURITY.md
-    about: Report security vulnerabilities privately via email (see SECURITY.md)
