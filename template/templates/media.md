@@ -1,5 +1,6 @@
 ---
-type: image
+type: 
+resource: 
 captured: {{DATE}}
 ingested: false
 ---

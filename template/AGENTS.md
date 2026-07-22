@@ -113,26 +113,23 @@ Templates in `templates/` folder auto-fill scaffolding. When creating a file:
 
 1. Create new file in the folder
 2. Command palette: `Ctrl+P` → `Templates: Insert template`
-3. Pick the template matching the file type (see table below)
-4. Edit in-place: fill frontmatter values, add content, link sources
+3. Pick the template for that folder (see table below)
+4. Edit in-place: fill frontmatter `type`, date, and resource fields; add content
 
 Templates provide minimal structure — **just edit, don't reformat**. Every template has:
-- Frontmatter with `type` and date (`captured` or `updated`) — fill blanks only
+- Frontmatter with `type` and date — fill in values
 - `Part of [[...]]` hub link — already correct, no edit needed
-- Title and content placeholders — replace `{{TITLE}}` with the actual title
-- Source section — add wikilinks as you reference sources during ingest
+- Title placeholder — replace `{{TITLE}}`
+- Source section (wiki only) — add wikilinks as you reference
 
-| Folder | Type | Template | Use for |
-|---|---|---|---|
-| `sources/Articles/` | `article` | `article.md` | Web clips, text notes, writings |
-| `sources/Transcripts/` | `transcript` | `transcript.md` | Chat logs, meeting notes, dialogue |
-| `sources/Transcripts/` | `video` | `video.md` | Video transcripts |
-| `sources/Transcripts/` | `audio` | `audio.md` | Audio/podcast transcripts |
-| `sources/Media/` | `document` | `document.md` | PDFs, docs, files |
-| `sources/Media/` | `image` | `image.md` | Image metadata |
-| `wiki/Records/` | `record` | `record.md` | Topics, concepts, knowledge |
-| `wiki/Individuals/` | `individual` | `individual.md` | People, orgs, entities |
-| `wiki/Execution/` | `project` | `project.md` | Projects, tasks, initiatives |
+| Folder | Template | Frontmatter: type values |
+|---|---|---|
+| `sources/Articles/` | `articles.md` | `article` |
+| `sources/Transcripts/` | `transcripts.md` | `transcript`, `video`, `audio` |
+| `sources/Media/` | `media.md` | `image`, `document` |
+| `wiki/Records/` | `records.md` | `record` |
+| `wiki/Individuals/` | `individuals.md` | `individual` |
+| `wiki/Execution/` | `execution.md` | `project` |
 
 ## Frontmatter Reference
 

@@ -1,6 +1,7 @@
 ---
-type: transcript
+type: 
 brain: 
+resource: 
 captured: {{DATE}}
 ingested: false
 ---
