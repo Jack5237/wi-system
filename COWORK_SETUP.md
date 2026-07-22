@@ -16,27 +16,11 @@ Personal productivity assistant. Ingest sources, agent synthesizes answers.
 
 ## Initial setup
 
-1. **Clone repo:**
+1. **Get the vault:** follow [GETTING_STARTED](https://github.com/Jack5237/wi-system/blob/main/GETTING_STARTED.md) — clone, copy `template/` to a folder named `YOUR_AGENT_NAME`.
 
-   ```bash
-   git clone https://github.com/Jack5237/wi-system.git
-   ```
+2. **Open in Cowork:** New Project → browse to your folder → open
 
-2. **Copy template folder:**
-
-   **Linux/Mac:**
-   ```bash
-   cp -r wi-system/template ~/Desktop/YOUR_AGENT_NAME
-   rm -rf wi-system
-   ```
-
-   **Windows:**
-   - File Explorer → open `wi-system` → copy `template` to Desktop
-   - Rename it `YOUR_AGENT_NAME` → delete `wi-system` folder
-
-3. **Open in Cowork:** New Project → browse to your folder → open
-
-4. **Add project instructions** (replace `YOUR_AGENT_NAME`):
+3. **Add project instructions** (replace `YOUR_AGENT_NAME`):
 
    ```
    You are YOUR_AGENT_NAME. Manage my wiki. Follow AGENTS.md in this folder.
@@ -50,7 +34,7 @@ Personal productivity assistant. Ingest sources, agent synthesizes answers.
    See TUTORIAL.md for all.
    ```
 
-5. **Test:** Say "Who are you?" — agent should introduce itself. Then drop files in `sources/` and start prompting.
+4. **Test:** Say "Who are you?" — agent should introduce itself. Then drop files in `sources/` and start prompting.
 
    *Optional: open the folder in [Obsidian](https://obsidian.md) for graph visualization.*
 
