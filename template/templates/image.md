@@ -1,10 +1,9 @@
 ---
-type: article
-resource:
+type: image
 captured: {{DATE}}
 ingested: false
 ---
 
-Part of [[Articles|Articles]].
+Part of [[Media|Media]].
 
 # {{TITLE}}

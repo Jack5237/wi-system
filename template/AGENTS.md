@@ -109,21 +109,30 @@ After ingest, source files are **immutable**. Never edit them. They're the groun
 
 ## Using Templates
 
-Templates are pre-configured in `templates/` folder. When creating a new file:
+Templates in `templates/` folder auto-fill scaffolding. When creating a file:
 
-1. Create the file in the correct folder (`sources/Articles/`, `wiki/Records/`, etc.)
-2. Open command palette (`Ctrl+P` / `Cmd+P`)
-3. Type `Templates: Insert template`
-4. Pick the matching template (e.g., `article.md` for `sources/Articles/`)
+1. Create new file in the folder
+2. Command palette: `Ctrl+P` → `Templates: Insert template`
+3. Pick the template matching the file type (see table below)
+4. Edit in-place: fill frontmatter values, add content, link sources
 
-Templates auto-populate:
-- Frontmatter with correct `type`, `captured`, or `updated` date
-- `Part of [[...]]` hub link (exact folder link based on template)
-- Wiki pages include full structure (`## Summary`, `## Sources`, etc.)
+Templates provide minimal structure — **just edit, don't reformat**. Every template has:
+- Frontmatter with `type` and date (`captured` or `updated`) — fill blanks only
+- `Part of [[...]]` hub link — already correct, no edit needed
+- Title and content placeholders — replace `{{TITLE}}` with the actual title
+- Source section — add wikilinks as you reference sources during ingest
 
-**For daily work:** Create files in `sources/Articles/` → use `article.md` template. Creates source file with backfill link automatically.
-
-**For wiki pages:** Create files in `wiki/Records/`, `wiki/Individuals/`, or `wiki/Execution/` → use matching template (`record.md`, `individual.md`, `project.md`).
+| Folder | Type | Template | Use for |
+|---|---|---|---|
+| `sources/Articles/` | `article` | `article.md` | Web clips, text notes, writings |
+| `sources/Transcripts/` | `transcript` | `transcript.md` | Chat logs, meeting notes, dialogue |
+| `sources/Transcripts/` | `video` | `video.md` | Video transcripts |
+| `sources/Transcripts/` | `audio` | `audio.md` | Audio/podcast transcripts |
+| `sources/Media/` | `document` | `document.md` | PDFs, docs, files |
+| `sources/Media/` | `image` | `image.md` | Image metadata |
+| `wiki/Records/` | `record` | `record.md` | Topics, concepts, knowledge |
+| `wiki/Individuals/` | `individual` | `individual.md` | People, orgs, entities |
+| `wiki/Execution/` | `project` | `project.md` | Projects, tasks, initiatives |
 
 ## Frontmatter Reference
 

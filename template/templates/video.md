@@ -1,6 +1,6 @@
 ---
-type: transcript
-brain: 
+type: video
+resource: 
 captured: {{DATE}}
 ingested: false
 ---
