@@ -71,6 +71,8 @@ Three source folders, three wiki folders — that's the whole shape. Never mix t
 
 Every `sources/` type and `wiki/` subject folder has a hub file named after the folder (`Media.md`, `Records.md`, etc.). Every new page links to its hub — `Part of [[Records|Records]]` for wiki pages, `Part of [[Articles|Articles]]` for sources — before any other content. This is non-optional; skip it and the page floats in the graph.
 
+**Two-level hierarchy — pages never skip a level.** Only the three subject hubs (`Records.md`, `Individuals.md`, `Execution.md`) link up to `[[wiki|Wiki]]`, and only the type hubs (`Media.md`, `Articles.md`, `Transcripts.md`) link up to `[[sources|Sources]]`. Individual pages and source files link **only to their folder hub** — never directly to `wiki.md` or `sources.md`. A page in `wiki/Execution/` connects to the `Execution` node, which connects to `Wiki`; a file in `sources/Articles/` connects to `Articles`, which connects to `Sources`. Linking a page straight to the top node flattens the graph and breaks the hierarchy.
+
 Hub names are unique across the vault, so all links use bare `[[filename]]` wikilinks — no special-casing.
 
 Max six source folders. Anything else goes in `Media/` (file) or `Articles/` (text). Wiki folders are fixed: `Records/`, `Individuals/`, `Execution/`. Don't add more until 10+ pages demand it.
@@ -174,7 +176,7 @@ When you say "please lint the wiki":
 4. **Duplicates** — two pages about the same thing → merge.
 5. **Dead source links** — `## Sources` entries pointing at renamed/moved files, or `Part of [[...]]` hub links pointing at the wrong folder → fix.
 6. **Unlinked concepts** — mentioned but lacking their own page.
-7. **Missing hub links** — any source or wiki page missing its `Part of [[...]]` line → add it. Pay special attention to wiki pages that have a `## Sources` section but no `Part of [[...]]` line: those are the nodes that show in the graph connected to their sources but disconnected from their subject hub. Every wiki page must link up to `Records`, `Individuals`, or `Execution`.
+7. **Missing hub links** — any source or wiki page missing its `Part of [[...]]` line → add it. Pay special attention to wiki pages that have a `## Sources` section but no `Part of [[...]]` line: those are the nodes that show in the graph connected to their sources but disconnected from their subject hub. Every wiki page must link up to `Records`, `Individuals`, or `Execution` — never directly to `wiki.md` or `sources.md` (that's the hubs' job; fix any page that skips a level).
 8. **Unlinked log entries** — scan `log.md` for entries that describe a file in prose instead of `[[linking]]` it (e.g. "ingested a conversation about X" with no wikilink). Rewrite the entry to link the actual file. This is the same defect class as a missing hub link, just on the fourth tree.
 9. **`wiki/wiki.md` out of date** → refresh (curated, never auto-append everything).
 10. **Report findings** and offer fixes.
@@ -277,6 +279,7 @@ This describes the operation but links nothing — Obsidian draws zero edges fro
 - **Do not over-link** — Link only when it helps understanding. Not every mention is a link.
 - **Do not transcribe sources** — Extract insights, synthesize knowledge. Paraphrase, don't copy.
 - **Do not mix raw and structured** — Keep `sources/` (by type) separate from `wiki/` (by subject).
+- **Do not link pages to the top nodes** — Only hubs link to `[[wiki|Wiki]]` / `[[sources|Sources]]`. Pages link to their folder hub only.
 - **Do not cite without sourcing** — Every claim in wiki pages must trace back to a source.
 
 ---

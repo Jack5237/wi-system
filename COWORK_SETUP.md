@@ -17,28 +17,27 @@ Personal productivity assistant. Ingest sources, agent synthesizes answers.
 ## Initial setup
 
 1. **Clone repo:**
-```bash
-git clone https://github.com/Jack5237/wi-system.git
-```
+
+   ```bash
+   git clone https://github.com/Jack5237/wi-system.git
+   ```
 
 2. **Copy template folder:**
 
-**Linux/Mac:**
-```bash
-cp -r wi-system/template ~/Desktop/YOUR_AGENT_NAME
-rm -rf wi-system
-```
+   **Linux/Mac:**
+   ```bash
+   cp -r wi-system/template ~/Desktop/YOUR_AGENT_NAME
+   rm -rf wi-system
+   ```
 
-**Windows:**
-- Open File Explorer → navigate to `wi-system/template`
-- Copy to Desktop → rename to `YOUR_AGENT_NAME`
-- Delete `wi-system` folder
+   **Windows:**
+   - File Explorer → open `wi-system` → copy `template` to Desktop
+   - Rename it `YOUR_AGENT_NAME` → delete `wi-system` folder
 
-3. **Open in Cowork:**
-   New Project → browse folder → open
+3. **Open in Cowork:** New Project → browse to your folder → open
 
-4. **Add project instructions:**
-   Paste into project instructions field (replace `YOUR_AGENT_NAME`):
+4. **Add project instructions** (replace `YOUR_AGENT_NAME`):
+
    ```
    You are YOUR_AGENT_NAME. Manage my wiki. Follow AGENTS.md in this folder.
 
@@ -51,42 +50,46 @@ rm -rf wi-system
    See TUTORIAL.md for all.
    ```
 
-5. **Test:**
-   Tell agent: "Who are you?" → should introduce itself.
-   Drop files in `sources/` and start prompting.
-   *Optional: [Obsidian](https://obsidian.md) for graph visualization.*
+5. **Test:** Say "Who are you?" — agent should introduce itself. Then drop files in `sources/` and start prompting.
+
+   *Optional: open the folder in [Obsidian](https://obsidian.md) for graph visualization.*
 
 ---
 
 ## Scheduled tasks
 
-### How to create
+Cowork → **Scheduled** → **Add Scheduled Task**. Create each task below.
 
-Cowork → **Scheduled** → **Add Scheduled Task** for each task.
-
-### Default settings (all tasks)
+**Settings (all tasks):**
 
 - **Frequency:** Default or Every Sunday 4:00 AM
 - **Model:** Haiku (light) or Sonnet 4.6 (complex)
 - **Auto approve:** Enable
 
-### Tasks
+### 1. project-status
 
-#### project-status
 - **Description:** Weekly project status summary
-- **Project folders:** Parent folder containing repos (e.g., `~/Desktop/Code/`)
-- **Prompt:** Follow AGENTS.md. Check `[YOUR_PROJECT1]`, `[YOUR_PROJECT2]`, `[YOUR_PROJECT3]` repos. Summarize commits, PRs, blockers. Create `wiki/Execution/project-status-[date].md` with: `Part of [[Execution|Execution]].` at top, frontmatter (type, updated), content.
+- **Project folders:** Parent folder containing your repos (e.g., `~/Desktop/Code/`)
+- **Prompt:**
 
-#### hot-topics
+  > Follow AGENTS.md. Check `[YOUR_PROJECT1]`, `[YOUR_PROJECT2]`, `[YOUR_PROJECT3]` repos. Summarize commits, PRs, blockers. Create `wiki/Execution/project-status-[date].md` with `Part of [[Execution|Execution]].` at top (link to the Execution hub only, never the wiki node), frontmatter (`type: project`, `updated`), then content.
+
+### 2. hot-topics
+
 - **Description:** Weekly trending topics in your field
 - **Project folders:** None
-- **Prompt:** Follow AGENTS.md. Search YouTube for trending `[YOUR_TOPIC]`. List top 3 with links. Create `wiki/Records/hot-topics-[date].md` with: `Part of [[Records|Records]].` at top, frontmatter (type, updated), content.
+- **Prompt:**
 
-#### people-tracking
+  > Follow AGENTS.md. Search YouTube for trending `[YOUR_TOPIC]`. List top 3 with links. Create `wiki/Records/hot-topics-[date].md` with `Part of [[Records|Records]].` at top (link to the Records hub only, never the wiki node), frontmatter (`type: record`, `updated`), then content.
+
+### 3. people-tracking
+
 - **Description:** Track and profile notable people
 - **Project folders:** None
-- **Prompt:** Follow AGENTS.md. For `[PERSON1]`, `[PERSON2]`, `[PERSON3]`: Search recent work/talks/articles. List top 3 sources. Pull into `sources/Transcripts/` with frontmatter. Create/update `wiki/Individuals/[person].md` with: `Part of [[Individuals|Individuals]].` at top, frontmatter (type, updated), bio, expertise, recent work, source links.
+- **Prompt:**
+
+  > Follow AGENTS.md. For `[PERSON1]`, `[PERSON2]`, `[PERSON3]`: search recent work, talks, articles. List top 3 sources. Save them into `sources/Transcripts/` with frontmatter and `Part of [[Transcripts|Transcripts]].` at top (link to the Transcripts hub only, never the sources node). Create/update `wiki/Individuals/[person].md` with `Part of [[Individuals|Individuals]].` at top, frontmatter (`type: individual`, `updated`), bio, expertise, recent work, source links.
 
 ---
 
-Ready. Customize placeholders and create tasks.
+Ready. Replace placeholders, create the tasks, done.
