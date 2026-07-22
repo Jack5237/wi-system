@@ -62,7 +62,3 @@ MIT — see [LICENSE](LICENSE)
 ## Contributing
 
 Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-[![Jack5237/wi-system contributors](https://shieldcn.dev/contributors/Jack5237/wi-system.svg?preset=transparent&names=true&titleAlign=center&align=left&mode=dark)](https://github.com/Jack5237/wi-system/graphs/contributors)
-
-![Star history chart](https://shieldcn.dev/chart/github/stars/Jack5237/wi-system.svg)

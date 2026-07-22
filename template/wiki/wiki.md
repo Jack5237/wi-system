@@ -1,3 +1,7 @@
+---
+type: hub
+---
+
 # Wiki Index
 
 Consolidated knowledge layer. Everything you've synthesized and learned. **R**ecords · **I**ndividuals · e**X**ecution.
@@ -19,8 +23,3 @@ People, companies, teams, profiles, and organizations. See [[Individuals]].
 Active projects, tasks, roadmaps, and things in progress. See [[Execution]].
 
 - _(no execution items yet)_
-
----
-
-Total pages: 0 (will update as the wiki grows)
-Last updated: 2026-07-02

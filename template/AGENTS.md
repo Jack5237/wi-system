@@ -85,10 +85,10 @@ Once ingested, every source file is normalized:
 
 **Name:** `YYYY-MM-DD-short-slug.md`
 
-**Frontmatter:**
+**Frontmatter** (fields and allowed values defined in the Frontmatter Reference below):
 ```yaml
 ---
-type: article        # article | transcript | video | audio | image | document
+type: article
 resource: https://example.com/react-flow-review
 captured: 2026-06-28
 ingested: true
@@ -97,18 +97,9 @@ ingested: true
 Part of [[Articles|Articles]].
 ```
 
-The `Part of [[...]]` line goes right after the frontmatter, before the original article content — that's the hub link that puts this source in the graph hierarchy.
+The `Part of [[...]]` line goes right after the frontmatter, before the original content — that's the hub link that puts this source in the graph hierarchy.
 
-For files in `Transcripts/`, add which brain produced it:
-```yaml
----
-type: transcript
-brain: claude         # claude | gpt | gemini | human
-captured: 2026-06-28
-ingested: true
----
-```
-This makes provenance visible — if two brains disagree on a topic, the wiki page's `## Open Questions` can attribute each claim to its source rather than silently picking one.
+Files in `Transcripts/` also carry `brain:` — which brain produced it. That makes provenance visible: if two brains disagree on a topic, the wiki page's `## Open Questions` can attribute each claim to its source rather than silently picking one.
 
 `ingested: false` (or missing frontmatter entirely) marks a raw file as queued for processing. This one flag is the entire queue system — no inbox folder needed.
 

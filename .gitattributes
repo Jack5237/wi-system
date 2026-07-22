@@ -1,15 +1,2 @@
-# Auto detect text files and normalize line endings to LF
-* text=auto
-*.md text eol=lf
-*.json text eol=lf
-*.sh text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
-
-# Binary files
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.zip binary
-*.pdf binary
+# Normalize all text files to LF; git auto-detects binaries
+* text=auto eol=lf
