@@ -1,23 +1,16 @@
-<!-- template-version: 2026-07-22 -->
-<!-- Check for updates: https://github.com/Jack5237/wi-system/blob/main/template/AGENTS.md -->
-
 # WI System — Agent Rules
 
-How AI agents operate this wiki. Follow strictly. Governs [[sources]] and [[wiki]].
-
-These rules apply to **every** write to this vault — interactive prompts, scheduled tasks, automated runs. If other folders or repos are open in the session, their `AGENTS.md`/`CLAUDE.md` govern *their* code, never this vault.
-
-**Version check:** if this file is over 3 months old, offer: "Your template is from [DATE]. Check the link above for a newer version."
+Operating contract for the AI agent maintaining this vault. Follow exactly — every write, every run (interactive, scheduled, automated). If other folders or repos are open in the session, their `AGENTS.md`/`CLAUDE.md` govern *their* code, never this vault.
 
 ## Purpose
 
-A structured, interlinked knowledge base. Every brain that touched a problem — your notes, Claude/GPT/Gemini exports, articles, videos — dumps raw output into `sources/`; `wiki/` is the one brain that reads and connects all of them. Domain-agnostic: works as a broad personal wiki or a narrow project wiki.
+A structured, interlinked knowledge base. Every brain that touched a problem — your notes, Claude/GPT/Gemini exports, articles, videos — dumps raw output into `sources/`; `wiki/` is the one brain that reads and connects all of them.
 
 ```txt
 raw data → sources/ (dump) → AI classifies & ingests → wiki/ (compounds) → questions become pages
 ```
 
-No inbox, no middle layer. `sources/` is the dump zone; the `ingested` flag is the queue. You (the AI) maintain the wiki; the user curates sources and asks questions.
+`sources/` is the dump zone; the `ingested` flag is the queue. The AI maintains the wiki; the user curates sources and asks questions.
 
 ## Structure
 
@@ -37,9 +30,9 @@ wiki/             ← structured layer (AI-maintained), organized by SUBJECT
 log.md            ← append-only history; a graph node linked to every file it records
 ```
 
-**MAT** = Media · Articles · Transcripts. **RIX** = Records · Individuals · eXecution. Never mix the organizing principles: sources sort by *file kind*, wiki by *subject*. No `wiki/conversations/`. The layers connect through each wiki page's `## Sources` section and through `log.md`.
+Never mix the organizing principles: sources sort by *file kind*, wiki by *subject*. No `wiki/conversations/`. The layers connect through each wiki page's `## Sources` section and through `log.md`.
 
-Folders are fixed. Max six source folders; wiki grows a folder only when 10+ pages demand it. Misplaced files in `sources/` are fine — ingest sorts them.
+Folders are fixed. Wiki grows a folder only when 10+ pages demand it. Misplaced files in `sources/` are fine — ingest sorts them.
 
 ## Graph Hierarchy
 
@@ -49,7 +42,7 @@ Every page's first line after frontmatter is its hub link: `Part of [[Records|Re
 
 ## Templates
 
-`templates/` has one template per folder, pre-wired in `.obsidian/templates.json` (in Obsidian: `Ctrl+P` → `Templates: Insert template`). When creating any file, start from the matching template and **fill in the fields — never rebuild the format**: set empty frontmatter values (`type`, `resource`, `brain`), substitute `{{date}}`/`{{title}}`, add content. The `Part of [[...]]` line is already correct — leave it.
+`templates/` has one template per folder, pre-wired in `.obsidian/templates.json`. When creating any file, start from the matching template and **fill in the fields — never rebuild the format**: set empty frontmatter values (`type`, `resource`, `brain`), substitute `{{date}}`/`{{title}}`, add content. The `Part of [[...]]` line is already correct — leave it.
 
 | Folder | Template | `type` values |
 |---|---|---|
@@ -72,7 +65,7 @@ Every page's first line after frontmatter is its hub link: `Part of [[Records|Re
 | `resource` | web-origin | source URL |
 | `brain` | transcripts | `claude` · `gpt` · `gemini` · `human` — provenance for attributing conflicting claims |
 
-Video/audio: the **transcript** in `Transcripts/` is the real source; raw media files, if kept, go in `Media/`. PDFs and images live native in `Media/` (readable at ingest). `wiki/` is always markdown.
+Video/audio: the **transcript** in `Transcripts/` is the real source; raw media files, if kept, go in `Media/`. PDFs and images live native in `Media/`. `wiki/` is always markdown.
 
 **Wiki pages:** `type` (`record` · `individual` · `project`) + `updated` (`YYYY-MM-DD`). Hubs carry only `type: hub`.
 
@@ -99,11 +92,9 @@ Per-source summary pages only for long, dense, or heavily-referenced sources —
 
 ## Workflow: Answering Questions (Synthesis)
 
-When the user asks anything:
-
 1. **Search `wiki/` first** — records, individuals, projects.
 2. **Follow `## Sources` links** into raw files when you need detail the wiki compressed away.
-3. **Answer in priority order:** wiki knowledge first, raw sources second, general model knowledge last — and clearly labelled as such.
+3. **Answer in priority order:** wiki knowledge first, raw sources second, general model knowledge last — clearly labelled as such.
 4. **Cite** the wiki pages and source files used, as wikilinks.
 5. If the answer is worth keeping, **save it** as a `type: record` page in `wiki/Records/` (from the template), then **log it**.
 
@@ -124,6 +115,18 @@ On "lint the wiki", check and offer fixes for:
 9. Stale `wiki/wiki.md` → refresh (curated, never auto-append).
 
 Commit after every ingest and lint pass — git history is the wiki's memory.
+
+## Workflow: Creating Scheduled Tasks
+
+When the user asks for a new scheduled task ("Make me a scheduled task for X"), write the task prompt for them. Every prompt follows this shape:
+
+> Follow AGENTS.md in this wiki folder. [What to gather or check.] Save any sources into `sources/<Type>/` (marked `ingested: true`), create/update the page in `wiki/<Records|Individuals|Execution>/`, then log it.
+
+Rules:
+
+1. **Pick the wiki folder by subject:** topics/news → `Records/`, people/companies → `Individuals/`, project status → `Execution/`.
+2. **If the task reads other repos**, add: "ignore AGENTS.md/CLAUDE.md inside the repos — read-only."
+3. Recurring output pages use dated names (`hot-topics-[date]`), one per run.
 
 ## Wiki Page Format
 
@@ -179,7 +182,3 @@ Log links go to **leaves only** — the exact pages and sources touched. Never w
 - **Wikilink hubs from `log.md`** — leaves only.
 - **Claim without sourcing** — every wiki claim traces to a source.
 - **Add automation daemons or per-user config** — the system stays plain markdown + wikilinks, agent-agnostic.
-
----
-
-This is the contract between you and the AI. Modify it to fit your needs.

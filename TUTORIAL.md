@@ -30,6 +30,4 @@ Repeat. Once you have sources, ask questions — agent answers from wiki, can sa
 ---
 
 **More:**
-- [Set Up Your Wiki on Cowork](https://gist.github.com/Jack5237/144ad4b9d430292f4841765924456196) — create a personal productivity assistant project
-
-Next: [CONTRIBUTING.md](CONTRIBUTING.md) to help improve template.
+- [Set Up Your Wiki on Cowork](COWORK_SETUP.md) — create a personal productivity assistant project
