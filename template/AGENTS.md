@@ -1,11 +1,13 @@
 <!-- template-version: 2026-07-22 -->
-<!-- Check for updates: https://github.com/jackmcguinness/wi-systems/blob/main/template/AGENTS.md -->
+<!-- Check for updates: https://github.com/Jack5237/wi-system/blob/main/template/AGENTS.md -->
 
 # WI System — Agent Rules
 
 This document tells AI agents how to operate this wiki. Follow these rules strictly.
 
 Governs [[sources]] and [[wiki]].
+
+These rules apply to **every** operation that writes to this vault — interactive prompts, scheduled tasks, automated runs, all of it. If a session also has other folders or repos open, their `AGENTS.md`/`CLAUDE.md` files govern *their* code, never this vault; this file is the only contract for anything written here.
 
 **Version Check:** If this file's version is more than 3 months old, ask the user if they want to check for updates in the repository. You can flag this with: "Your template is from [DATE]. Check if there's a newer version at the link above—pull the repo again if there's an update you want."
 
